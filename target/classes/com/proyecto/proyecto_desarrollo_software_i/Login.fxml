@@ -4,15 +4,22 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
 <AnchorPane id="AnchorPane" prefHeight="333.0" prefWidth="517.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.proyecto.proyecto_desarrollo_software_i.LoginController">
    <children>
-      <Label layoutX="118.0" layoutY="79.0" prefHeight="18.0" prefWidth="62.0" text="User" />
-      <Label layoutX="118.0" layoutY="158.0" text="Password" />
-      <TextField fx:id="t_user" layoutX="202.0" layoutY="75.0" />
-      <PasswordField fx:id="t_password" layoutX="203.0" layoutY="154.0" />
-      <Button fx:id="btn_ingresar" layoutX="251.0" layoutY="237.0" mnemonicParsing="false" onAction="#ingresar" text="Ingresar" />
+      <Label layoutX="34.0" layoutY="90.0" prefHeight="18.0" prefWidth="62.0" text="User" />
+      <Label layoutX="34.0" layoutY="169.0" text="Password" />
+      <TextField fx:id="t_user" layoutX="118.0" layoutY="86.0" />
+      <PasswordField fx:id="t_password" layoutX="119.0" layoutY="165.0" />
+      <Button fx:id="btn_ingresar" layoutX="163.0" layoutY="256.0" mnemonicParsing="false" onAction="#ingresar" text="Ingresar" />
+      <ImageView fitHeight="193.0" fitWidth="199.0" layoutX="294.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagenes/coche-electrico.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
