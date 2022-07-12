@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.CrudVentalVehiculo_VendedorController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.proyecto.proyecto_desarrollo_software_i.CrudVentalVehiculo_VendedorController">
+   <children>
+      <Button fx:id="btn_devolverse" layoutX="33.0" layoutY="326.0" mnemonicParsing="false" onAction="#retorno" text="Retornar" />
+      <Label layoutX="47.0" layoutY="62.0" text="Cédula cliente" />
+      <Label layoutX="47.0" layoutY="98.0" text="Cédula vendedor" />
+      <Label layoutX="47.0" layoutY="141.0" text="Id Auto a comprar" />
+      <TextField fx:id="txt_cedula_cliente" layoutX="164.0" layoutY="58.0" />
+      <TextField fx:id="txt_cedula_vendedor" layoutX="164.0" layoutY="94.0" />
+      <TextField fx:id="txt_id_auto" layoutX="164.0" layoutY="137.0" />
+      <Button fx:id="btn_registrar_venta" layoutX="138.0" layoutY="183.0" mnemonicParsing="false" onAction="#accionBoton" text="Registrar venta" />
+      <Button fx:id="btn_modificar_venta" layoutX="138.0" layoutY="233.0" mnemonicParsing="false" onAction="#accionBoton" text="Modificar venta" />
+      <Button fx:id="btn_buscar_venta" layoutX="387.0" layoutY="258.0" mnemonicParsing="false" onAction="#accionBoton" text="Buscar venta" />
+      <TextArea fx:id="txt_area" editable="false" layoutX="330.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" />
+   </children>
 </AnchorPane>

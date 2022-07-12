@@ -5,9 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.proyecto.proyecto_desarrollo_software_i.InterfazPrincipalVendedorController">
+<AnchorPane id="AnchorPane" prefHeight="349.0" prefWidth="597.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.proyecto.proyecto_desarrollo_software_i.InterfazPrincipalVendedorController">
    <children>
-      <Button fx:id="btn_desconectarse" layoutX="36.0" layoutY="295.0" mnemonicParsing="false" onAction="#botonAccion" text="Desconectarse" />
+      <Button fx:id="btn_desconectarse" layoutX="36.0" layoutY="295.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Desconectarse" />
       <Label layoutX="115.0" layoutY="26.0" text="Interfaz principal vendedor" />
+      <Button fx:id="btn_crud_cliente" layoutX="279.0" layoutY="127.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="crud_cliente" />
+      <Button fx:id="btn_crud_ventavehiculo" layoutX="279.0" layoutY="175.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="crud_ventavehiculo" />
+      <Button fx:id="btn_buscar_vehiculo" layoutX="279.0" layoutY="225.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="buscar_vehiculo" />
+      <Button fx:id="btn_solicitar_traslado" layoutX="279.0" layoutY="270.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="solicitar_traslado" />
+      <Button fx:id="btn_ver_reporte" layoutX="279.0" layoutY="308.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="ver_reporte" />
    </children>
 </AnchorPane>

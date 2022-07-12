@@ -22,7 +22,7 @@ public class InterfazPrincipalJefeTallerController implements Initializable {
     @FXML
     Button btn_desconectarse;
     
-    public void botonAccion(ActionEvent ae){
+    public void cambioInterfaz(ActionEvent ae){
         if(ae.getSource()==btn_desconectarse){
             try {
                 App.setRoot("Login");
