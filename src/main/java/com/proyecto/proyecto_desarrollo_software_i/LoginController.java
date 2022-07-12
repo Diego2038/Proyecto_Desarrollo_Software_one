@@ -4,6 +4,7 @@
  */
 package com.proyecto.proyecto_desarrollo_software_i;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,17 +22,45 @@ import javafx.scene.control.TextField;
 public class LoginController implements Initializable {
     
     @FXML
-    TextField t_user;
+    TextField txt_user;
     
     @FXML
-    PasswordField t_password;
+    PasswordField txt_password;
     
     @FXML
     Button btn_ingresar;
     
     public void ingresar(ActionEvent ae){
         if(ae.getSource()==btn_ingresar){
-            System.out.println(t_user.getText() + " " + t_password.getText());
+            
+            try {
+                String fxml = "";
+            int num = Integer.parseInt(txt_user.getText());
+            System.out.println(txt_user.getText() + " " + txt_password.getText());
+            if(num == 1){
+                fxml = "InterfazPrincipalVendedor";
+            }else if(num == 2){
+                fxml = "InterfazPrincipalJefeTaller";
+            }else if(num == 3){
+                fxml = "InterfazPrincipalGerente";
+            }
+            
+            if(num == 1 || num == 2 || num == 3){
+                System.out.println("Cumple para entrar");
+                try {
+                    App.setRoot(fxml);
+                } catch (IOException ex) {
+                    System.err.println("Error con búsqueda de Interfaces: " + ex.getMessage());
+                    ex.printStackTrace();
+                }
+            }
+            } catch (Exception e) {
+                System.out.println("El login por ahora son números\n"
+                        + "Debido a que no es posible realizar comparaciones con\n"
+                        + "Strings debido a que son objetos, por eso se utilizan números");
+            }
+            
+            
         }
     }
 
