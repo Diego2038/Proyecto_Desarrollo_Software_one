@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.CrudSede_GerenteController">
-    
+<AnchorPane id="AnchorPane" prefHeight="352.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.CrudSede_GerenteController">
+   <children>
+      <Button fx:id="btn_devolverse" layoutX="29.0" layoutY="290.0" mnemonicParsing="false" onAction="#retorno" text="Regresar" />
+      <Label layoutX="61.0" layoutY="47.0" text="Id_sede" />
+      <Label layoutX="61.0" layoutY="81.0" text="Nombre" />
+      <Label layoutX="61.0" layoutY="124.0" text="Ciudad" />
+      <Label layoutX="61.0" layoutY="168.0" text="Dirección" />
+      <TextField fx:id="txt_id_sede" layoutX="130.0" layoutY="43.0" />
+      <TextField fx:id="txt_nombre" layoutX="130.0" layoutY="77.0" />
+      <TextField fx:id="txt_direccion" layoutX="130.0" layoutY="164.0" />
+      <TextArea fx:id="txt_area" editable="false" layoutX="343.0" layoutY="41.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="btn_buscar_sede" layoutX="417.0" layoutY="257.0" mnemonicParsing="false" onAction="#accionBoton" text="Buscar" />
+      <Button fx:id="btn_guardar_sede" layoutX="168.0" layoutY="229.0" mnemonicParsing="false" onAction="#accionBoton" text="Registrar Sede" />
+      <Button fx:id="btn_modificar_sede" layoutX="29.0" layoutY="229.0" mnemonicParsing="false" onAction="#accionBoton" text="Modificar" />
+      <TextField fx:id="txt_ciudad" layoutX="130.0" layoutY="120.0" />
+   </children>
 </AnchorPane>

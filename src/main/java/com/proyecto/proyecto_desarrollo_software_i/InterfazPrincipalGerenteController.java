@@ -21,17 +21,44 @@ public class InterfazPrincipalGerenteController implements Initializable {
     
     @FXML
     Button btn_desconectarse;
+    @FXML
+    Button btn_crud_usuario;
+    @FXML
+    Button btn_crud_sede;
+    @FXML
+    Button btn_crud_vehiculo;
+    @FXML
+    Button btn_autorizacion_traslado;
+    @FXML
+    Button btn_ver_reporte_totales;
     
     public void cambioInterfaz(ActionEvent ae){
+        String fxml = "";
         if(ae.getSource()==btn_desconectarse){
-            try {
-                App.setRoot("Login");
-                System.out.println("Regreso al login");
+            fxml = "Login";
+        }else if(ae.getSource()== btn_crud_usuario){
+            System.out.println("crud usuario");
+            fxml = "CrudUsuario_Gerente";
+        }else if(ae.getSource()== btn_crud_sede){
+            System.out.println("crud sede");
+            fxml = "CrudSede_Gerente";
+        }else if(ae.getSource()== btn_crud_vehiculo){
+            System.out.println("crud vehiculo");
+            fxml = "CrudVehiculo_Gerente";
+        }else if(ae.getSource()== btn_autorizacion_traslado){
+            System.out.println("autorizar traslado");
+            fxml = "AutorizacionTrasladoVehiculo_Gerente";
+        }else if(ae.getSource()== btn_ver_reporte_totales){
+            System.out.println("ver todos los reportes");
+            fxml = "ReportesGenerales_Gerente";
+        }
+        try {
+            App.setRoot(fxml);
+            System.out.println("Regreso al login");
             } catch (IOException ex) {
                 System.err.println("Error conexión interfaz: " + ex.getMessage());
                 ex.printStackTrace();
             }
-        }
     }
 
     /**

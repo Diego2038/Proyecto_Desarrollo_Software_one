@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.ReportesGenerales_GerenteController">
-    
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.ReportesGenerales_GerenteController">
+   <children>
+      <Button fx:id="btn_devolverse" layoutX="32.0" layoutY="312.0" mnemonicParsing="false" onAction="#retorno" text="Regresar" />
+      <Label layoutX="32.0" layoutY="41.0" text="Fecha inicio" />
+      <Label layoutX="32.0" layoutY="90.0" text="Fecha final" />
+      <Label layoutX="24.0" layoutY="149.0" text="Cédula usuario" />
+      <Label layoutX="323.0" layoutY="279.0" text="Falta bastante por aquí!!!" textFill="RED">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_fecha_inicio" layoutX="114.0" layoutY="37.0" />
+      <TextField fx:id="txt_fecha_final" layoutX="114.0" layoutY="86.0" />
+      <TextField fx:id="txt_cedula_usuario" layoutX="114.0" layoutY="145.0" />
+      <Button fx:id="btn_ordenes" layoutX="233.0" layoutY="192.0" mnemonicParsing="false" onAction="#accionBoton" text="Órdenes" />
+      <Button fx:id="btn_repuestos" layoutX="228.0" layoutY="227.0" mnemonicParsing="false" onAction="#accionBoton" text="Repuestos" />
+      <Button fx:id="btn_vehiculos" layoutX="62.0" layoutY="227.0" mnemonicParsing="false" onAction="#accionBoton" text="Vehículos" />
+      <Button fx:id="btn_ventas" layoutX="43.0" layoutY="192.0" mnemonicParsing="false" onAction="#accionBoton" text="Ventas vehículos" />
+      <TextArea fx:id="txt_area" editable="false" layoutX="353.0" layoutY="27.0" prefHeight="226.0" prefWidth="200.0" />
+      <Button fx:id="btn_solicitud_traslado" layoutX="120.0" layoutY="267.0" mnemonicParsing="false" onAction="#accionBoton" text="Solicitud traslado" />
+   </children>
 </AnchorPane>

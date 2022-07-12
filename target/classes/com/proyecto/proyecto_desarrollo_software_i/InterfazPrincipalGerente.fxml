@@ -4,10 +4,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.proyecto.proyecto_desarrollo_software_i.InterfazPrincipalGerenteController">
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.InterfazPrincipalGerenteController">
    <children>
       <Button fx:id="btn_desconectarse" layoutX="28.0" layoutY="314.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Desconectarse" />
       <Label layoutX="174.0" layoutY="40.0" text="Interfaz principal Gerente" />
+      <Button fx:id="btn_crud_usuario" layoutX="241.0" layoutY="91.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Crud Usuario" />
+      <Button fx:id="btn_crud_sede" layoutX="241.0" layoutY="139.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Crud Sede" />
+      <Button fx:id="btn_crud_vehiculo" layoutX="241.0" layoutY="192.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Crud Vehículo" />
+      <Button fx:id="btn_autorizacion_traslado" layoutX="241.0" layoutY="240.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Autorización traslado" />
+      <Button fx:id="btn_ver_reporte_totales" layoutX="241.0" layoutY="289.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Ver reportes generales" />
    </children>
 </AnchorPane>
