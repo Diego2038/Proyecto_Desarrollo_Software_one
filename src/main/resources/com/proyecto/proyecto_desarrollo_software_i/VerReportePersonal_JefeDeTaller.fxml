@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.VerReportePersonal_JefeDeTallerController">
-    
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.VerReportePersonal_JefeDeTallerController">
+   <children>
+      <Button fx:id="btn_devolverse" layoutX="33.0" layoutY="300.0" mnemonicParsing="false" onAction="#retorno" text="Regresar" />
+      <Label layoutX="51.0" layoutY="52.0" text="Fecha inicio" />
+      <Label layoutX="51.0" layoutY="106.0" text="Fecha final" />
+      <TextField fx:id="txt_fecha_inicio" layoutX="135.0" layoutY="48.0" />
+      <TextField fx:id="txt_fecha_final" layoutX="135.0" layoutY="102.0" />
+      <TextArea fx:id="txt_area" editable="false" layoutX="354.0" layoutY="38.0" prefHeight="200.0" prefWidth="200.0" text="jjjj" />
+      <Button fx:id="btn_ordenes" layoutX="158.0" layoutY="150.0" mnemonicParsing="false" onAction="#accionBoton" text="Ordenes" />
+      <Button fx:id="btn_repuestos" layoutX="158.0" layoutY="198.0" mnemonicParsing="false" onAction="#accionBoton" text="Repuestos" />
+   </children>
 </AnchorPane>

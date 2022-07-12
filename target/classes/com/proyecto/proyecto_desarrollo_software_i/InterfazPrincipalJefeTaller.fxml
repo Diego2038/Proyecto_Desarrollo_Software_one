@@ -4,10 +4,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="347.0" prefWidth="594.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.proyecto.proyecto_desarrollo_software_i.InterfazPrincipalJefeTallerController">
+<AnchorPane id="AnchorPane" prefHeight="347.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.InterfazPrincipalJefeTallerController">
    <children>
       <Button fx:id="btn_desconectarse" layoutX="20.0" layoutY="278.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Desconectarse" />
       <Label layoutX="197.0" layoutY="38.0" text="Interfaz principal Jefe de taller" />
+      <Button fx:id="btn_crud_cliente" layoutX="245.0" layoutY="80.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Crud cliente" />
+      <Button fx:id="btn_crud_vehiculoCliente" layoutX="245.0" layoutY="124.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Crud vehículo del cliente" />
+      <Button fx:id="btn_crud_orden_de_trabajo" layoutX="245.0" layoutY="167.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Crud orden de trabajo" />
+      <Button fx:id="btn_crud_respuesto" layoutX="245.0" layoutY="212.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Crud repuesto" />
+      <Button fx:id="btn_ver_reporte" layoutX="245.0" layoutY="253.0" mnemonicParsing="false" onAction="#cambioInterfaz" text="Ver reportes" />
    </children>
 </AnchorPane>
