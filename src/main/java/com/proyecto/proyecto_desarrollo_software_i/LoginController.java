@@ -53,7 +53,7 @@ public class LoginController extends CrudSQL implements Initializable {
                     fxml = "InterfazPrincipalGerente";
                     break;
                 case 0:
-                    info.setText("Usuario y/o contraseña no incorrectas\n"
+                    info.setText("Usuario y/o contraseña incorrectas\n"
                             + "Por favor intente nuevamente.");
                     break;    
             }

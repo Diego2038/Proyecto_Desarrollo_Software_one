@@ -5,33 +5,37 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.CrudUsuario_GerenteController">
    <children>
-      <Button fx:id="btn_devolverse" layoutX="15.0" layoutY="311.0" mnemonicParsing="false" onAction="#retorno" text="Regresar" />
-      <Label layoutX="46.0" layoutY="27.0" text="Id usuario" />
-      <Label layoutX="46.0" layoutY="55.0" text="Contraseña" />
-      <Label layoutX="46.0" layoutY="83.0" text="Estado" />
-      <Label layoutX="46.0" layoutY="111.0" text="Nombre" />
-      <Label layoutX="46.0" layoutY="140.0" text="Cédula" />
-      <Label layoutX="46.0" layoutY="167.0" text="Sede" />
-      <Label layoutX="46.0" layoutY="199.0" text="Teléfono" />
-      <Label layoutX="46.0" layoutY="231.0" text="Correo" />
-      <Label layoutX="46.0" layoutY="259.0" text="Sueldo" />
-      <Label layoutX="46.0" layoutY="288.0" text="Cargol" />
-      <TextField fx:id="txt_id_usuario" layoutX="130.0" layoutY="23.0" />
-      <TextField fx:id="txt_password" layoutX="130.0" layoutY="51.0" />
-      <TextField fx:id="txt_estado" layoutX="130.0" layoutY="79.0" />
-      <TextField fx:id="txt_nombre" layoutX="130.0" layoutY="107.0" />
-      <TextField fx:id="txt_cedula" layoutX="130.0" layoutY="136.0" />
-      <TextField fx:id="txt_sede" layoutX="130.0" layoutY="163.0" />
-      <TextField fx:id="txt_telefono" layoutX="130.0" layoutY="195.0" />
-      <TextField fx:id="txt_correo" layoutX="130.0" layoutY="227.0" />
-      <TextField fx:id="txt_sueldo_base" layoutX="130.0" layoutY="255.0" />
-      <TextField fx:id="txt_cargo" layoutX="130.0" layoutY="284.0" />
+      <Button fx:id="btn_devolverse" layoutX="14.0" layoutY="312.0" mnemonicParsing="false" onAction="#retorno" text="Regresar" />
+      <Label layoutX="46.0" layoutY="29.0" text="Contraseña" />
+      <Label layoutX="46.0" layoutY="57.0" text="Estado" />
+      <Label layoutX="46.0" layoutY="85.0" text="Nombre" />
+      <Label layoutX="46.0" layoutY="114.0" text="Cédula" />
+      <Label layoutX="45.0" layoutY="143.0" text="Teléfono" />
+      <Label layoutX="45.0" layoutY="175.0" text="Correo" />
+      <Label layoutX="45.0" layoutY="203.0" text="Sueldo" />
+      <Label layoutX="45.0" layoutY="232.0" text="Cargo" />
+      <TextField fx:id="txt_password" layoutX="130.0" layoutY="25.0" />
+      <TextField fx:id="txt_estado" layoutX="130.0" layoutY="53.0" />
+      <TextField fx:id="txt_nombre" layoutX="130.0" layoutY="81.0" />
+      <TextField fx:id="txt_cedula" layoutX="130.0" layoutY="110.0" />
+      <TextField fx:id="txt_telefono" layoutX="129.0" layoutY="139.0" />
+      <TextField fx:id="txt_correo" layoutX="129.0" layoutY="171.0" />
+      <TextField fx:id="txt_sueldo_base" layoutX="129.0" layoutY="199.0" />
+      <TextField fx:id="txt_cargo" layoutX="129.0" layoutY="228.0" />
       <TextArea fx:id="txt_area" editable="false" layoutX="339.0" layoutY="36.0" prefHeight="200.0" prefWidth="200.0" />
       <Button fx:id="btn_buscar_usuario" layoutX="413.0" layoutY="255.0" mnemonicParsing="false" onAction="#accionBoton" text="Buscar" />
-      <Button fx:id="btn_guardar_usuario" layoutX="300.0" layoutY="284.0" mnemonicParsing="false" onAction="#accionBoton" text="Registrar" />
-      <Button fx:id="btn_modificar_usuario" layoutX="513.0" layoutY="299.0" mnemonicParsing="false" onAction="#accionBoton" text="Modificar" />
+      <Button fx:id="btn_guardar_usuario" layoutX="314.0" layoutY="258.0" mnemonicParsing="false" onAction="#accionBoton" text="Registrar" />
+      <Button fx:id="btn_modificar_usuario" layoutX="505.0" layoutY="258.0" mnemonicParsing="false" onAction="#accionBoton" text="Modificar" />
+      <Label layoutX="23.0" layoutY="262.0" text="Fecha registro" />
+      <TextField fx:id="txt_fecha" layoutX="130.0" layoutY="258.0" />
+      <Label fx:id="info" layoutX="96.0" layoutY="294.0" prefHeight="36.0" prefWidth="366.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
