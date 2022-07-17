@@ -462,7 +462,7 @@ public class CrudSQL extends Conectar{
     
     
     public String crud_buscar_manual(String seleccion, String tabla, String condicion, 
-            boolean busquedaGlobal, int numSeleccion){
+            int numSeleccion){
         System.out.println("numcantidadColumnas>>> "+Integer.toString(numSeleccion));
         String resultado = "";
         String sql = "";
@@ -471,7 +471,7 @@ public class CrudSQL extends Conectar{
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
             
-            if(NUM==0){
+            if(NUM==0){// Si es 0, significa que es toda la selección
                 sentencia2 = conexion.createStatement();
                 String sql2 = "SELECT COUNT(*)\n"
                         + "FROM INFORMATION_SCHEMA.COLUMNS\n"
@@ -485,8 +485,6 @@ public class CrudSQL extends Conectar{
                     System.err.println("Ha sucedido un error grave!!!!");
                 }
             }
-            
-            
             if (condicion.length()==0){
                 sql = "SELECT "+seleccion+" FROM "+tabla+";"; 
             }else{
@@ -494,25 +492,17 @@ public class CrudSQL extends Conectar{
             }
             
             result = sentencia.executeQuery(sql);
-            if(busquedaGlobal){
-                resultado = "RESULTADOS GLOBALES\n";
-                // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
-                // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
-                while(result.next()){
-                    for(int i=1;i<=NUM;i++){
-                        resultado = resultado + result.getString(i)+" ";
-                    }
-                    resultado = resultado + "\n";
+
+            resultado = "RESULTADOS GLOBALES\n";
+            // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
+            // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
+            while (result.next()) {
+                for (int i = 1; i <= NUM; i++) {
+                    resultado = resultado + result.getString(i) + " ";
                 }
-            }else{
-                if(result.next()){
-                    for(int i=1;i<=NUM;i++){
-                        resultado = resultado + result.getString(i)+" ";
-                    }
-                }else{
-                    resultado = "Usuario no encontrado";
-                }
+                resultado = resultado + "\n";
             }
+            
         } catch (SQLException e) {
             System.err.println("Error búsqueda: " + e.getMessage());
         }
@@ -521,14 +511,21 @@ public class CrudSQL extends Conectar{
     }
     
     
-    public void crud_modificar_manual(String tabla, String cambios, String condiciones){
+    public void crud_modificar_manual(String tabla, String cambios, String condicion){
         try {
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
             String sql;
-            sql = "UPDATE "+tabla+" SET "+cambios+" "+ "WHERE "+condiciones+"';";
+            if (condicion.length()==0){
+                sql = "UPDATE "+tabla+" SET "+cambios+";";
+            }else{
+                sql = "UPDATE "+tabla+" SET "+cambios+" WHERE "+condicion+";"; 
+            }
+            
+            System.out.println("MIRA ESE SQL PAPÁ!! >> "+sql);
             sentencia.executeUpdate(sql);
             System.out.println("La actualización se hizo correctamente");
+            
         } catch (SQLException e) {
             System.err.println("Sucedió un error: " + e.getMessage());
         }

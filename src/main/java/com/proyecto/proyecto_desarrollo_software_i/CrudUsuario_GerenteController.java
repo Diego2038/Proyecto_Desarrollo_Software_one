@@ -190,18 +190,59 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                         +"'"+" AND "+ "fecha_de_registro<='"+dp_fecha_MAX.getValue().toString()+"'", true);
             }
             //>>>>//
-            String resultado = crud_buscar_manual(SELECCION, "usuario", CONDICION,
-                    rb_buscar_global_usuario.isSelected(),NUM_SELECCION);
+            String resultado = crud_buscar_manual(SELECCION, "usuario", CONDICION,NUM_SELECCION);
             info.setText("Búsqueda realizada");
             txt_area.setText(resultado);
             System.out.println("OJO---->" +SELECCION);
             
         }else if(ae.getSource()==btn_modificar_usuario){
+            
+            ////////////////////////////77-->>>>>>>>>>>>>>
+            
+            String ACTUALIZACION = "*";
+            String CONDICION = ""; 
+            // ELABORACIÓN DE LA ACTUALIZACIÓN
+            if(!"-".equals(cb_seleccion1.getValue()) && !(cb_seleccion1.getValue()==null)){
+                ACTUALIZACION = extendPalabra(ACTUALIZACION, traducirPalabra(cb_seleccion1.getValue())+"='"
+                        +seleccionarValor(traducirPalabra(cb_seleccion1.getValue()))+"'", false);
+            }if (!"-".equals(cb_seleccion2.getValue()) && !(cb_seleccion2.getValue() == null)) {
+                ACTUALIZACION = extendPalabra(ACTUALIZACION, traducirPalabra(cb_seleccion2.getValue())+"='"
+                        +seleccionarValor(traducirPalabra(cb_seleccion2.getValue()))+"'", false);
+            }if (!"-".equals(cb_seleccion3.getValue()) && !(cb_seleccion3.getValue() == null)) {
+                ACTUALIZACION = extendPalabra(ACTUALIZACION, traducirPalabra(cb_seleccion3.getValue())+"='"
+                        +seleccionarValor(traducirPalabra(cb_seleccion3.getValue()))+"'", false);
+            }
+            // ELABORACIÓN DE LA CONDICIÓN
+            if (!"-".equals(cb_condicion1.getValue()) && !(cb_condicion1.getValue() == null)) {
+                CONDICION = extendPalabra(CONDICION, traducirPalabra(cb_condicion1.getValue())+"='"
+                        +seleccionarValorSegundaColumna(traducirPalabra(cb_condicion1.getValue()))+"'", true);
+                
+            }if (!"-".equals(cb_condicion2.getValue()) && !(cb_condicion2.getValue() == null)) {
+                CONDICION = extendPalabra(CONDICION, traducirPalabra(cb_condicion2.getValue())+"='"
+                        +seleccionarValorSegundaColumna(traducirPalabra(cb_condicion2.getValue()))+"'", true);
+            }if (!"-".equals(cb_condicion3.getValue()) && !(cb_condicion3.getValue() == null)) {
+                CONDICION = extendPalabra(CONDICION, traducirPalabra(cb_condicion3.getValue())+"='"
+                        +seleccionarValorSegundaColumna(traducirPalabra(cb_condicion3.getValue()))+"'", true);
+            }
+            // ELABORACIÓN DE CONDICIÓN DE RANGOS
+            if(rb_sueldo.isSelected()){
+                CONDICION = extendPalabra(CONDICION," sueldo_base>="+txt_sueldo_MIN.getText()+" AND "
+                        + "sueldo_base<="+txt_sueldo_MAX.getText(), true);
+            }if(rb_fecha.isSelected()){
+                CONDICION = extendPalabra(CONDICION," fecha_de_registro>='"+dp_fecha_MIN.getValue().toString()
+                        +"'"+" AND "+ "fecha_de_registro<='"+dp_fecha_MAX.getValue().toString()+"'", true);
+            }
+            //>>>>//
+            crud_modificar_manual("usuario", ACTUALIZACION, CONDICION);
+            info.setText("Búsqueda realizada");
+            
+            ///////////////////////////<<<<<<<<<<<<<<<<<<<<<<<<<-----
+            
+            
             txt_area.setText("Usuario modificado");
             borrarDatos();
             info.setText("Usuario modificado exitosamente");
             cb_estado.setValue("activo");
-            
         }
     }
     
@@ -223,6 +264,25 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             resultado = txt_password.getText();
         }else if("estado".equals(nombre)){
             resultado = cb_estado.getValue();
+        }
+        return resultado;
+    }
+    
+    
+    public String seleccionarValorSegundaColumna(String nombre){
+        String resultado = "";
+        if("nombre".equals(nombre)){
+            resultado = txt_nombre_condicion.getText();
+        }else if("cedula".equals(nombre)){
+            resultado = txt_cedula_condicion.getText();
+        }else if("telefono".equals(nombre)){
+            resultado = txt_telefono_condicion.getText();
+        }else if("correo".equals(nombre)){
+            resultado = txt_correo_condicion.getText();
+        }else if("cargo".equals(nombre)){
+            resultado = cb_cargo_condicion.getValue();
+        }else if("estado".equals(nombre)){
+            resultado = cb_estado_condicion.getValue();
         }
         return resultado;
     }
@@ -342,7 +402,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                 btn_guardar_usuario.setDisable(true);
                 modificarVisibilidadComponentesJavaFX(componentesCondicion, false);
                 modificarVisibilidadComponentesJavaFX(componentesBusquedaYCondicion, true);
-                l_columna_seleccion_modificacion.setText("Valores de búsqueda");
+                l_columna_seleccion_modificacion.setText("Condiciones de búsqueda");
                 modificarPalabrasLabeledComponentesJavaFX(componentesLabelSeleccion_Modificacion, "Selección");
             } else if (ae.getSource() == rb_habilitar_condicion_de_modificacion) {
                 rb_buscar_global_usuario.setSelected(false);
