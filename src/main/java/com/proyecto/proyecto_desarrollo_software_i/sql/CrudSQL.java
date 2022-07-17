@@ -9,6 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+// ES POSIBLE QUE TAMBIÉN PUEDAS SOBRECARGAR LOS MÉTODOS DE BÚSQUEDA Y MODIFICACIÓN
+// RECUERDA QUE MUY SEGURAMENTE DEBAS DE CREAR LA CLASE VARIABLE PARA ALMACENAR LOS DATOS DE LAS 
+// VARIABLES QUE SAQUES
+
+// RECORDAR HACER CLASE USUARIO PARA QUE EL VENDEDOR Y JEFE ALMACENEN EL ID DEL GERENTE QUE REGISTRA.
+
 /**
  *
  * @author juand
@@ -17,6 +23,13 @@ public class CrudSQL extends Conectar{
     private Statement sentencia;
     private ResultSet result;
     
+    /**
+     * Método encargado de ingresar al usuario al sistema, o deenegarlo en caso de que
+     * el usuario y/o la contraseña sean incorrectas
+     * @param usuario
+     * @param password
+     * @return 
+     */
     public int ingresarUsuario(String usuario, String password){
         int VALIDADOR = 0;
         // 1 = vendedor, 2 = jefe de taller, 3 = gerente, 0 = Usuario o password incorrecto
@@ -206,15 +219,48 @@ public class CrudSQL extends Conectar{
         }
     }
     
-    // Se puede reutilizar múltiples veces
+    /**
+     * Método encargado de modificar un valor con una condición
+     * @param tabla
+     * @param condicion
+     * @param actualizacion
+     * @param nombreDato1
+     * @param valorDato1 
+     */
     public void crud_modificar(String tabla, String condicion, String actualizacion, 
-            String nombreDato, String valorDato){
+            String nombreDato1, String valorDato1){
         try {
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
             String sql;
             sql = "UPDATE "+tabla+" SET "+condicion+" = "+actualizacion+" "
-                        + "WHERE "+nombreDato+" = '"+valorDato+"'";
+                        + "WHERE "+nombreDato1+" = '"+valorDato1+"';";
+            sentencia.executeUpdate(sql);
+            System.out.println("La actualización se hizo correctamente");
+        } catch (SQLException e) {
+            System.err.println("Sucedió un error: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Método encargado de modificar un valor con dos condiciones
+     * @param tabla
+     * @param condicion
+     * @param actualizacion
+     * @param nombreDato1
+     * @param valorDato1
+     * @param nombreDato2
+     * @param valorDato2 
+     */
+    public void crud_modificar(String tabla, String condicion, String actualizacion, 
+            String nombreDato1, String valorDato1, String nombreDato2, String valorDato2){
+        try {
+            Connection conexion = conectar();
+            sentencia = conexion.createStatement();
+            String sql;
+            sql = "UPDATE "+tabla+" SET "+condicion+" = "+actualizacion+" "
+                        + "WHERE "+nombreDato1+" = '"+valorDato1+"'"
+                    +" AND "+nombreDato2+"='"+valorDato2+"';";
             sentencia.executeUpdate(sql);
             System.out.println("La actualización se hizo correctamente");
         } catch (SQLException e) {
@@ -223,14 +269,21 @@ public class CrudSQL extends Conectar{
     }
     
     
-    // Se puede reutilizar múltiples veces
-    public String crud_buscar(String tabla, String nombreVariable,
-            String valorVariable, String extensionBusqueda){
+    /**
+     * Método encargado de encontrar una/s tupla/s con una condición de búsqueda
+     * @param tabla
+     * @param nombreVariable1
+     * @param valorVariable1
+     * @param extensionBusqueda
+     * @return 
+     */
+    public String crud_buscar(String tabla, String nombreVariable1,
+            String valorVariable1, String extensionBusqueda){
         String resultado = "";
         try {
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
-            String sql = "SELECT * FROM "+tabla+" WHERE "+nombreVariable+"='"+valorVariable+"';";
+            String sql = "SELECT * FROM "+tabla+" WHERE "+nombreVariable1+"='"+valorVariable1+"';";
             result = sentencia.executeQuery(sql);
             if(extensionBusqueda.equals("global")){
                 resultado = "RESULTADOS GLOBALES\n";
@@ -254,9 +307,217 @@ public class CrudSQL extends Conectar{
         return resultado;
     }
     
+    /**
+     * Método encargado de encontrar una/s tupla/s con dos condiciones de búsqueda
+     * @param tabla
+     * @param nombreVariable1
+     * @param valorVariable1
+     * @param nombreVariable2
+     * @param valorVariable2
+     * @param extensionBusqueda
+     * @return 
+     */
+    public String crud_buscar(String tabla, String nombreVariable1, String valorVariable1, 
+            String nombreVariable2, String valorVariable2, String extensionBusqueda){
+        String resultado = "";
+        try {
+            Connection conexion = conectar();
+            sentencia = conexion.createStatement();
+            String sql = "SELECT * FROM "+tabla+" WHERE "+nombreVariable1+"='"+valorVariable1+"'"
+                    + " AND "+nombreVariable2+"='"+valorVariable2+"';";
+            result = sentencia.executeQuery(sql);
+            if(extensionBusqueda.equals("global")){
+                resultado = "RESULTADOS GLOBALES\n";
+                // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
+                // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
+                while(result.next()){
+                    resultado = resultado+result.getString("nombre")+" "+result.getString("cedula")+
+                            result.getString("cargo")+" "+result.getString("telefono")+"\n";
+                }
+            }else{
+                if(result.next()){
+                    resultado = result.getString("nombre")+" "+result.getString("cedula")+
+                            result.getString("cargo")+" "+result.getString("telefono");
+                }else{
+                    resultado = "Usuario no encontrado";
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error búsqueda: " + e.getMessage());
+        }
+        return resultado;
+    }
+    
+    /**
+     * Método encargado de encontrar una/s tupla/s con tres condiciones de búsqueda
+     * @param tabla
+     * @param nombreVariable1
+     * @param valorVariable1
+     * @param nombreVariable2
+     * @param valorVariable2
+     * @param nombreVariable3
+     * @param valorVariable3
+     * @param extensionBusqueda
+     * @return 
+     */
+    public String crud_buscar(String tabla, String nombreVariable1, String valorVariable1, 
+            String nombreVariable2, String valorVariable2, String nombreVariable3,
+            String valorVariable3, String extensionBusqueda){
+        String resultado = "";
+        try {
+            Connection conexion = conectar();
+            sentencia = conexion.createStatement();
+            String sql = "SELECT * FROM "+tabla+" WHERE "+nombreVariable1+"='"+valorVariable1+"'"
+                    + " AND "+nombreVariable2+"='"+valorVariable2+"'"
+                    + " AND "+nombreVariable3+"='"+valorVariable3+"';";
+            result = sentencia.executeQuery(sql);
+            if(extensionBusqueda.equals("global")){
+                resultado = "RESULTADOS GLOBALES\n";
+                // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
+                // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
+                while(result.next()){
+                    resultado = resultado+result.getString("nombre")+" "+result.getString("cedula")+
+                            result.getString("cargo")+" "+result.getString("telefono")+"\n";
+                }
+            }else{
+                if(result.next()){
+                    resultado = result.getString("nombre")+" "+result.getString("cedula")+
+                            result.getString("cargo")+" "+result.getString("telefono");
+                }else{
+                    resultado = "Usuario no encontrado";
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error búsqueda: " + e.getMessage());
+        }
+        return resultado;
+    }
+    
+    /**
+     * Método encargado de filtrar una búsqueda a través de un rango de números
+     * @param tabla
+     * @param nombreVariable1
+     * @param numMenor
+     * @param nombreVariable2
+     * @param numMayor
+     * @return 
+     */
+    public String crud_buscar_rangoNumeros(String tabla, String nombreVariable1, String numMenor, 
+            String nombreVariable2, String numMayor){
+        String resultado = "";
+        try {
+            Connection conexion = conectar();
+            sentencia = conexion.createStatement();
+            String sql = "SELECT * FROM "+tabla+" WHERE "+nombreVariable1+">'"+numMenor+"'"
+                    + " AND "+nombreVariable2+"<'"+numMayor+"';";
+            result = sentencia.executeQuery(sql);
+            resultado = "RESULTADOS GLOBALES\n";
+            // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
+            // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
+            while (result.next()) {
+                resultado = resultado + result.getString("nombre") + " " + result.getString("cedula")
+                        + result.getString("cargo") + " " + result.getString("telefono") + "\n";
+            }
+        } catch (SQLException e) {
+            System.err.println("Error búsqueda: " + e.getMessage());
+        }
+        return resultado;
+    }
+    
+    /**
+     * Método encargado de filtrar una búsqueda a través de un rango de números y
+     * una condición
+     * @param tabla
+     * @param nombreVariable1
+     * @param numMenor
+     * @param nombreVariable2
+     * @param numMayor
+     * @param nombreVariable3
+     * @param condicion3
+     * @return 
+     */
+    public String crud_buscar_rangoNumeros(String tabla, String nombreVariable1, String numMenor, 
+            String nombreVariable2, String numMayor, String nombreVariable3, String condicion3){
+        String resultado = "";
+        try {
+            Connection conexion = conectar();
+            sentencia = conexion.createStatement();
+            String sql = "SELECT * FROM "+tabla+" WHERE "+nombreVariable1+">'"+numMenor+"'"
+                    + " AND "+nombreVariable2+"<'"+numMayor+"';";
+            result = sentencia.executeQuery(sql);
+            resultado = "RESULTADOS GLOBALES\n";
+            // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
+            // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
+            while (result.next()) {
+                resultado = resultado + result.getString("nombre") + " " + result.getString("cedula")
+                        + result.getString("cargo") + " " + result.getString("telefono") + "\n";
+            }
+        } catch (SQLException e) {
+            System.err.println("Error búsqueda: " + e.getMessage());
+        }
+        return resultado;
+    }
+    
+    
+    public String crud_buscar_manual(String seleccion, String tabla, String condicion, 
+            boolean busquedaGlobal){
+        String resultado = "";
+        String sql = "";
+        int NUM = 0;
+        try {
+            Connection conexion = conectar();
+            sentencia = conexion.createStatement();
+            
+            if (condicion.length()==0){
+                sql = "SELECT "+seleccion+" FROM "+tabla+";"; 
+            }else{
+                sql = "SELECT "+seleccion+" FROM "+tabla+" WHERE "+condicion+";"; 
+            }
+            
+            result = sentencia.executeQuery(sql);
+            if(busquedaGlobal){
+                resultado = "RESULTADOS GLOBALES\n";
+                // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
+                // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
+                while(result.next()){
+                    resultado = resultado+result.getString("nombre")+" "+result.getString("cedula")
+                            +" "+result.getString("cargo")+" "+result.getString("telefono")+"\n";
+                    //result.getA // UTILIZAR UN NÚMERO ADICIONAL EN LA FUNCIÓN, Y HALLARLOS POR MEDIO 
+                            // DE LOS NÚMEROS (ASÍ TE AHORRAS TODO ESO
+                }
+            }else{
+                if(result.next()){
+                    resultado = result.getString("nombre")+" "+result.getString("cedula")
+                            +" "+result.getString("cargo")+" "+result.getString("telefono");
+                }else{
+                    resultado = "Usuario no encontrado";
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error búsqueda: " + e.getMessage());
+        }
+        System.out.println(sql);
+        return resultado;
+    }
+    
+    
+    public void crud_modificar_manual(String tabla, String cambios, String condiciones){
+        try {
+            Connection conexion = conectar();
+            sentencia = conexion.createStatement();
+            String sql;
+            sql = "UPDATE "+tabla+" SET "+cambios+" "+ "WHERE "+condiciones+"';";
+            sentencia.executeUpdate(sql);
+            System.out.println("La actualización se hizo correctamente");
+        } catch (SQLException e) {
+            System.err.println("Sucedió un error: " + e.getMessage());
+        }
+    }
+    
     // PODRÍAS PONER UN SCROLL DE BÚSQUEDAS, PARA QUE NO TENGAS QUE PREOCUPARTE POR NOMBRES 
     // INCOMPLETOS, O TENGAS LAS ID'S
     
-    
+    // OJO: PODRÍAS PONER UN SCROLL DEBAJO DEL BOTÓN DE BUSCAR Y MODIFICAR PARA PONER LAS CONDICIONES QUE
+    // QUISIERAS FILTRAR (ES DECIR, 3 SCROLLERS).
     
 }

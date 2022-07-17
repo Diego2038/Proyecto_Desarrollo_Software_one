@@ -1,41 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.CrudUsuario_GerenteController">
+<AnchorPane id="AnchorPane" prefHeight="349.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.CrudUsuario_GerenteController">
    <children>
-      <Button fx:id="btn_devolverse" layoutX="14.0" layoutY="312.0" mnemonicParsing="false" onAction="#retorno" text="Regresar" />
-      <Label layoutX="46.0" layoutY="29.0" text="Contraseña" />
-      <Label layoutX="46.0" layoutY="57.0" text="Estado" />
-      <Label layoutX="46.0" layoutY="85.0" text="Nombre" />
-      <Label layoutX="46.0" layoutY="114.0" text="Cédula" />
-      <Label layoutX="45.0" layoutY="143.0" text="Teléfono" />
-      <Label layoutX="45.0" layoutY="175.0" text="Correo" />
-      <Label layoutX="45.0" layoutY="203.0" text="Sueldo" />
-      <Label layoutX="45.0" layoutY="232.0" text="Cargo" />
-      <TextField fx:id="txt_password" layoutX="130.0" layoutY="25.0" />
-      <TextField fx:id="txt_estado" layoutX="130.0" layoutY="53.0" />
-      <TextField fx:id="txt_nombre" layoutX="130.0" layoutY="81.0" />
-      <TextField fx:id="txt_cedula" layoutX="130.0" layoutY="110.0" />
-      <TextField fx:id="txt_telefono" layoutX="129.0" layoutY="139.0" />
-      <TextField fx:id="txt_correo" layoutX="129.0" layoutY="171.0" />
-      <TextField fx:id="txt_sueldo_base" layoutX="129.0" layoutY="199.0" />
-      <TextField fx:id="txt_cargo" layoutX="129.0" layoutY="228.0" />
-      <TextArea fx:id="txt_area" editable="false" layoutX="339.0" layoutY="36.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button fx:id="btn_buscar_usuario" layoutX="413.0" layoutY="255.0" mnemonicParsing="false" onAction="#accionBoton" text="Buscar" />
-      <Button fx:id="btn_guardar_usuario" layoutX="314.0" layoutY="258.0" mnemonicParsing="false" onAction="#accionBoton" text="Registrar" />
-      <Button fx:id="btn_modificar_usuario" layoutX="505.0" layoutY="258.0" mnemonicParsing="false" onAction="#accionBoton" text="Modificar" />
-      <Label layoutX="23.0" layoutY="262.0" text="Fecha registro" />
-      <TextField fx:id="txt_fecha" layoutX="130.0" layoutY="258.0" />
-      <Label fx:id="info" layoutX="96.0" layoutY="294.0" prefHeight="36.0" prefWidth="366.0" textFill="RED">
+      <Button fx:id="btn_devolverse" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#retorno" text="Regresar" />
+      <Label layoutX="27.0" layoutY="104.0" text="Contraseña" />
+      <Label layoutX="27.0" layoutY="132.0" text="Estado" />
+      <Label layoutX="27.0" layoutY="76.0" text="Nombre" />
+      <Label layoutX="28.0" layoutY="47.0" text="Cédula" />
+      <Label layoutX="27.0" layoutY="162.0" text="Teléfono" />
+      <Label layoutX="27.0" layoutY="194.0" text="Correo" />
+      <Label layoutX="27.0" layoutY="222.0" text="Sueldo" />
+      <Label layoutX="27.0" layoutY="251.0" text="Cargo" />
+      <TextField fx:id="txt_password" layoutX="111.0" layoutY="100.0" />
+      <TextField fx:id="txt_nombre" layoutX="111.0" layoutY="72.0" />
+      <TextField fx:id="txt_cedula" layoutX="111.0" layoutY="43.0" />
+      <TextField fx:id="txt_telefono" layoutX="111.0" layoutY="158.0" />
+      <TextField fx:id="txt_correo" layoutX="111.0" layoutY="190.0" />
+      <TextField fx:id="txt_sueldo_base" layoutX="111.0" layoutY="218.0" />
+      <TextArea fx:id="txt_area" editable="false" layoutX="276.0" layoutY="43.0" prefHeight="84.0" prefWidth="290.0" />
+      <Button fx:id="btn_buscar_usuario" layoutX="412.0" layoutY="141.0" mnemonicParsing="false" onAction="#accionBoton" text="Buscar" />
+      <Button fx:id="btn_guardar_usuario" layoutX="198.0" layoutY="306.0" mnemonicParsing="false" onAction="#accionBoton" text="Registrar" />
+      <Button fx:id="btn_modificar_usuario" layoutX="494.0" layoutY="141.0" mnemonicParsing="false" onAction="#accionBoton" text="Modificar" />
+      <Label layoutX="27.0" layoutY="280.0" text="Fecha registro" />
+      <Label fx:id="info" layoutX="12.0" layoutY="305.0" prefHeight="35.0" prefWidth="182.0" textFill="RED">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="10.0" />
          </font>
       </Label>
+      <ChoiceBox fx:id="cb_seleccion1" layoutX="357.0" layoutY="270.0" prefHeight="26.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="cb_seleccion2" layoutX="357.0" layoutY="297.0" prefHeight="26.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="cb_seleccion3" layoutX="357.0" layoutY="322.0" prefHeight="26.0" prefWidth="75.0" />
+      <Label layoutX="278.0" layoutY="276.0" text="Selección #1" />
+      <ChoiceBox fx:id="cb_cargo" layoutX="112.0" layoutY="247.0" prefWidth="150.0" />
+      <DatePicker fx:id="dp_fecha" layoutX="112.0" layoutY="274.0" prefHeight="26.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="cb_estado" layoutX="111.0" layoutY="128.0" prefWidth="150.0" />
+      <Label layoutX="301.0" layoutY="169.0" prefHeight="18.0" prefWidth="273.0" text="Filtro especializado de búsqueda" textAlignment="CENTER" />
+      <RadioButton fx:id="rb_sueldo" layoutX="306.0" layoutY="196.0" mnemonicParsing="false" text="Sueldo" />
+      <RadioButton fx:id="rb_fecha" layoutX="305.0" layoutY="220.0" mnemonicParsing="false" text="Fecha" />
+      <TextField fx:id="txt_sueldo_MIN" layoutX="374.0" layoutY="190.0" prefHeight="26.0" prefWidth="82.0" />
+      <TextField fx:id="txt_sueldo_MAX" layoutX="479.0" layoutY="190.0" prefHeight="26.0" prefWidth="82.0" />
+      <Label layoutX="309.0" layoutY="249.0" prefHeight="18.0" prefWidth="266.0" text="Selección de búsqueda o parámetros a modificar" textAlignment="CENTER" />
+      <Label layoutX="186.0" layoutY="13.0" text="GESTIÓN DE USUARIOS" textFill="RED">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dp_fecha_MIN" layoutX="374.0" layoutY="218.0" prefHeight="26.0" prefWidth="82.0" />
+      <DatePicker fx:id="dp_fecha_MAX" layoutX="479.0" layoutY="217.0" prefHeight="26.0" prefWidth="82.0" />
+      <Label layoutX="463.0" layoutY="182.0" prefHeight="40.0" prefWidth="10.0" text="-">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="463.0" layoutY="208.0" prefHeight="40.0" prefWidth="10.0" text="-">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="278.0" layoutY="301.0" text="Selección #2" />
+      <Label layoutX="280.0" layoutY="326.0" text="Selección #3" />
+      <Label layoutX="440.0" layoutY="275.0" text="Condición #1" />
+      <Label layoutX="440.0" layoutY="301.0" text="Condición #2" />
+      <Label layoutX="440.0" layoutY="327.0" text="Condición #3" />
+      <ChoiceBox fx:id="cb_condicion2" layoutX="517.0" layoutY="297.0" prefHeight="26.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="cb_condicion1" layoutX="517.0" layoutY="271.0" prefHeight="26.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="cb_condicion3" layoutX="517.0" layoutY="321.0" prefHeight="26.0" prefWidth="75.0" />
+      <RadioButton fx:id="rb_buscar_global_usuario" layoutX="278.0" layoutY="143.0" mnemonicParsing="false" text="Búsqueda global" />
    </children>
 </AnchorPane>
