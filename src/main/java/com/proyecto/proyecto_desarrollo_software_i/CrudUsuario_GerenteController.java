@@ -95,9 +95,11 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     
     public void accionBoton(ActionEvent ae){
         if(ae.getSource()==btn_guardar_usuario){
-            if(verificadorSizeCelda(txt_cedula, 6, 10) && verificadorSizeCelda(txt_nombre, 7, 100)
-                    && ("vendedor".equals(cb_cargo.getValue()) || "jefe de taller".equals(cb_cargo.getValue()))
-                    && ("activo".equals(cb_estado.getValue()) || "inactivo".equals(cb_estado.getValue()))){
+            info.setText("Registrando...");
+            if(verificadorSizeCelda(txt_cedula, 6, 10) && verificadorSizeCelda(txt_nombre, 7, 50)
+                    && verificadorSizeCelda(txt_password, 6, 50) && verificadorSizeCelda(txt_telefono, 7, 20)
+                    && verificadorSizeCelda(txt_correo, 6, 60) && verificadorSizeCelda(txt_sueldo_base, 6,9)
+                    && !(cb_cargo.getValue()==null) && !(cb_estado.getValue()==null)){
                 txt_area.setText("Usuario guardado");
                 crud_registrar("usuario", "password", "estado", "nombre", "cedula", "telefono", "correo",
                         "sueldo_base", "cargo", "fecha_de_registro", txt_password.getText(), cb_estado.getValue(),
@@ -107,22 +109,26 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                 borrarDatos();
                 info.setText("Usuario registrado exitosamente.");
             }else{
-                info.setText("Tamaño incorrecto de parámetros. Por favor\nescriba el tamaño adecuado.");
+                info.setText("Tamaño incorrecto de parámetros.\nEscriba el tamaño adecuado.");
                 
             }
             
         }else if(ae.getSource()==btn_buscar_usuario){
+            int NUM_SELECCION = 0;
             String SELECCION = "*";
             String CONDICION = ""; 
             // ELABORACIÓN DE LA SELECCIÓN
             if(!"-".equals(cb_seleccion1.getValue()) && !(cb_seleccion1.getValue()==null)){
+                NUM_SELECCION++;
                 info.setText("1");
                 SELECCION = extendPalabra(SELECCION, traducirPalabra(cb_seleccion1.getValue()), false);
                 System.out.println("selección>>>>>>"+SELECCION);
             }if (!"-".equals(cb_seleccion2.getValue()) && !(cb_seleccion2.getValue() == null)) {
+                NUM_SELECCION++;
                 info.setText("2");
                 SELECCION = extendPalabra(SELECCION, traducirPalabra(cb_seleccion2.getValue()), false);
             }if (!"-".equals(cb_seleccion3.getValue()) && !(cb_seleccion3.getValue() == null)) {
+                NUM_SELECCION++;
                 info.setText("3");
                 SELECCION = extendPalabra(SELECCION, traducirPalabra(cb_seleccion3.getValue()), false);
             }
@@ -150,7 +156,8 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                         +"'"+" AND "+ "fecha_de_registro<='"+dp_fecha_MAX.getValue().toString()+"'", true);
             }
             //>>>>//
-            String resultado = crud_buscar_manual(SELECCION, "usuario", CONDICION, rb_buscar_global_usuario.isSelected());
+            String resultado = crud_buscar_manual(SELECCION, "usuario", CONDICION,
+                    rb_buscar_global_usuario.isSelected(),NUM_SELECCION);
             info.setText("Búsqueda realizada");
             txt_area.setText(resultado);
             System.out.println("OJO---->" +SELECCION);

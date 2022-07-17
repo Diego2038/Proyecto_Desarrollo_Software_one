@@ -21,7 +21,9 @@ import java.sql.Statement;
  */
 public class CrudSQL extends Conectar{
     private Statement sentencia;
+    private Statement sentencia2;
     private ResultSet result;
+    private ResultSet result2;
     
     /**
      * Método encargado de ingresar al usuario al sistema, o deenegarlo en caso de que
@@ -460,13 +462,30 @@ public class CrudSQL extends Conectar{
     
     
     public String crud_buscar_manual(String seleccion, String tabla, String condicion, 
-            boolean busquedaGlobal){
+            boolean busquedaGlobal, int numSeleccion){
+        System.out.println("numcantidadColumnas>>> "+Integer.toString(numSeleccion));
         String resultado = "";
         String sql = "";
-        int NUM = 0;
+        int NUM = numSeleccion;
         try {
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
+            
+            if(NUM==0){
+                sentencia2 = conexion.createStatement();
+                String sql2 = "SELECT COUNT(*)\n"
+                        + "FROM INFORMATION_SCHEMA.COLUMNS\n"
+                        + "WHERE table_catalog = 'da279dugkkpikd' -- the database\n"
+                        + "AND table_name = '"+tabla+"';";
+                result2 = sentencia2.executeQuery(sql2);
+                if(result2.next()){
+                    NUM = result2.getInt(1);
+                    System.out.println(NUM);
+                }else{
+                    System.err.println("Ha sucedido un error grave!!!!");
+                }
+            }
+            
             
             if (condicion.length()==0){
                 sql = "SELECT "+seleccion+" FROM "+tabla+";"; 
@@ -480,15 +499,16 @@ public class CrudSQL extends Conectar{
                 // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
                 // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
                 while(result.next()){
-                    resultado = resultado+result.getString("nombre")+" "+result.getString("cedula")
-                            +" "+result.getString("cargo")+" "+result.getString("telefono")+"\n";
-                    //result.getA // UTILIZAR UN NÚMERO ADICIONAL EN LA FUNCIÓN, Y HALLARLOS POR MEDIO 
-                            // DE LOS NÚMEROS (ASÍ TE AHORRAS TODO ESO
+                    for(int i=1;i<=NUM;i++){
+                        resultado = resultado + result.getString(i)+" ";
+                    }
+                    resultado = resultado + "\n";
                 }
             }else{
                 if(result.next()){
-                    resultado = result.getString("nombre")+" "+result.getString("cedula")
-                            +" "+result.getString("cargo")+" "+result.getString("telefono");
+                    for(int i=1;i<=NUM;i++){
+                        resultado = resultado + result.getString(i)+" ";
+                    }
                 }else{
                     resultado = "Usuario no encontrado";
                 }
