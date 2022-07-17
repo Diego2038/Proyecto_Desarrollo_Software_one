@@ -39,6 +39,8 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     @FXML
     RadioButton rb_buscar_global_usuario;
     @FXML
+    RadioButton rb_habilitar_condicion_de_modificacion;
+    @FXML
     Button btn_modificar_usuario;
     
     
@@ -120,30 +122,23 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             // ELABORACIÓN DE LA SELECCIÓN
             if(!"-".equals(cb_seleccion1.getValue()) && !(cb_seleccion1.getValue()==null)){
                 NUM_SELECCION++;
-                info.setText("1");
                 SELECCION = extendPalabra(SELECCION, traducirPalabra(cb_seleccion1.getValue()), false);
-                System.out.println("selección>>>>>>"+SELECCION);
             }if (!"-".equals(cb_seleccion2.getValue()) && !(cb_seleccion2.getValue() == null)) {
                 NUM_SELECCION++;
-                info.setText("2");
                 SELECCION = extendPalabra(SELECCION, traducirPalabra(cb_seleccion2.getValue()), false);
             }if (!"-".equals(cb_seleccion3.getValue()) && !(cb_seleccion3.getValue() == null)) {
                 NUM_SELECCION++;
-                info.setText("3");
                 SELECCION = extendPalabra(SELECCION, traducirPalabra(cb_seleccion3.getValue()), false);
             }
             // ELABORACIÓN DE LA CONDICIÓN
             if (!"-".equals(cb_condicion1.getValue()) && !(cb_condicion1.getValue() == null)) {
-                info.setText("3");
                 CONDICION = extendPalabra(CONDICION, traducirPalabra(cb_condicion1.getValue())+"='"
                         +seleccionarValor(traducirPalabra(cb_condicion1.getValue()))+"'", true);
                 
             }if (!"-".equals(cb_condicion2.getValue()) && !(cb_condicion2.getValue() == null)) {
-                info.setText("3");
                 CONDICION = extendPalabra(CONDICION, traducirPalabra(cb_condicion2.getValue())+"='"
                         +seleccionarValor(traducirPalabra(cb_condicion2.getValue()))+"'", true);
             }if (!"-".equals(cb_condicion3.getValue()) && !(cb_condicion3.getValue() == null)) {
-                info.setText("3");
                 CONDICION = extendPalabra(CONDICION, traducirPalabra(cb_condicion3.getValue())+"='"
                         +seleccionarValor(traducirPalabra(cb_condicion3.getValue()))+"'", true);
             }
@@ -271,6 +266,25 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         txt_correo.setText("");
         txt_cedula.setText("");
     }
+  
+    public void cambiarEstadoRoundButton(ActionEvent ae) {
+        if (!rb_buscar_global_usuario.isSelected()
+                && !rb_habilitar_condicion_de_modificacion.isSelected()) {
+            btn_modificar_usuario.setDisable(true);
+            btn_buscar_usuario.setDisable(true);
+        } else {
+            if (ae.getSource() == rb_buscar_global_usuario) {
+                rb_habilitar_condicion_de_modificacion.setSelected(false);
+                btn_modificar_usuario.setDisable(true);
+                btn_buscar_usuario.setDisable(false);
+            } else if (ae.getSource() == rb_habilitar_condicion_de_modificacion) {
+                rb_buscar_global_usuario.setSelected(false);
+                btn_modificar_usuario.setDisable(false);
+                btn_buscar_usuario.setDisable(true);
+            }
+        }
+
+    }
     
     
     public void retorno(ActionEvent ae){
@@ -309,6 +323,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         String valor = cb_seleccion1.getValue();
         dp_fecha = new DatePicker(LocalDate.now());
         rb_buscar_global_usuario.setSelected(true);
+        btn_modificar_usuario.setDisable(true);
     }    
     
 }
