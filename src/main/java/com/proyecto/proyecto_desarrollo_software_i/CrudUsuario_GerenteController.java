@@ -246,7 +246,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             txt_area.setText("Usuario modificado");
             borrarDatos();
             info.setText("Usuario modificado exitosamente");
-            cb_estado.setValue("activo");
+            
         }
     }
     
@@ -383,7 +383,8 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         txt_password.setText("");
         txt_nombre.setText("");
         dp_fecha.setValue(LocalDate.now());
-        
+        cb_estado.setValue("activo");
+        cb_cargo.setValue("vendedor");
         txt_correo.setText("");
         txt_cedula.setText("");
     }
@@ -508,7 +509,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         String LISTA_CONDICION[] = {"-","Nombre","Cédula","Estado","Teléfono",
                 "Email","Cargo","Sueldo"}; 
         
-        String CARGOS[] = {"vendedor","jefe de taller","gerente"};
+        String CARGOS[] = {"vendedor","jefe de taller"};
         String ESTADOS[] = {"activo","inactivo"};
         
         cb_cargo.getItems().addAll(CARGOS);
@@ -522,16 +523,19 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         cb_condicion2.getItems().addAll(LISTA_CONDICION);
         cb_condicion3.getItems().addAll(LISTA_CONDICION);
         
-        String valor = cb_seleccion1.getValue();
         dp_fecha = new DatePicker(LocalDate.now());
         rb_buscar_global_usuario.setSelected(true);
         btn_modificar_usuario.setDisable(true);
         btn_guardar_usuario.setDisable(true);
         
+        cb_estado.setValue("activo");
+        cb_cargo.setValue("vendedor");
+        
         //System.out.println(getUsuario().hashCode());
         System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
-        Usuario xd = new Usuario();
-        System.out.println(xd.getNombre());
+        System.out.println(Usuario.getNombre());
+        // xd = new Usuario();
+        //System.out.println(xd.getNombre());
     }    
     
 }

@@ -21,12 +21,12 @@ public class Usuario {
         return new Usuario();
     }
     
-    public void conectar(String id, String nombre, String cedula,
+    public static void conectar(String id, String nombre, String cedula,
             String cargo){
-        this.id = id;
-        this.nombre = nombre;
-        this.cedula = cedula;
-        this.cargo = cargo;
+        Usuario.id = id;
+        Usuario.nombre = nombre;
+        Usuario.cedula = cedula;
+        Usuario.cargo = cargo;
     }
 
     public static String getId() {

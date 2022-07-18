@@ -108,9 +108,9 @@ public class LoginController extends CrudSQL implements Initializable {
         
         
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        Usuario a = new Usuario();
-        a.conectar(id, nombre, cedula, cargo);
-        System.out.println(a.getNombre());
+        //Usuario a = new Usuario();
+        Usuario.conectar(id, nombre, cedula, cargo);
+        System.out.println(Usuario.getNombre());
     }
 
     /**
