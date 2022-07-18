@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package com.proyecto.proyecto_desarrollo_software_i;
+import com.proyecto.proyecto_desarrollo_software_i.modelo.Usuario;
 import com.proyecto.proyecto_desarrollo_software_i.sql.CrudSQL;
 
 import java.io.IOException;
@@ -53,12 +54,13 @@ public class LoginController extends CrudSQL implements Initializable {
                     fxml = "InterfazPrincipalGerente";
                     break;
                 case 0:
-                    info.setText("Usuario y/o contraseña incorrectas\n"
-                            + "Por favor intente nuevamente.");
+                    info.setText("Usuario y/o contraseña incorrectas.\n"
+                            + "Si el problema persiste comuníquese con la empresa.");
                     break;    
             }
             if(num==1 || num==2 || num==3){
                 try {
+                    obtenerInfoUsuario();
                     App.setRoot(fxml);
                 } catch (IOException ex) {
                     System.err.println("Error con búsqueda de Interfaces: " + ex.getMessage());
@@ -96,13 +98,26 @@ public class LoginController extends CrudSQL implements Initializable {
             
         }
     }
+    
+    public void obtenerInfoUsuario(){
+        
+        String id = crud_buscar_manual("id_usuario", "usuario", "cedula='"+txt_user.getText()+"'", 1);
+        String nombre = crud_buscar_manual("nombre", "usuario", "cedula='"+txt_user.getText()+"'", 1);
+        String cedula = crud_buscar_manual("cedula", "usuario", "cedula='"+txt_user.getText()+"'", 1);
+        String cargo = crud_buscar_manual("cargo", "usuario", "cedula='"+txt_user.getText()+"'", 1);
+        
+        
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        Usuario a = new Usuario();
+        a.conectar(id, nombre, cedula, cargo);
+        System.out.println(a.getNombre());
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
 }

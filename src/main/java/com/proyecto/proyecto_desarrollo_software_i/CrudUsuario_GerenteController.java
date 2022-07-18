@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package com.proyecto.proyecto_desarrollo_software_i;
+import com.proyecto.proyecto_desarrollo_software_i.modelo.Usuario;
 import com.proyecto.proyecto_desarrollo_software_i.sql.CrudSQL;
 
 import java.io.IOException;
@@ -32,6 +33,7 @@ import javafx.scene.control.TextField;
  */
 public class CrudUsuario_GerenteController extends CrudSQL implements Initializable {
     
+    private Usuario usuario;
     ArrayList<Node> componentesCondicion;
     ArrayList<Node> componentesBusquedaYCondicion;
     ArrayList<Labeled> componentesLabelSeleccion_Modificacion;
@@ -147,6 +149,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                         txt_nombre.getText(), txt_cedula.getText(), txt_telefono.getText(),
                         txt_correo.getText(), txt_sueldo_base.getText(), cb_cargo.getValue(),   
                         dp_fecha.getValue().toString());
+                registrarCargoUsuario();
                 borrarDatos();
                 info.setText("Usuario registrado exitosamente.");
             }else{
@@ -192,7 +195,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             //>>>>//
             String resultado = crud_buscar_manual(SELECCION, "usuario", CONDICION,NUM_SELECCION);
             info.setText("Búsqueda realizada");
-            txt_area.setText(resultado);
+            txt_area.setText("RESULTADOS GLOBALES\n"+resultado);
             System.out.println("OJO---->" +SELECCION);
             
         }else if(ae.getSource()==btn_modificar_usuario){
@@ -235,6 +238,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             //>>>>//
             crud_modificar_manual("usuario", ACTUALIZACION, CONDICION);
             info.setText("Búsqueda realizada");
+            
             
             ///////////////////////////<<<<<<<<<<<<<<<<<<<<<<<<<-----
             
@@ -419,7 +423,27 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     }
     
     
-    
+    public void registrarCargoUsuario(){
+        // Queda pendiente en ver cómo registrar a un cliente (no lo decía en el enunciado)
+        String tabla = "";
+        String nombreVariableId = "";
+        usuario = new Usuario();
+        String cargo_empleado = crud_buscar_manual("cargo", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
+        
+        if ("jefe de taller".equals(cargo_empleado)) {
+            tabla = "jefe_de_taller";
+            nombreVariableId = "id_usuario_jt";
+        } else if ("vendedor".equals(cargo_empleado)) {
+            tabla = "vendedor";
+            nombreVariableId = "id_usuario_v";
+        }
+        // AQUÍ TE HACE EN VERDAD MUCHA FALTA LA CLASE VARIABLES
+        String id_empleado = crud_buscar_manual("id_usuario", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
+        
+        System.out.println("tabla: " + tabla);
+        System.out.println("cargo del usuario: "+cargo_empleado);
+        crud_registrar(tabla, nombreVariableId, "id_usuario_g", id_empleado, usuario.getId());
+    }
     
     
     public void retorno(ActionEvent ae){
@@ -503,6 +527,11 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         rb_buscar_global_usuario.setSelected(true);
         btn_modificar_usuario.setDisable(true);
         btn_guardar_usuario.setDisable(true);
+        
+        //System.out.println(getUsuario().hashCode());
+        System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+        Usuario xd = new Usuario();
+        System.out.println(xd.getNombre());
     }    
     
 }

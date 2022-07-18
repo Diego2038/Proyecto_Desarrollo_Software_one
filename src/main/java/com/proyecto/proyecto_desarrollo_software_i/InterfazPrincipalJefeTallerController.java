@@ -4,6 +4,7 @@
  */
 package com.proyecto.proyecto_desarrollo_software_i;
 
+import com.proyecto.proyecto_desarrollo_software_i.modelo.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -67,7 +68,9 @@ public class InterfazPrincipalJefeTallerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        System.out.println("OTROOOOOOOOOO");
+        Usuario a = new Usuario();
+        System.out.println(a.getNombre());
     }    
     
 }

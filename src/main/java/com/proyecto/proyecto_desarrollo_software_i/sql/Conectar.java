@@ -4,6 +4,7 @@
  */
 package com.proyecto.proyecto_desarrollo_software_i.sql;
 
+import com.proyecto.proyecto_desarrollo_software_i.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

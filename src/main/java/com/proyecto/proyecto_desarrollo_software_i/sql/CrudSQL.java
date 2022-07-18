@@ -39,7 +39,8 @@ public class CrudSQL extends Conectar{
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
             String sql = "SELECT cargo FROM usuario "
-                    + "WHERE cedula = '"+usuario+"' AND password = '"+password+"';";
+                    + "WHERE cedula = '"+usuario+"' AND password = '"+password+"'"
+                    + " AND estado='activo';";
             result = sentencia.executeQuery(sql);
             if(result.next()){
                 System.out.println("Login correcto, el usuario es un " + result.getString("cargo"));
@@ -99,6 +100,7 @@ public class CrudSQL extends Conectar{
             sentencia = conexion.createStatement();
             String sql = "INSERT INTO "+tabla+"("+nombreDato1+","+nombreDato2+") "
                     + "VALUES('"+valorDato1+"','"+valorDato2+"');";
+            System.out.println(sql);
             sentencia.execute(sql);
             sentencia.close();
             conexion.close();
@@ -493,7 +495,7 @@ public class CrudSQL extends Conectar{
             
             result = sentencia.executeQuery(sql);
 
-            resultado = "RESULTADOS GLOBALES\n";
+            resultado = "";
             // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
             // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
             while (result.next()) {
