@@ -4,10 +4,20 @@
  */
 package com.proyecto.proyecto_desarrollo_software_i.sql;
 
+import com.proyecto.proyecto_desarrollo_software_i.App;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 // ES POSIBLE QUE TAMBIÉN PUEDAS SOBRECARGAR LOS MÉTODOS DE BÚSQUEDA Y MODIFICACIÓN
 // RECUERDA QUE MUY SEGURAMENTE DEBAS DE CREAR LA CLASE VARIABLE PARA ALMACENAR LOS DATOS DE LAS 
@@ -533,10 +543,135 @@ public class CrudSQL extends Conectar{
         }
     }
     
-    // PODRÍAS PONER UN SCROLL DE BÚSQUEDAS, PARA QUE NO TENGAS QUE PREOCUPARTE POR NOMBRES 
-    // INCOMPLETOS, O TENGAS LAS ID'S
+    // Métodos para la manipulación de la interfaz
+    /// Métodos a trasladar /////
     
-    // OJO: PODRÍAS PONER UN SCROLL DEBAJO DEL BOTÓN DE BUSCAR Y MODIFICAR PARA PONER LAS CONDICIONES QUE
-    // QUISIERAS FILTRAR (ES DECIR, 3 SCROLLERS).
+    public void variarVisibilidad(ActionEvent ae, RadioButton rb_opcBusqueda, RadioButton rb_opcModificar,
+            Button btn_modificar, Button btn_buscar, Button btn_registrar, ArrayList<Node> componentes_condicion,
+            ArrayList<Node> componentes_busqueda, Label label_primera_columna, 
+            ArrayList<Labeled> componentesLabel_terceraColumna){
+        if (!rb_opcBusqueda.isSelected() // Aquí registra usuario // rb_opcBusqueda
+                && !rb_opcModificar.isSelected()) { // rb_opcModificar
+            btn_modificar.setDisable(true); // btn_modificar
+            btn_buscar.setDisable(true); // btn_buscar
+            btn_registrar.setDisable(false); // btn_registrar
+            modificarVisibilidadComponentesJavaFX(componentes_condicion, false); // componentes_condicion
+            modificarVisibilidadComponentesJavaFX(componentes_busqueda, false); // componentes_busqueda
+            label_primera_columna.setText("Valores de registro"); // segunda_columna
+            
+        } else {
+            if (ae.getSource() == rb_opcBusqueda) { // Aquí busca usuario
+                rb_opcModificar.setSelected(false);
+                btn_modificar.setDisable(true);
+                btn_buscar.setDisable(false);
+                btn_registrar.setDisable(true);
+                modificarVisibilidadComponentesJavaFX(componentes_condicion, false);
+                modificarVisibilidadComponentesJavaFX(componentes_busqueda, true);
+                label_primera_columna.setText("Condiciones de búsqueda");
+                modificarPalabrasLabeledComponentesJavaFX(componentesLabel_terceraColumna, "Selección",true);
+            } else if (ae.getSource() == rb_opcModificar) {
+                rb_opcBusqueda.setSelected(false);
+                btn_modificar.setDisable(false);
+                btn_buscar.setDisable(true);
+                btn_registrar.setDisable(true);
+                modificarVisibilidadComponentesJavaFX(componentes_condicion, true);
+                modificarVisibilidadComponentesJavaFX(componentes_busqueda, true);
+                label_primera_columna.setText("Valores de cambio");
+                modificarPalabrasLabeledComponentesJavaFX(componentesLabel_terceraColumna, "Cambio",true);
+            }
+        }
+    }
+    
+    public void borrarDatosTextField(ArrayList<TextField> obj){
+        for (TextField tf : obj) {
+            tf.setText("");
+        }
+    }
+    
+     
+    public boolean verificadorSizeCelda(TextField celda, int tamanioMin, int tamanioMax){
+        boolean RESULTADO = false;
+        RESULTADO = celda.getText().length() >= tamanioMin && celda.getText().length() <= tamanioMax;
+        return RESULTADO;
+    }
+    
+    
+    public void modificarVisibilidadComponentesJavaFX(ArrayList<Node> grupo, boolean visibilidad){
+        for(Node obj : grupo){
+            obj.setVisible(visibilidad);
+        }
+    }
+    
+    public void modificarPalabrasLabeledComponentesJavaFX(ArrayList<Labeled> grupo, String palabra,
+            boolean enumerar){
+            String ENUMERADOR = "";
+        if(enumerar) ENUMERADOR =" #";
+        int NUM = 1;
+        for(Labeled obj : grupo){
+            obj.setText(palabra+ENUMERADOR+Integer.toString(NUM));
+            NUM++;
+        }
+    }
+    
+    public String extendPalabra(String palabra, String adicion, boolean condicion){
+        String resultado = "";
+        if(condicion){
+            if(palabra.length()==0){
+                palabra = adicion;
+            }else{
+                palabra = palabra+" AND "+adicion; 
+            }
+        }else{ // Este de aquí sería para la selección
+            if(palabra.length()==1){
+                System.out.println("LLEGUÉ A SELECCIÓN <3");  
+                palabra = adicion;
+                System.out.println(palabra + "  Palabra <3");
+            }else{
+                palabra = palabra+", "+adicion;
+            }
+        }
+        System.out.println("OJO-(resultado)--> "+resultado);
+        return palabra;
+    }
+    
+    
+    /**
+     * Función que se encarga de traducir el nombre de los atributos de la interfaz
+     * en sus respectivos nombres en la base de datos.
+     * @param atributo El nombre a traducir
+     * @return String de la traducción
+     */
+    public String traducirPalabra(String atributo){
+        String resultado = "";
+        switch (atributo){
+            case "Nombre": 
+                System.out.println("estoy en el nombre <3");
+                resultado = "nombre";
+                break;
+            case "Cédula": 
+                resultado = "cedula";
+                break;
+            case "Estado": 
+                resultado = "estado";
+                break;
+            case "Teléfono": 
+                resultado = "telefono";
+                break;
+            case "Email": 
+                resultado = "correo";
+                break;
+            case "Cargo": 
+                resultado = "cargo";
+                break;
+            case "Sueldo": 
+                resultado = "sueldo_base";
+                break;
+            case "Contraseña": 
+                resultado = "password";
+                break;
+        }
+        System.out.println("resultado de traducción>>>>"+resultado);
+        return resultado;
+    }
     
 }

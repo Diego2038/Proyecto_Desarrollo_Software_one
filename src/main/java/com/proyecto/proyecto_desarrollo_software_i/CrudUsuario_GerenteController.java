@@ -302,49 +302,11 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     
     
     
-   
-    
-    
-    //public void cambiarNombresLabelComponentesJavaFX(A)
-    
-    public void borrarDatosTextField(ArrayList<TextField> obj){
-        for (TextField tf : obj) {
-            tf.setText("");
-        }
-    }
-  
-    public void cambiarEstadoRoundButton(ActionEvent ae) {
-        if (!rb_buscar_global_usuario.isSelected() // Aquí registra usuario
-                && !rb_habilitar_condicion_de_modificacion.isSelected()) {
-            btn_modificar_usuario.setDisable(true);
-            btn_buscar_usuario.setDisable(true);
-            btn_guardar_usuario.setDisable(false);
-            modificarVisibilidadComponentesJavaFX(componentesCondicion, false);
-            modificarVisibilidadComponentesJavaFX(componentesBusquedaYCondicion, false);
-            l_columna_seleccion_modificacion.setText("Valores de registro");
-            
-        } else {
-            if (ae.getSource() == rb_buscar_global_usuario) { // Aquí busca usuario
-                rb_habilitar_condicion_de_modificacion.setSelected(false);
-                btn_modificar_usuario.setDisable(true);
-                btn_buscar_usuario.setDisable(false);
-                btn_guardar_usuario.setDisable(true);
-                modificarVisibilidadComponentesJavaFX(componentesCondicion, false);
-                modificarVisibilidadComponentesJavaFX(componentesBusquedaYCondicion, true);
-                l_columna_seleccion_modificacion.setText("Condiciones de búsqueda");
-                modificarPalabrasLabeledComponentesJavaFX(componentesLabelSeleccion_Modificacion, "Selección",true);
-            } else if (ae.getSource() == rb_habilitar_condicion_de_modificacion) {
-                rb_buscar_global_usuario.setSelected(false);
-                btn_modificar_usuario.setDisable(false);
-                btn_buscar_usuario.setDisable(true);
-                btn_guardar_usuario.setDisable(true);
-                modificarVisibilidadComponentesJavaFX(componentesCondicion, true);
-                modificarVisibilidadComponentesJavaFX(componentesBusquedaYCondicion, true);
-                l_columna_seleccion_modificacion.setText("Valores de cambio");
-                modificarPalabrasLabeledComponentesJavaFX(componentesLabelSeleccion_Modificacion, "Cambio",true);
-            }
-        }
-
+    public void cambiarVisibilidadRoundButton(ActionEvent ae){
+        variarVisibilidad(ae, rb_buscar_global_usuario, rb_habilitar_condicion_de_modificacion,
+            btn_modificar_usuario, btn_buscar_usuario, btn_guardar_usuario, componentesCondicion,
+            componentesBusquedaYCondicion, l_columna_seleccion_modificacion, 
+            componentesLabelSeleccion_Modificacion);
     }
     
     
@@ -371,11 +333,6 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     }
     
     
-    
-    
-    /// Métodos a trasladar /////
-    
-    
     public void retornarInterfaz(String fxml){
         try {
                 //App.setRoot("InterfazPrincipalGerente");
@@ -386,91 +343,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             }
     }
     
-     
-    public boolean verificadorSizeCelda(TextField celda, int tamanioMin, int tamanioMax){
-        boolean RESULTADO = false;
-        RESULTADO = celda.getText().length() >= tamanioMin && celda.getText().length() <= tamanioMax;
-        return RESULTADO;
-    }
     
-    
-    public void modificarVisibilidadComponentesJavaFX(ArrayList<Node> grupo, boolean visibilidad){
-        for(Node obj : grupo){
-            obj.setVisible(visibilidad);
-        }
-    }
-    
-    public void modificarPalabrasLabeledComponentesJavaFX(ArrayList<Labeled> grupo, String palabra,
-            boolean enumerar){
-            String ENUMERADOR = "";
-        if(enumerar) ENUMERADOR =" #";
-        int NUM = 1;
-        for(Labeled obj : grupo){
-            obj.setText(palabra+ENUMERADOR+Integer.toString(NUM));
-            NUM++;
-        }
-    }
-    
-    public String extendPalabra(String palabra, String adicion, boolean condicion){
-        String resultado = "";
-        if(condicion){
-            if(palabra.length()==0){
-                palabra = adicion;
-            }else{
-                palabra = palabra+" AND "+adicion; 
-            }
-        }else{ // Este de aquí sería para la selección
-            if(palabra.length()==1){
-                System.out.println("LLEGUÉ A SELECCIÓN <3");  
-                palabra = adicion;
-                System.out.println(palabra + "  Palabra <3");
-            }else{
-                palabra = palabra+", "+adicion;
-            }
-        }
-        System.out.println("OJO-(resultado)--> "+resultado);
-        return palabra;
-    }
-    
-    
-    /**
-     * Función que se encarga de traducir el nombre de los atributos de la interfaz
-     * en sus respectivos nombres en la base de datos.
-     * @param atributo El nombre a traducir
-     * @return String de la traducción
-     */
-    public String traducirPalabra(String atributo){
-        String resultado = "";
-        switch (atributo){
-            case "Nombre": 
-                System.out.println("estoy en el nombre <3");
-                resultado = "nombre";
-                break;
-            case "Cédula": 
-                resultado = "cedula";
-                break;
-            case "Estado": 
-                resultado = "estado";
-                break;
-            case "Teléfono": 
-                resultado = "telefono";
-                break;
-            case "Email": 
-                resultado = "correo";
-                break;
-            case "Cargo": 
-                resultado = "cargo";
-                break;
-            case "Sueldo": 
-                resultado = "sueldo_base";
-                break;
-            case "Contraseña": 
-                resultado = "password";
-                break;
-        }
-        System.out.println("resultado de traducción>>>>"+resultado);
-        return resultado;
-    }
     
     /**
      * Initializes the controller class.

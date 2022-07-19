@@ -75,8 +75,8 @@
       <ChoiceBox fx:id="cb_condicion2" layoutX="517.0" layoutY="297.0" prefHeight="26.0" prefWidth="75.0" />
       <ChoiceBox fx:id="cb_condicion1" layoutX="517.0" layoutY="271.0" prefHeight="26.0" prefWidth="75.0" />
       <ChoiceBox fx:id="cb_condicion3" layoutX="517.0" layoutY="321.0" prefHeight="26.0" prefWidth="75.0" />
-      <RadioButton fx:id="rb_buscar_global_usuario" layoutX="320.0" layoutY="20.0" mnemonicParsing="false" onAction="#cambiarEstadoRoundButton" text="Habilitar búsqueda global" />
-      <RadioButton fx:id="rb_habilitar_condicion_de_modificacion" layoutX="320.0" layoutY="38.0" mnemonicParsing="false" onAction="#cambiarEstadoRoundButton" text="Habilitar modificación" />
+      <RadioButton fx:id="rb_buscar_global_usuario" layoutX="320.0" layoutY="20.0" mnemonicParsing="false" onAction="#cambiarVisibilidadRoundButton" text="Habilitar búsqueda global" />
+      <RadioButton fx:id="rb_habilitar_condicion_de_modificacion" layoutX="320.0" layoutY="38.0" mnemonicParsing="false" onAction="#cambiarVisibilidadRoundButton" text="Habilitar modificación" />
       <Label fx:id="l_columna_seleccion_modificacion" layoutX="80.0" layoutY="21.0" text="Condiciones de búsqueda" />
       <Label fx:id="l_columna_condicion" layoutX="204.0" layoutY="21.0" text="Condiciones" />
       <TextField fx:id="txt_cedula_condicion" layoutX="189.0" layoutY="43.0" prefHeight="26.0" prefWidth="96.0" />
