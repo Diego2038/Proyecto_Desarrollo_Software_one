@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="349.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.CrudUsuario_GerenteController">
    <children>
-      <Button fx:id="btn_devolverse" mnemonicParsing="false" onAction="#retorno" text="Regresar" />
+      <Button fx:id="btn_devolverse" mnemonicParsing="false" onAction="#accionBoton" text="Regresar" />
       <Label layoutX="5.0" layoutY="104.0" text="Contraseña" />
       <Label layoutX="5.0" layoutY="132.0" text="Estado" />
       <Label layoutX="5.0" layoutY="76.0" text="Nombre" />

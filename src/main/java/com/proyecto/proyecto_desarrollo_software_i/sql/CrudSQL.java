@@ -504,7 +504,7 @@ public class CrudSQL extends Conectar{
                 }
                 resultado = resultado + "\n";
             }
-            
+            resultado = resultado.trim();
         } catch (SQLException e) {
             System.err.println("Error búsqueda: " + e.getMessage());
         }

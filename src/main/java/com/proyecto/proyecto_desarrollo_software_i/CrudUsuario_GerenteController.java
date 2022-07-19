@@ -38,6 +38,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     ArrayList<Node> componentesBusquedaYCondicion;
     ArrayList<Labeled> componentesLabelSeleccion_Modificacion;
     ArrayList<Labeled> componentesLabelCondicion;
+    ArrayList<TextField> componentesTextField;
 
     @FXML
     Button btn_devolverse;
@@ -137,7 +138,9 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     
     
     public void accionBoton(ActionEvent ae){
-        if(ae.getSource()==btn_guardar_usuario){
+        if(ae.getSource()==btn_devolverse){
+            retornarInterfaz("InterfazPrincipalGerente");
+        }else if(ae.getSource()==btn_guardar_usuario){
             info.setText("Registrando...");
             if(verificadorSizeCelda(txt_cedula, 6, 10) && verificadorSizeCelda(txt_nombre, 7, 50)
                     && verificadorSizeCelda(txt_password, 6, 50) && verificadorSizeCelda(txt_telefono, 7, 20)
@@ -150,7 +153,10 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                         txt_correo.getText(), txt_sueldo_base.getText(), cb_cargo.getValue(),   
                         dp_fecha.getValue().toString());
                 registrarCargoUsuario();
-                borrarDatos();
+                borrarDatosTextField(componentesTextField);
+                dp_fecha.setValue(LocalDate.now());
+                cb_estado.setValue("activo");
+                cb_cargo.setValue("vendedor");
                 info.setText("Usuario registrado exitosamente.");
             }else{
                 info.setText("Tamaño incorrecto de parámetros.\nEscriba el tamaño adecuado.");
@@ -244,7 +250,10 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             
             
             txt_area.setText("Usuario modificado");
-            borrarDatos();
+            borrarDatosTextField(componentesTextField);
+            dp_fecha.setValue(LocalDate.now());
+            cb_estado.setValue("activo");
+            cb_cargo.setValue("vendedor");
             info.setText("Usuario modificado exitosamente");
             
         }
@@ -289,6 +298,117 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             resultado = cb_estado_condicion.getValue();
         }
         return resultado;
+    }
+    
+    
+    
+   
+    
+    
+    //public void cambiarNombresLabelComponentesJavaFX(A)
+    
+    public void borrarDatosTextField(ArrayList<TextField> obj){
+        for (TextField tf : obj) {
+            tf.setText("");
+        }
+    }
+  
+    public void cambiarEstadoRoundButton(ActionEvent ae) {
+        if (!rb_buscar_global_usuario.isSelected() // Aquí registra usuario
+                && !rb_habilitar_condicion_de_modificacion.isSelected()) {
+            btn_modificar_usuario.setDisable(true);
+            btn_buscar_usuario.setDisable(true);
+            btn_guardar_usuario.setDisable(false);
+            modificarVisibilidadComponentesJavaFX(componentesCondicion, false);
+            modificarVisibilidadComponentesJavaFX(componentesBusquedaYCondicion, false);
+            l_columna_seleccion_modificacion.setText("Valores de registro");
+            
+        } else {
+            if (ae.getSource() == rb_buscar_global_usuario) { // Aquí busca usuario
+                rb_habilitar_condicion_de_modificacion.setSelected(false);
+                btn_modificar_usuario.setDisable(true);
+                btn_buscar_usuario.setDisable(false);
+                btn_guardar_usuario.setDisable(true);
+                modificarVisibilidadComponentesJavaFX(componentesCondicion, false);
+                modificarVisibilidadComponentesJavaFX(componentesBusquedaYCondicion, true);
+                l_columna_seleccion_modificacion.setText("Condiciones de búsqueda");
+                modificarPalabrasLabeledComponentesJavaFX(componentesLabelSeleccion_Modificacion, "Selección",true);
+            } else if (ae.getSource() == rb_habilitar_condicion_de_modificacion) {
+                rb_buscar_global_usuario.setSelected(false);
+                btn_modificar_usuario.setDisable(false);
+                btn_buscar_usuario.setDisable(true);
+                btn_guardar_usuario.setDisable(true);
+                modificarVisibilidadComponentesJavaFX(componentesCondicion, true);
+                modificarVisibilidadComponentesJavaFX(componentesBusquedaYCondicion, true);
+                l_columna_seleccion_modificacion.setText("Valores de cambio");
+                modificarPalabrasLabeledComponentesJavaFX(componentesLabelSeleccion_Modificacion, "Cambio",true);
+            }
+        }
+
+    }
+    
+    
+    public void registrarCargoUsuario(){
+        // Queda pendiente en ver cómo registrar a un gerente (no lo decía en el enunciado)
+        String tabla = "";
+        String nombreVariableId = "";
+        usuario = new Usuario();
+        String cargo_empleado = crud_buscar_manual("cargo", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
+        
+        if ("jefe de taller".equals(cargo_empleado)) {
+            tabla = "jefe_de_taller";
+            nombreVariableId = "id_usuario_jt";
+        } else if ("vendedor".equals(cargo_empleado)) {
+            tabla = "vendedor";
+            nombreVariableId = "id_usuario_v";
+        }
+        // AQUÍ TE HACE EN VERDAD MUCHA FALTA LA CLASE VARIABLES
+        String id_empleado = crud_buscar_manual("id_usuario", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
+        
+        System.out.println("tabla: " + tabla);
+        System.out.println("cargo del usuario: "+cargo_empleado);
+        crud_registrar(tabla, nombreVariableId, "id_usuario_g", id_empleado, usuario.getId());
+    }
+    
+    
+    
+    
+    /// Métodos a trasladar /////
+    
+    
+    public void retornarInterfaz(String fxml){
+        try {
+                //App.setRoot("InterfazPrincipalGerente");
+                App.setRoot(fxml);
+                System.out.println("Regreso a la interfaz principal");
+            } catch (IOException ex) {
+                System.err.println("Error conexión interfaz: " + ex.getMessage());
+            }
+    }
+    
+     
+    public boolean verificadorSizeCelda(TextField celda, int tamanioMin, int tamanioMax){
+        boolean RESULTADO = false;
+        RESULTADO = celda.getText().length() >= tamanioMin && celda.getText().length() <= tamanioMax;
+        return RESULTADO;
+    }
+    
+    
+    public void modificarVisibilidadComponentesJavaFX(ArrayList<Node> grupo, boolean visibilidad){
+        for(Node obj : grupo){
+            obj.setVisible(visibilidad);
+        }
+    }
+    
+    public void modificarPalabrasLabeledComponentesJavaFX(ArrayList<Labeled> grupo, String palabra,
+            boolean enumerar){
+            String ENUMERADOR = "";
+        if(enumerar) ENUMERADOR =" #";
+        int NUM = 1;
+        for(Labeled obj : grupo){
+            obj.setText(palabra+ENUMERADOR+Integer.toString(NUM));
+            NUM++;
+        }
     }
     
     public String extendPalabra(String palabra, String adicion, boolean condicion){
@@ -345,119 +465,13 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                 resultado = "sueldo_base";
                 break;
             case "Contraseña": 
-                resultado = "sueldo_base";
+                resultado = "password";
                 break;
         }
         System.out.println("resultado de traducción>>>>"+resultado);
         return resultado;
     }
     
-    
-    public boolean verificadorSizeCelda(TextField celda, int tamanioMin, int tamanioMax){
-        boolean RESULTADO = false;
-        RESULTADO = celda.getText().length() >= tamanioMin && celda.getText().length() <= tamanioMax;
-        return RESULTADO;
-    }
-    
-    
-    public void modificarVisibilidadComponentesJavaFX(ArrayList<Node> grupo, boolean visibilidad){
-        for(Node obj : grupo){
-            obj.setVisible(visibilidad);
-        }
-    }
-    
-    public void modificarPalabrasLabeledComponentesJavaFX(ArrayList<Labeled> grupo, String palabra){
-        int NUM = 1;
-        for(Labeled obj : grupo){
-            obj.setText(palabra+" #"+Integer.toString(NUM));
-            NUM++;
-        }
-    }
-    
-    
-    //public void cambiarNombresLabelComponentesJavaFX(A)
-    
-    public void borrarDatos(){
-        txt_telefono.setText("");
-        txt_sueldo_base.setText("");
-        txt_password.setText("");
-        txt_nombre.setText("");
-        dp_fecha.setValue(LocalDate.now());
-        cb_estado.setValue("activo");
-        cb_cargo.setValue("vendedor");
-        txt_correo.setText("");
-        txt_cedula.setText("");
-    }
-  
-    public void cambiarEstadoRoundButton(ActionEvent ae) {
-        if (!rb_buscar_global_usuario.isSelected() // Aquí registra usuario
-                && !rb_habilitar_condicion_de_modificacion.isSelected()) {
-            btn_modificar_usuario.setDisable(true);
-            btn_buscar_usuario.setDisable(true);
-            btn_guardar_usuario.setDisable(false);
-            modificarVisibilidadComponentesJavaFX(componentesCondicion, false);
-            modificarVisibilidadComponentesJavaFX(componentesBusquedaYCondicion, false);
-            l_columna_seleccion_modificacion.setText("Valores de registro");
-            
-        } else {
-            if (ae.getSource() == rb_buscar_global_usuario) { // Aquí busca usuario
-                rb_habilitar_condicion_de_modificacion.setSelected(false);
-                btn_modificar_usuario.setDisable(true);
-                btn_buscar_usuario.setDisable(false);
-                btn_guardar_usuario.setDisable(true);
-                modificarVisibilidadComponentesJavaFX(componentesCondicion, false);
-                modificarVisibilidadComponentesJavaFX(componentesBusquedaYCondicion, true);
-                l_columna_seleccion_modificacion.setText("Condiciones de búsqueda");
-                modificarPalabrasLabeledComponentesJavaFX(componentesLabelSeleccion_Modificacion, "Selección");
-            } else if (ae.getSource() == rb_habilitar_condicion_de_modificacion) {
-                rb_buscar_global_usuario.setSelected(false);
-                btn_modificar_usuario.setDisable(false);
-                btn_buscar_usuario.setDisable(true);
-                btn_guardar_usuario.setDisable(true);
-                modificarVisibilidadComponentesJavaFX(componentesCondicion, true);
-                modificarVisibilidadComponentesJavaFX(componentesBusquedaYCondicion, true);
-                l_columna_seleccion_modificacion.setText("Valores de cambio");
-                modificarPalabrasLabeledComponentesJavaFX(componentesLabelSeleccion_Modificacion, "Cambio");
-            }
-        }
-
-    }
-    
-    
-    public void registrarCargoUsuario(){
-        // Queda pendiente en ver cómo registrar a un cliente (no lo decía en el enunciado)
-        String tabla = "";
-        String nombreVariableId = "";
-        usuario = new Usuario();
-        String cargo_empleado = crud_buscar_manual("cargo", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
-        
-        if ("jefe de taller".equals(cargo_empleado)) {
-            tabla = "jefe_de_taller";
-            nombreVariableId = "id_usuario_jt";
-        } else if ("vendedor".equals(cargo_empleado)) {
-            tabla = "vendedor";
-            nombreVariableId = "id_usuario_v";
-        }
-        // AQUÍ TE HACE EN VERDAD MUCHA FALTA LA CLASE VARIABLES
-        String id_empleado = crud_buscar_manual("id_usuario", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
-        
-        System.out.println("tabla: " + tabla);
-        System.out.println("cargo del usuario: "+cargo_empleado);
-        crud_registrar(tabla, nombreVariableId, "id_usuario_g", id_empleado, usuario.getId());
-    }
-    
-    
-    public void retorno(ActionEvent ae){
-        if(ae.getSource()==btn_devolverse){
-            try {
-                App.setRoot("InterfazPrincipalGerente");
-                System.out.println("Regreso a la interfaz principal");
-            } catch (IOException ex) {
-                System.err.println("Error conexión interfaz: " + ex.getMessage());
-                ex.printStackTrace();
-            }
-        }
-    }
     /**
      * Initializes the controller class.
      */
@@ -502,6 +516,18 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         componentesLabelSeleccion_Modificacion.add(l_seleccion_modificacion1);
         componentesLabelSeleccion_Modificacion.add(l_seleccion_modificacion2);
         componentesLabelSeleccion_Modificacion.add(l_seleccion_modificacion3);
+        
+        componentesTextField = new ArrayList<>();
+        componentesTextField.add(txt_cedula);
+        componentesTextField.add(txt_nombre);
+        componentesTextField.add(txt_password);
+        componentesTextField.add(txt_telefono);
+        componentesTextField.add(txt_correo);
+        componentesTextField.add(txt_sueldo_base);
+        componentesTextField.add(txt_cedula_condicion);
+        componentesTextField.add(txt_nombre_condicion);
+        componentesTextField.add(txt_telefono_condicion);
+        componentesTextField.add(txt_correo_condicion);
         
         
         String LISTA_SELECCION[] = {"-","Nombre","Cédula","Estado","Teléfono",
