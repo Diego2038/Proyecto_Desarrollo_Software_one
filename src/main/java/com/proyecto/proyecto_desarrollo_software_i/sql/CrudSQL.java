@@ -217,20 +217,18 @@ public class CrudSQL extends Conectar{
     public void crud_registrar(String tabla, String nombreDato1, String nombreDato2, String nombreDato3, 
             String nombreDato4, String nombreDato5, String nombreDato6, String nombreDato7, String nombreDato8,
             String nombreDato9, String valorDato1, String valorDato2, String valorDato3, String valorDato4, 
-            String valorDato5, String valorDato6, String valorDato7, String valorDato8, String valorDato9){
-        try {
-            Connection conexion = conectar();
-            sentencia = conexion.createStatement();
-            String sql = "INSERT INTO "+tabla+"("+nombreDato1+","+nombreDato2+","+nombreDato3+","+nombreDato4+","
-                    +nombreDato5+","+nombreDato6+","+nombreDato7+","+nombreDato8+","+nombreDato9+") "
-                    +"VALUES('"+valorDato1+"','"+valorDato2+"','"+valorDato3+"','"+valorDato4+"','"+valorDato5
-                    +"','"+valorDato6+"','"+valorDato7+"','"+valorDato8+"','"+valorDato9+"');";
-            sentencia.execute(sql);
-            sentencia.close();
-            conexion.close();
-        } catch (SQLException e) {
-            System.err.println("Sucedió un error: " + e.getMessage());
-        }
+            String valorDato5, String valorDato6, String valorDato7, String valorDato8, String valorDato9) throws SQLException{
+        
+        Connection conexion = conectar();
+        sentencia = conexion.createStatement();
+        String sql = "INSERT INTO " + tabla + "(" + nombreDato1 + "," + nombreDato2 + "," + nombreDato3 + "," + nombreDato4 + ","
+                + nombreDato5 + "," + nombreDato6 + "," + nombreDato7 + "," + nombreDato8 + "," + nombreDato9 + ") "
+                + "VALUES('" + valorDato1 + "','" + valorDato2 + "','" + valorDato3 + "','" + valorDato4 + "','" + valorDato5
+                + "','" + valorDato6 + "','" + valorDato7 + "','" + valorDato8 + "','" + valorDato9 + "');";
+        sentencia.execute(sql);
+        sentencia.close();
+        conexion.close();
+
     }
     
     /**
@@ -474,73 +472,68 @@ public class CrudSQL extends Conectar{
     
     
     public String crud_buscar_manual(String seleccion, String tabla, String condicion, 
-            int numSeleccion){
-        System.out.println("numcantidadColumnas>>> "+Integer.toString(numSeleccion));
+            int numSeleccion) throws SQLException{
+        System.out.println("numcantidadColumnas>>> " + Integer.toString(numSeleccion));
         String resultado = "";
         String sql = "";
         int NUM = numSeleccion;
-        try {
-            Connection conexion = conectar();
-            sentencia = conexion.createStatement();
-            
-            if(NUM==0){// Si es 0, significa que es toda la selección
-                sentencia2 = conexion.createStatement();
-                String sql2 = "SELECT COUNT(*)\n"
-                        + "FROM INFORMATION_SCHEMA.COLUMNS\n"
-                        + "WHERE table_catalog = 'da279dugkkpikd' -- the database\n"
-                        + "AND table_name = '"+tabla+"';";
-                result2 = sentencia2.executeQuery(sql2);
-                if(result2.next()){
-                    NUM = result2.getInt(1);
-                    System.out.println(NUM);
-                }else{
-                    System.err.println("Ha sucedido un error grave!!!!");
-                }
-            }
-            if (condicion.length()==0){
-                sql = "SELECT "+seleccion+" FROM "+tabla+";"; 
-            }else{
-                sql = "SELECT "+seleccion+" FROM "+tabla+" WHERE "+condicion+";"; 
-            }
-            
-            result = sentencia.executeQuery(sql);
 
-            resultado = "";
-            // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
-            // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
-            while (result.next()) {
-                for (int i = 1; i <= NUM; i++) {
-                    resultado = resultado + result.getString(i) + " ";
-                }
-                resultado = resultado + "\n";
+        Connection conexion = conectar();
+        sentencia = conexion.createStatement();
+
+        if (NUM == 0) {// Si es 0, significa que es toda la selección
+            sentencia2 = conexion.createStatement();
+            String sql2 = "SELECT COUNT(*)\n"
+                    + "FROM INFORMATION_SCHEMA.COLUMNS\n"
+                    + "WHERE table_catalog = 'da279dugkkpikd' -- the database\n"
+                    + "AND table_name = '" + tabla + "';";
+            result2 = sentencia2.executeQuery(sql2);
+            if (result2.next()) {
+                NUM = result2.getInt(1);
+                System.out.println(NUM);
+            } else {
+                System.err.println("Ha sucedido un error grave!!!!");
             }
-            resultado = resultado.trim();
-        } catch (SQLException e) {
-            System.err.println("Error búsqueda: " + e.getMessage());
         }
+        if (condicion.length() == 0) {
+            sql = "SELECT " + seleccion + " FROM " + tabla + ";";
+        } else {
+            sql = "SELECT " + seleccion + " FROM " + tabla + " WHERE " + condicion + ";";
+        }
+
+        result = sentencia.executeQuery(sql);
+
+        resultado = "";
+        // OJO, AQUÍ TE VA TOCAR QUE CREAR UNA CLASE PARA GUARDAR LAS VARIABLES
+        // ASÍ PODRÁS MOSTRARLAS TODAS EN UNA TABLA MÁS BONITA
+        while (result.next()) {
+            for (int i = 1; i <= NUM; i++) {
+                resultado = resultado + result.getString(i) + " ";
+            }
+            resultado = resultado + "\n";
+        }
+        resultado = resultado.trim();
         System.out.println(sql);
         return resultado;
     }
     
     
-    public void crud_modificar_manual(String tabla, String cambios, String condicion){
-        try {
-            Connection conexion = conectar();
-            sentencia = conexion.createStatement();
-            String sql;
-            if (condicion.length()==0){
-                sql = "UPDATE "+tabla+" SET "+cambios+";";
-            }else{
-                sql = "UPDATE "+tabla+" SET "+cambios+" WHERE "+condicion+";"; 
-            }
-            
-            System.out.println("MIRA ESE SQL PAPÁ!! >> "+sql);
-            sentencia.executeUpdate(sql);
-            System.out.println("La actualización se hizo correctamente");
-            
-        } catch (SQLException e) {
-            System.err.println("Sucedió un error: " + e.getMessage());
+    public void crud_modificar_manual (String tabla, String cambios, String condicion) throws SQLException{
+        
+           Connection conexion = conectar();
+        sentencia = conexion.createStatement();
+        String sql;
+        if (condicion.length() == 0) {
+            sql = "UPDATE " + tabla + " SET " + cambios + ";";
+        } else {
+            sql = "UPDATE " + tabla + " SET " + cambios + " WHERE " + condicion + ";";
         }
+
+        System.out.println("MIRA ESE SQL PAPÁ!! >> " + sql);
+        sentencia.executeUpdate(sql);
+        System.out.println("La actualización se hizo correctamente");
+            
+        
     }
     
     // Métodos para la manipulación de la interfaz

@@ -29,10 +29,10 @@
       <TextField fx:id="txt_sueldo_base" layoutX="89.0" layoutY="218.0" prefHeight="26.0" prefWidth="96.0" />
       <TextArea fx:id="txt_area" editable="false" layoutX="316.0" layoutY="60.0" prefHeight="103.0" prefWidth="196.0" />
       <Button fx:id="btn_buscar_usuario" layoutX="527.0" layoutY="63.0" mnemonicParsing="false" onAction="#accionBoton" text="Buscar" />
-      <Button fx:id="btn_guardar_usuario" layoutX="205.0" layoutY="306.0" mnemonicParsing="false" onAction="#accionBoton" text="Registrar" />
+      <Button fx:id="btn_guardar_usuario" layoutX="205.0" layoutY="289.0" mnemonicParsing="false" onAction="#accionBoton" text="Registrar" />
       <Button fx:id="btn_modificar_usuario" layoutX="519.0" layoutY="119.0" mnemonicParsing="false" onAction="#accionBoton" text="Modificar" />
       <Label layoutX="5.0" layoutY="280.0" text="Fecha registro" />
-      <Label fx:id="info" layoutX="14.0" layoutY="301.0" prefHeight="35.0" prefWidth="174.0" textFill="RED">
+      <Label fx:id="info" layoutX="14.0" layoutY="318.0" prefHeight="26.0" prefWidth="260.0" textFill="RED">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>

@@ -9,9 +9,12 @@ import com.proyecto.proyecto_desarrollo_software_i.sql.CrudSQL;
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.event.ActionEvent;
@@ -138,29 +141,38 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     
     
     public void accionBoton(ActionEvent ae){
-        if(ae.getSource()==btn_devolverse){
+        if (ae.getSource() == btn_devolverse) {
             retornarInterfaz("InterfazPrincipalGerente");
-        }else if(ae.getSource()==btn_guardar_usuario){
+        } else if (ae.getSource() == btn_guardar_usuario) {
             info.setText("Registrando...");
-            if(verificadorSizeCelda(txt_cedula, 6, 10) && verificadorSizeCelda(txt_nombre, 7, 50)
-                    && verificadorSizeCelda(txt_password, 6, 50) && verificadorSizeCelda(txt_telefono, 7, 20)
-                    && verificadorSizeCelda(txt_correo, 6, 60) && verificadorSizeCelda(txt_sueldo_base, 6,9)
-                    && !(cb_cargo.getValue()==null) && !(cb_estado.getValue()==null)){
-                txt_area.setText("Usuario guardado");
-                crud_registrar("usuario", "password", "estado", "nombre", "cedula", "telefono", "correo",
-                        "sueldo_base", "cargo", "fecha_de_registro", txt_password.getText(), cb_estado.getValue(),
-                        txt_nombre.getText(), txt_cedula.getText(), txt_telefono.getText(),
-                        txt_correo.getText(), txt_sueldo_base.getText(), cb_cargo.getValue(),   
-                        dp_fecha.getValue().toString());
-                registrarCargoUsuario();
-                borrarDatosTextField(componentesTextField);
-                dp_fecha.setValue(LocalDate.now());
-                cb_estado.setValue("activo");
-                cb_cargo.setValue("vendedor");
-                info.setText("Usuario registrado exitosamente.");
-            }else{
-                info.setText("Tamaño incorrecto de parámetros.\nEscriba el tamaño adecuado.");
-                
+            try {
+                if (verificadorSizeCelda(txt_cedula, 6, 10) && verificadorSizeCelda(txt_nombre, 7, 50)
+                        && verificadorSizeCelda(txt_password, 6, 50) && verificadorSizeCelda(txt_telefono, 7, 20)
+                        && verificadorSizeCelda(txt_correo, 6, 60) && verificadorSizeCelda(txt_sueldo_base, 6, 9)
+                        && !(cb_cargo.getValue() == null) && !(cb_estado.getValue() == null)) {
+
+                    crud_registrar("usuario", "password", "estado", "nombre", "cedula", "telefono", "correo",
+                            "sueldo_base", "cargo", "fecha_de_registro", txt_password.getText(), cb_estado.getValue(),
+                            txt_nombre.getText(), txt_cedula.getText(), txt_telefono.getText(),
+                            txt_correo.getText(), txt_sueldo_base.getText(), cb_cargo.getValue(),
+                            dp_fecha.getValue().toString());
+                    registrarCargoUsuario();
+                    borrarDatosTextField(componentesTextField);
+                    dp_fecha.setValue(LocalDate.now());
+                    cb_estado.setValue("activo");
+                    cb_cargo.setValue("vendedor");
+                    info.setText("Usuario registrado exitosamente.");
+
+                } else {
+                    info.setText("Tamaño incorrecto de parámetros.\nEscriba el tamaño adecuado.");
+                    txt_area.setText("TAMAÑO DE CARACTERES PARA EL REGISTRO\nCédula 6 - 10 \nNombre completo 7 - 50"
+                            +"\nContraseña 6 - 50 \nTeléfono 7 - 20\n" +
+                            "Correo 6 - 60 \nSueldo 6 - 9");
+
+                }
+            } catch (SQLException ex) {
+                info.setText("Error parámetros de registro");
+                txt_area.setText("Causa: " + ex.getMessage());
             }
             
         }else if(ae.getSource()==btn_buscar_usuario){
@@ -199,10 +211,17 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                         +"'"+" AND "+ "fecha_de_registro<='"+dp_fecha_MAX.getValue().toString()+"'", true);
             }
             //>>>>//
-            String resultado = crud_buscar_manual(SELECCION, "usuario", CONDICION,NUM_SELECCION);
-            info.setText("Búsqueda realizada");
-            txt_area.setText("RESULTADOS GLOBALES\n"+resultado);
-            System.out.println("OJO---->" +SELECCION);
+            String resultado = "";
+            try {
+                resultado = crud_buscar_manual(SELECCION, "usuario", CONDICION,NUM_SELECCION);
+                info.setText("Búsqueda realizada");
+                txt_area.setText("RESULTADOS GLOBALES\n" + resultado);
+                System.out.println("OJO---->" + SELECCION);
+            } catch (SQLException ex) {
+                info.setText("Error parámetros de búsqueda");
+                txt_area.setText("Causa: " + ex.getMessage());
+            }
+            
             
         }else if(ae.getSource()==btn_modificar_usuario){
             
@@ -241,21 +260,18 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                 CONDICION = extendPalabra(CONDICION," fecha_de_registro>='"+dp_fecha_MIN.getValue().toString()
                         +"'"+" AND "+ "fecha_de_registro<='"+dp_fecha_MAX.getValue().toString()+"'", true);
             }
-            //>>>>//
-            crud_modificar_manual("usuario", ACTUALIZACION, CONDICION);
-            info.setText("Búsqueda realizada");
-            
-            
-            ///////////////////////////<<<<<<<<<<<<<<<<<<<<<<<<<-----
-            
-            
-            txt_area.setText("Usuario modificado");
+            try {
+                //>>>>//
+                crud_modificar_manual("usuario", ACTUALIZACION, CONDICION);
+                info.setText("Usuario modificado exitosamente");
+            } catch (SQLException ex) {
+                info.setText("Error actualización");
+                txt_area.setText("Causa: " + ex.getMessage());
+            }
             borrarDatosTextField(componentesTextField);
             dp_fecha.setValue(LocalDate.now());
             cb_estado.setValue("activo");
             cb_cargo.setValue("vendedor");
-            info.setText("Usuario modificado exitosamente");
-            
         }
     }
     
@@ -311,25 +327,29 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     
     
     public void registrarCargoUsuario(){
-        // Queda pendiente en ver cómo registrar a un gerente (no lo decía en el enunciado)
-        String tabla = "";
-        String nombreVariableId = "";
-        usuario = new Usuario();
-        String cargo_empleado = crud_buscar_manual("cargo", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
-        
-        if ("jefe de taller".equals(cargo_empleado)) {
-            tabla = "jefe_de_taller";
-            nombreVariableId = "id_usuario_jt";
-        } else if ("vendedor".equals(cargo_empleado)) {
-            tabla = "vendedor";
-            nombreVariableId = "id_usuario_v";
+        try {
+            // Queda pendiente en ver cómo registrar a un gerente (no lo decía en el enunciado)
+            String tabla = "";
+            String nombreVariableId = "";
+            usuario = new Usuario();
+            String cargo_empleado = crud_buscar_manual("cargo", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
+            
+            if ("jefe de taller".equals(cargo_empleado)) {
+                tabla = "jefe_de_taller";
+                nombreVariableId = "id_usuario_jt";
+            } else if ("vendedor".equals(cargo_empleado)) {
+                tabla = "vendedor";
+                nombreVariableId = "id_usuario_v";
+            }
+            // AQUÍ TE HACE EN VERDAD MUCHA FALTA LA CLASE VARIABLES
+            String id_empleado = crud_buscar_manual("id_usuario", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
+            
+            System.out.println("tabla: " + tabla);
+            System.out.println("cargo del usuario: "+cargo_empleado);
+            crud_registrar(tabla, nombreVariableId, "id_usuario_g", id_empleado, usuario.getId());
+        } catch (SQLException ex) {
+            info.setText("Error búsqueda condició de actualización: \n" + ex.getMessage());
         }
-        // AQUÍ TE HACE EN VERDAD MUCHA FALTA LA CLASE VARIABLES
-        String id_empleado = crud_buscar_manual("id_usuario", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
-        
-        System.out.println("tabla: " + tabla);
-        System.out.println("cargo del usuario: "+cargo_empleado);
-        crud_registrar(tabla, nombreVariableId, "id_usuario_g", id_empleado, usuario.getId());
     }
     
     
@@ -406,6 +426,8 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         String LISTA_SELECCION[] = {"-","Nombre","Cédula","Estado","Teléfono",
                 "Email","Cargo","Sueldo","Contraseña"}; 
         String LISTA_CONDICION[] = {"-","Nombre","Cédula","Estado","Teléfono",
+                "Email","Cargo","Sueldo"};
+        String LISTA_CONDICION2[] = {"Nombre","Cédula","Estado","Teléfono",
                 "Email","Cargo","Sueldo"}; 
         
         String CARGOS[] = {"vendedor","jefe de taller"};
@@ -415,10 +437,10 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         cb_estado.getItems().addAll(ESTADOS);
         cb_cargo_condicion.getItems().addAll(CARGOS);
         cb_estado_condicion.getItems().addAll(ESTADOS);
-        cb_seleccion1.getItems().addAll(LISTA_SELECCION);
+        cb_seleccion1.getItems().addAll(LISTA_CONDICION);
         cb_seleccion2.getItems().addAll(LISTA_SELECCION);
         cb_seleccion3.getItems().addAll(LISTA_SELECCION);
-        cb_condicion1.getItems().addAll(LISTA_CONDICION);
+        cb_condicion1.getItems().addAll(LISTA_CONDICION2);
         cb_condicion2.getItems().addAll(LISTA_CONDICION);
         cb_condicion3.getItems().addAll(LISTA_CONDICION);
         
@@ -429,6 +451,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         
         cb_estado.setValue("activo");
         cb_cargo.setValue("vendedor");
+        cb_condicion1.setValue("Cédula");
         
         //System.out.println(getUsuario().hashCode());
         System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");

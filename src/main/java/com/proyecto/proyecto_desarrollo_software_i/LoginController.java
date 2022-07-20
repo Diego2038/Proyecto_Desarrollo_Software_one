@@ -8,7 +8,10 @@ import com.proyecto.proyecto_desarrollo_software_i.sql.CrudSQL;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -101,16 +104,20 @@ public class LoginController extends CrudSQL implements Initializable {
     
     public void obtenerInfoUsuario(){
         
-        String id = crud_buscar_manual("id_usuario", "usuario", "cedula='"+txt_user.getText()+"'", 1);
-        String nombre = crud_buscar_manual("nombre", "usuario", "cedula='"+txt_user.getText()+"'", 1);
-        String cedula = crud_buscar_manual("cedula", "usuario", "cedula='"+txt_user.getText()+"'", 1);
-        String cargo = crud_buscar_manual("cargo", "usuario", "cedula='"+txt_user.getText()+"'", 1);
-        
-        
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        //Usuario a = new Usuario();
-        Usuario.conectar(id, nombre, cedula, cargo);
-        System.out.println(Usuario.getNombre());
+        try {
+            String id = crud_buscar_manual("id_usuario", "usuario", "cedula='"+txt_user.getText()+"'", 1);
+            String nombre = crud_buscar_manual("nombre", "usuario", "cedula='"+txt_user.getText()+"'", 1);
+            String cedula = crud_buscar_manual("cedula", "usuario", "cedula='"+txt_user.getText()+"'", 1);
+            String cargo = crud_buscar_manual("cargo", "usuario", "cedula='"+txt_user.getText()+"'", 1);
+            
+            
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            //Usuario a = new Usuario();
+            Usuario.conectar(id, nombre, cedula, cargo);
+            System.out.println(Usuario.getNombre());
+        } catch (SQLException ex) {
+            info.setText("Error de búsqueda: "+ex.getMessage());
+        }
     }
 
     /**
