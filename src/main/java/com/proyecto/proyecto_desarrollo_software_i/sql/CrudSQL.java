@@ -122,8 +122,8 @@ public class CrudSQL extends Conectar{
     
     // Ingresar 3 datos
     public void crud_registrar(String tabla, String nombreDato1, String nombreDato2,
-            String nombreDato3, String valorDato1, String valorDato2, String valorDato3){
-        try {
+            String nombreDato3, String valorDato1, String valorDato2, String valorDato3) throws SQLException{
+        
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
             String sql = "INSERT INTO "+tabla+"("+nombreDato1+","+nombreDato2+","+nombreDato3+") "
@@ -131,9 +131,7 @@ public class CrudSQL extends Conectar{
             sentencia.execute(sql);
             sentencia.close();
             conexion.close();
-        } catch (SQLException e) {
-            System.err.println("Sucedió un error: " + e.getMessage());
-        }
+        
     }
     
     
@@ -500,7 +498,7 @@ public class CrudSQL extends Conectar{
         } else {
             sql = "SELECT " + seleccion + " FROM " + tabla + " WHERE " + condicion + ";";
         }
-
+        System.out.println(sql);
         result = sentencia.executeQuery(sql);
 
         resultado = "";
@@ -513,7 +511,6 @@ public class CrudSQL extends Conectar{
             resultado = resultado + "\n";
         }
         resultado = resultado.trim();
-        System.out.println(sql);
         return resultado;
     }
     
@@ -630,13 +627,15 @@ public class CrudSQL extends Conectar{
     
     /**
      * Función que se encarga de traducir el nombre de los atributos de la interfaz
-     * en sus respectivos nombres en la base de datos.
+     * en sus respectivos nombres en la base de datos, para de esta manera interactuar con
+     * los atributos de las relaciones.
      * @param atributo El nombre a traducir
      * @return String de la traducción
      */
     public String traducirPalabra(String atributo){
         String resultado = "";
         switch (atributo){
+            // CASO USUARIO 
             case "Nombre": 
                 System.out.println("estoy en el nombre <3");
                 resultado = "nombre";
@@ -661,6 +660,16 @@ public class CrudSQL extends Conectar{
                 break;
             case "Contraseña": 
                 resultado = "password";
+                break;
+            // CASO SEDE 
+            case "Nombre sede":
+                resultado = "nombre";
+                break;
+            case "Ciudad": 
+                resultado = "ciudad";
+                break;
+            case "Dirección sede": 
+                resultado = "direccion";
                 break;
         }
         System.out.println("resultado de traducción>>>>"+resultado);

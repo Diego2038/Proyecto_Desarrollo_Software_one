@@ -464,7 +464,6 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
         System.out.println(Usuario.getNombre());
         
-        Usuario.setNombre("xdd");
         info_nombre.setText(Usuario.getNombre());
         info_cedula.setText(Usuario.getCedula());
         info_cargo.setText(Usuario.getCargo());
