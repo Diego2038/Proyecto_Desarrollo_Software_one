@@ -37,6 +37,8 @@ public class LoginController extends CrudSQL implements Initializable {
     Button btn_ingresar;
     
     @FXML
+    Button btn_cerrar;
+    @FXML
     Label info;
     
     public void ingresar(ActionEvent ae){
@@ -99,6 +101,8 @@ public class LoginController extends CrudSQL implements Initializable {
             }*/
             
             
+        }else if(ae.getSource()==btn_cerrar){
+            System.exit(0);
         }
     }
     

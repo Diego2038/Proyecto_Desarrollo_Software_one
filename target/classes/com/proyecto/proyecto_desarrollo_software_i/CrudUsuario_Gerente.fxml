@@ -7,83 +7,291 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="349.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.CrudUsuario_GerenteController">
+<AnchorPane id="AnchorPane" prefHeight="622.0" prefWidth="928.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.CrudUsuario_GerenteController">
    <children>
-      <Button fx:id="btn_devolverse" mnemonicParsing="false" onAction="#accionBoton" text="Regresar" />
-      <Label layoutX="5.0" layoutY="104.0" text="Contraseña" />
-      <Label layoutX="5.0" layoutY="132.0" text="Estado" />
-      <Label layoutX="5.0" layoutY="76.0" text="Nombre" />
-      <Label layoutX="6.0" layoutY="47.0" text="Cédula" />
-      <Label layoutX="5.0" layoutY="162.0" text="Teléfono" />
-      <Label layoutX="5.0" layoutY="194.0" text="Correo" />
-      <Label layoutX="5.0" layoutY="222.0" text="Sueldo" />
-      <Label layoutX="5.0" layoutY="251.0" text="Cargo" />
-      <TextField fx:id="txt_password" layoutX="89.0" layoutY="100.0" prefHeight="26.0" prefWidth="96.0" />
-      <TextField fx:id="txt_nombre" layoutX="89.0" layoutY="72.0" prefHeight="26.0" prefWidth="96.0" />
-      <TextField fx:id="txt_cedula" layoutX="89.0" layoutY="43.0" prefHeight="26.0" prefWidth="96.0" />
-      <TextField fx:id="txt_telefono" layoutX="89.0" layoutY="158.0" prefHeight="26.0" prefWidth="96.0" />
-      <TextField fx:id="txt_correo" layoutX="89.0" layoutY="190.0" prefHeight="26.0" prefWidth="96.0" />
-      <TextField fx:id="txt_sueldo_base" layoutX="89.0" layoutY="218.0" prefHeight="26.0" prefWidth="96.0" />
-      <TextArea fx:id="txt_area" editable="false" layoutX="316.0" layoutY="60.0" prefHeight="103.0" prefWidth="196.0" />
-      <Button fx:id="btn_buscar_usuario" layoutX="527.0" layoutY="63.0" mnemonicParsing="false" onAction="#accionBoton" text="Buscar" />
-      <Button fx:id="btn_guardar_usuario" layoutX="205.0" layoutY="289.0" mnemonicParsing="false" onAction="#accionBoton" text="Registrar" />
-      <Button fx:id="btn_modificar_usuario" layoutX="519.0" layoutY="119.0" mnemonicParsing="false" onAction="#accionBoton" text="Modificar" />
-      <Label layoutX="5.0" layoutY="280.0" text="Fecha registro" />
-      <Label fx:id="info" layoutX="14.0" layoutY="318.0" prefHeight="26.0" prefWidth="260.0" textFill="RED">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-      </Label>
-      <ChoiceBox fx:id="cb_seleccion1" layoutX="357.0" layoutY="270.0" prefHeight="26.0" prefWidth="75.0" />
-      <ChoiceBox fx:id="cb_seleccion2" layoutX="357.0" layoutY="297.0" prefHeight="26.0" prefWidth="75.0" />
-      <ChoiceBox fx:id="cb_seleccion3" layoutX="357.0" layoutY="322.0" prefHeight="26.0" prefWidth="75.0" />
-      <Label fx:id="l_seleccion_modificacion1" layoutX="286.0" layoutY="276.0" text="Selección #1" />
-      <ChoiceBox fx:id="cb_cargo" layoutX="90.0" layoutY="247.0" prefHeight="26.0" prefWidth="96.0" />
-      <DatePicker fx:id="dp_fecha" layoutX="90.0" layoutY="274.0" prefHeight="26.0" prefWidth="96.0" />
-      <ChoiceBox fx:id="cb_estado" layoutX="89.0" layoutY="128.0" prefHeight="26.0" prefWidth="96.0" />
-      <Label layoutX="316.0" layoutY="169.0" prefHeight="18.0" prefWidth="273.0" text="Filtro especializado de rangos condicionales" textAlignment="CENTER" />
-      <RadioButton fx:id="rb_sueldo" layoutX="321.0" layoutY="196.0" mnemonicParsing="false" text="Sueldo" />
-      <RadioButton fx:id="rb_fecha" layoutX="320.0" layoutY="220.0" mnemonicParsing="false" text="Fecha" />
-      <TextField fx:id="txt_sueldo_MIN" layoutX="389.0" layoutY="190.0" prefHeight="26.0" prefWidth="82.0" />
-      <TextField fx:id="txt_sueldo_MAX" layoutX="494.0" layoutY="190.0" prefHeight="26.0" prefWidth="82.0" />
-      <Label layoutX="317.0" layoutY="249.0" prefHeight="18.0" prefWidth="266.0" text="Selección de búsqueda o parámetros a modificar" textAlignment="CENTER" />
-      <Label layoutX="211.0" layoutY="-2.0" text="GESTIÓN DE USUARIOS" textFill="RED">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <DatePicker fx:id="dp_fecha_MIN" layoutX="389.0" layoutY="218.0" prefHeight="26.0" prefWidth="82.0" />
-      <DatePicker fx:id="dp_fecha_MAX" layoutX="494.0" layoutY="217.0" prefHeight="26.0" prefWidth="82.0" />
-      <Label layoutX="478.0" layoutY="182.0" prefHeight="40.0" prefWidth="10.0" text="-">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Label>
-      <Label layoutX="478.0" layoutY="208.0" prefHeight="40.0" prefWidth="10.0" text="-">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Label>
-      <Label fx:id="l_seleccion_modificacion2" layoutX="286.0" layoutY="301.0" text="Selección #2" />
-      <Label fx:id="l_seleccion_modificacion3" layoutX="288.0" layoutY="326.0" text="Selección #3" />
-      <Label fx:id="l_condicion1" layoutX="440.0" layoutY="275.0" text="Condición #1" />
-      <Label fx:id="l_condicion2" layoutX="440.0" layoutY="301.0" text="Condición #2" />
-      <Label fx:id="l_condicion3" layoutX="440.0" layoutY="327.0" text="Condición #3" />
-      <ChoiceBox fx:id="cb_condicion2" layoutX="517.0" layoutY="297.0" prefHeight="26.0" prefWidth="75.0" />
-      <ChoiceBox fx:id="cb_condicion1" layoutX="517.0" layoutY="271.0" prefHeight="26.0" prefWidth="75.0" />
-      <ChoiceBox fx:id="cb_condicion3" layoutX="517.0" layoutY="321.0" prefHeight="26.0" prefWidth="75.0" />
-      <RadioButton fx:id="rb_buscar_global_usuario" layoutX="320.0" layoutY="20.0" mnemonicParsing="false" onAction="#cambiarVisibilidadRoundButton" text="Habilitar búsqueda global" />
-      <RadioButton fx:id="rb_habilitar_condicion_de_modificacion" layoutX="320.0" layoutY="38.0" mnemonicParsing="false" onAction="#cambiarVisibilidadRoundButton" text="Habilitar modificación" />
-      <Label fx:id="l_columna_seleccion_modificacion" layoutX="80.0" layoutY="21.0" text="Condiciones de búsqueda" />
-      <Label fx:id="l_columna_condicion" layoutX="204.0" layoutY="21.0" text="Condiciones" />
-      <TextField fx:id="txt_cedula_condicion" layoutX="189.0" layoutY="43.0" prefHeight="26.0" prefWidth="96.0" />
-      <TextField fx:id="txt_nombre_condicion" layoutX="189.0" layoutY="71.0" prefHeight="26.0" prefWidth="96.0" />
-      <ChoiceBox fx:id="cb_estado_condicion" layoutX="189.0" layoutY="128.0" prefHeight="26.0" prefWidth="96.0" />
-      <ChoiceBox fx:id="cb_cargo_condicion" layoutX="189.0" layoutY="247.0" prefHeight="26.0" prefWidth="96.0" />
-      <TextField fx:id="txt_telefono_condicion" layoutX="189.0" layoutY="158.0" prefHeight="26.0" prefWidth="96.0" />
-      <TextField fx:id="txt_correo_condicion" layoutX="189.0" layoutY="190.0" prefHeight="26.0" prefWidth="96.0" />
+      <AnchorPane layoutX="230.0" layoutY="180.0" prefHeight="439.0" prefWidth="692.0" style="-fx-background-color: #004d40;">
+         <children>
+            <Label layoutX="19.0" layoutY="125.0" opacity="0.8" text="Contraseña" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="158.0" opacity="0.8" prefHeight="18.0" prefWidth="64.0" text="Estado" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="93.0" opacity="0.8" prefHeight="18.0" prefWidth="70.0" text="Nombre" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="59.0" opacity="0.8" prefHeight="18.0" prefWidth="70.0" text="Cédula" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="193.0" opacity="0.8" prefHeight="18.0" prefWidth="70.0" text="Teléfono" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="227.0" opacity="0.8" prefHeight="18.0" prefWidth="70.0" text="Correo" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="260.0" opacity="0.8" prefHeight="18.0" prefWidth="70.0" text="Sueldo" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="294.0" opacity="0.8" prefHeight="18.0" prefWidth="70.0" text="Cargo" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_password" layoutX="103.0" layoutY="121.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <TextField fx:id="txt_nombre" layoutX="103.0" layoutY="87.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <TextField fx:id="txt_cedula" layoutX="103.0" layoutY="53.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" style="-fx-background-color: white;" />
+            <TextField fx:id="txt_telefono" layoutX="103.0" layoutY="189.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <TextField fx:id="txt_correo" layoutX="103.0" layoutY="223.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <TextField fx:id="txt_sueldo_base" layoutX="103.0" layoutY="256.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <TextArea fx:id="txt_area" editable="false" layoutX="330.0" layoutY="53.0" opacity="0.7" prefHeight="130.0" prefWidth="335.0" />
+            <Button fx:id="btn_buscar_usuario" layoutX="205.0" layoutY="375.0" mnemonicParsing="false" onAction="#accionBoton" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: #00251a; -fx-text-fill: orange;" text="Buscar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_guardar_usuario" layoutX="205.0" layoutY="375.0" mnemonicParsing="false" onAction="#accionBoton" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: #00251a;" text="Registrar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_modificar_usuario" layoutX="205.0" layoutY="375.0" mnemonicParsing="false" onAction="#accionBoton" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: #00251a;" text="Modificar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="19.0" layoutY="331.0" opacity="0.8" text="Fecha registro" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="info" layoutX="20.0" layoutY="407.0" prefHeight="26.0" prefWidth="662.0" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="cb_seleccion1" layoutX="412.0" layoutY="317.0" opacity="0.7" prefHeight="26.0" prefWidth="75.0" />
+            <ChoiceBox fx:id="cb_seleccion2" layoutX="412.0" layoutY="351.0" opacity="0.7" prefHeight="26.0" prefWidth="75.0" />
+            <ChoiceBox fx:id="cb_seleccion3" layoutX="412.0" layoutY="385.0" opacity="0.7" prefHeight="26.0" prefWidth="75.0" />
+            <Label fx:id="l_seleccion_modificacion1" layoutX="335.0" layoutY="324.0" opacity="0.8" text="Selección #1" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="cb_cargo" layoutX="103.0" layoutY="290.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <DatePicker fx:id="dp_fecha" layoutX="103.0" layoutY="325.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <ChoiceBox fx:id="cb_estado" layoutX="103.0" layoutY="154.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <Label alignment="CENTER" layoutX="329.0" layoutY="197.0" opacity="0.8" prefHeight="18.0" prefWidth="335.0" text="Filtros especializados de rangos condicionales" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="rb_sueldo" layoutX="362.0" layoutY="228.0" mnemonicParsing="false" opacity="0.8" text="Sueldo" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rb_fecha" layoutX="362.0" layoutY="259.0" mnemonicParsing="false" opacity="0.8" text="Fecha" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </RadioButton>
+            <TextField fx:id="txt_sueldo_MIN" layoutX="440.0" layoutY="222.0" opacity="0.6" prefHeight="26.0" prefWidth="82.0" />
+            <TextField fx:id="txt_sueldo_MAX" layoutX="550.0" layoutY="222.0" opacity="0.6" prefHeight="26.0" prefWidth="82.0" />
+            <Label alignment="CENTER" layoutX="335.0" layoutY="294.0" opacity="0.8" prefHeight="18.0" prefWidth="335.0" text="Selección de búsqueda o parámetros a modificar" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="dp_fecha_MIN" layoutX="440.0" layoutY="254.0" opacity="0.6" prefHeight="26.0" prefWidth="82.0" />
+            <DatePicker fx:id="dp_fecha_MAX" layoutX="550.0" layoutY="254.0" opacity="0.6" prefHeight="26.0" prefWidth="82.0" />
+            <Label layoutX="530.0" layoutY="214.0" opacity="0.8" prefHeight="40.0" prefWidth="10.0" text="-" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="530.0" layoutY="244.0" opacity="0.8" prefHeight="40.0" prefWidth="10.0" text="-" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="l_seleccion_modificacion2" layoutX="335.0" layoutY="358.0" opacity="0.8" text="Selección #2" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="l_seleccion_modificacion3" layoutX="335.0" layoutY="390.0" opacity="0.8" text="Selección #3" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="l_condicion1" layoutX="512.0" layoutY="324.0" opacity="0.8" text="Condición #1" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="l_condicion2" layoutX="512.0" layoutY="358.0" opacity="0.8" text="Condición #2" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="l_condicion3" layoutX="512.0" layoutY="390.0" opacity="0.8" text="Condición #3" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="cb_condicion2" layoutX="593.0" layoutY="351.0" opacity="0.7" prefHeight="26.0" prefWidth="75.0" />
+            <ChoiceBox fx:id="cb_condicion1" layoutX="593.0" layoutY="317.0" opacity="0.7" prefHeight="26.0" prefWidth="75.0" />
+            <ChoiceBox fx:id="cb_condicion3" layoutX="593.0" layoutY="385.0" opacity="0.7" prefHeight="26.0" prefWidth="75.0" />
+            <RadioButton fx:id="rb_buscar_global_usuario" layoutX="492.0" layoutY="26.0" mnemonicParsing="false" onAction="#cambiarVisibilidadRoundButton" opacity="0.8" text="Habilitar búsqueda global" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rb_habilitar_condicion_de_modificacion" layoutX="331.0" layoutY="26.0" mnemonicParsing="false" onAction="#cambiarVisibilidadRoundButton" opacity="0.8" text="Habilitar modificación" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </RadioButton>
+            <Label fx:id="l_columna_seleccion_modificacion" layoutX="94.0" layoutY="25.0" opacity="0.8" text="Condiciones de búsqueda" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="l_columna_condicion" layoutX="220.0" layoutY="26.0" opacity="0.8" text="Condiciones" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_cedula_condicion" layoutX="205.0" layoutY="53.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <TextField fx:id="txt_nombre_condicion" layoutX="205.0" layoutY="87.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <ChoiceBox fx:id="cb_estado_condicion" layoutX="205.0" layoutY="154.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <ChoiceBox fx:id="cb_cargo_condicion" layoutX="205.0" layoutY="290.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <TextField fx:id="txt_telefono_condicion" layoutX="205.0" layoutY="189.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+            <TextField fx:id="txt_correo_condicion" layoutX="205.0" layoutY="223.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
+         </children>
+      </AnchorPane>
+      <VBox alignment="TOP_CENTER" layoutX="-3.0" layoutY="-2.0" prefHeight="622.0" prefWidth="234.0" spacing="20.0" style="-fx-background-color: #00251a;">
+         <children>
+            <AnchorPane prefHeight="197.0" prefWidth="211.0" style="-fx-background-color: #004d40;" />
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de usuarios" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de sedes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de vehículos" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="212.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Autorización ventas de autos" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Autorización de traslados" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Ver reportes generales" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de clientes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de órdenes y repuestos" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_devolverse" mnemonicParsing="false" onAction="#accionBoton" style="-fx-background-color: #00251a;" text="Regresar" textFill="#868686">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="230.0" layoutY="118.0" prefHeight="62.0" prefWidth="692.0" style="-fx-background-color: white;">
+         <children>
+            <Label alignment="CENTER" layoutX="3.0" layoutY="14.0" prefHeight="39.0" prefWidth="677.0" text="GESTIÓN DE USUARIOS" textAlignment="CENTER" textFill="#00251a">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="230.0" layoutY="-1.0" prefHeight="119.0" prefWidth="692.0" style="-fx-background-color: #39796b;">
+         <children>
+            <ImageView fitHeight="88.0" fitWidth="138.0" layoutX="518.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagenes/coche-electrico.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="20.0" layoutY="21.0" prefHeight="20.0" prefWidth="70.0" text="Nombre:" textFill="#00251a">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="51.0" prefHeight="20.0" prefWidth="70.0" text="Cédula:" textFill="#00251a">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="81.0" prefHeight="20.0" prefWidth="70.0" text="Cargo:" textFill="#00251a">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="info_nombre" layoutX="115.0" layoutY="21.0" prefHeight="26.0" prefWidth="250.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="info_cedula" layoutX="115.0" layoutY="51.0" prefHeight="26.0" prefWidth="250.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="info_cargo" layoutX="115.0" layoutY="81.0" prefHeight="26.0" prefWidth="249.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="419.0" layoutY="98.0" prefHeight="18.0" prefWidth="258.0" text="Concesionario ABC, su mejor oportunidad">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

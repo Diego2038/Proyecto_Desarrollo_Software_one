@@ -136,6 +136,14 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     ChoiceBox<String> cb_condicion3;
     
     @FXML
+    Label info_nombre;
+    @FXML
+    Label info_cedula;
+    @FXML
+    Label info_cargo;
+    
+    
+    @FXML
     TextArea txt_area;
     
     
@@ -146,7 +154,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         } else if (ae.getSource() == btn_guardar_usuario) {
             info.setText("Registrando...");
             try {
-                if (verificadorSizeCelda(txt_cedula, 6, 10) && verificadorSizeCelda(txt_nombre, 7, 50)
+                if (verificadorSizeCelda(txt_cedula, 6, 10) && verificadorSizeCelda(txt_nombre, 7, 32)
                         && verificadorSizeCelda(txt_password, 6, 50) && verificadorSizeCelda(txt_telefono, 7, 20)
                         && verificadorSizeCelda(txt_correo, 6, 60) && verificadorSizeCelda(txt_sueldo_base, 6, 9)
                         && !(cb_cargo.getValue() == null) && !(cb_estado.getValue() == null)) {
@@ -164,8 +172,8 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                     info.setText("Usuario registrado exitosamente.");
 
                 } else {
-                    info.setText("Tamaño incorrecto de parámetros.\nEscriba el tamaño adecuado.");
-                    txt_area.setText("TAMAÑO DE CARACTERES PARA EL REGISTRO\nCédula 6 - 10 \nNombre completo 7 - 50"
+                    info.setText("Tamaño incorrecto de parámetros. Escriba el tamaño adecuado.");
+                    txt_area.setText("TAMAÑO DE CARACTERES PARA EL REGISTRO\nCédula 6 - 10 \nNombre completo 7 - 32"
                             +"\nContraseña 6 - 50 \nTeléfono 7 - 20\n" +
                             "Correo 6 - 60 \nSueldo 6 - 9");
 
@@ -319,6 +327,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     
     
     public void cambiarVisibilidadRoundButton(ActionEvent ae){
+        cb_condicion1.setValue("Cédula");
         variarVisibilidad(ae, rb_buscar_global_usuario, rb_habilitar_condicion_de_modificacion,
             btn_modificar_usuario, btn_buscar_usuario, btn_guardar_usuario, componentesCondicion,
             componentesBusquedaYCondicion, l_columna_seleccion_modificacion, 
@@ -427,8 +436,6 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                 "Email","Cargo","Sueldo","Contraseña"}; 
         String LISTA_CONDICION[] = {"-","Nombre","Cédula","Estado","Teléfono",
                 "Email","Cargo","Sueldo"};
-        String LISTA_CONDICION2[] = {"Nombre","Cédula","Estado","Teléfono",
-                "Email","Cargo","Sueldo"}; 
         
         String CARGOS[] = {"vendedor","jefe de taller"};
         String ESTADOS[] = {"activo","inactivo"};
@@ -440,14 +447,14 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         cb_seleccion1.getItems().addAll(LISTA_CONDICION);
         cb_seleccion2.getItems().addAll(LISTA_SELECCION);
         cb_seleccion3.getItems().addAll(LISTA_SELECCION);
-        cb_condicion1.getItems().addAll(LISTA_CONDICION2);
+        cb_condicion1.getItems().addAll(LISTA_CONDICION);
         cb_condicion2.getItems().addAll(LISTA_CONDICION);
         cb_condicion3.getItems().addAll(LISTA_CONDICION);
         
         dp_fecha = new DatePicker(LocalDate.now());
         rb_buscar_global_usuario.setSelected(true);
-        btn_modificar_usuario.setDisable(true);
-        btn_guardar_usuario.setDisable(true);
+        btn_modificar_usuario.setVisible(false);
+        btn_guardar_usuario.setVisible(false);
         
         cb_estado.setValue("activo");
         cb_cargo.setValue("vendedor");
@@ -456,6 +463,11 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         //System.out.println(getUsuario().hashCode());
         System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
         System.out.println(Usuario.getNombre());
+        
+        Usuario.setNombre("xdd");
+        info_nombre.setText(Usuario.getNombre());
+        info_cedula.setText(Usuario.getCedula());
+        info_cargo.setText(Usuario.getCargo());
         // xd = new Usuario();
         //System.out.println(xd.getNombre());
     }    

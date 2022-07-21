@@ -545,9 +545,9 @@ public class CrudSQL extends Conectar{
             ArrayList<Labeled> componentesLabel_terceraColumna){
         if (!rb_opcBusqueda.isSelected() // Aquí registra usuario // rb_opcBusqueda
                 && !rb_opcModificar.isSelected()) { // rb_opcModificar
-            btn_modificar.setDisable(true); // btn_modificar
-            btn_buscar.setDisable(true); // btn_buscar
-            btn_registrar.setDisable(false); // btn_registrar
+            btn_modificar.setVisible(false); // btn_modificar
+            btn_buscar.setVisible(false); // btn_buscar
+            btn_registrar.setVisible(true); // btn_registrar
             modificarVisibilidadComponentesJavaFX(componentes_condicion, false); // componentes_condicion
             modificarVisibilidadComponentesJavaFX(componentes_busqueda, false); // componentes_busqueda
             label_primera_columna.setText("Valores de registro"); // segunda_columna
@@ -555,18 +555,18 @@ public class CrudSQL extends Conectar{
         } else {
             if (ae.getSource() == rb_opcBusqueda) { // Aquí busca usuario
                 rb_opcModificar.setSelected(false);
-                btn_modificar.setDisable(true);
-                btn_buscar.setDisable(false);
-                btn_registrar.setDisable(true);
+                btn_modificar.setVisible(false);
+                btn_buscar.setVisible(true);
+                btn_registrar.setVisible(false);
                 modificarVisibilidadComponentesJavaFX(componentes_condicion, false);
                 modificarVisibilidadComponentesJavaFX(componentes_busqueda, true);
                 label_primera_columna.setText("Condiciones de búsqueda");
                 modificarPalabrasLabeledComponentesJavaFX(componentesLabel_terceraColumna, "Selección",true);
             } else if (ae.getSource() == rb_opcModificar) {
                 rb_opcBusqueda.setSelected(false);
-                btn_modificar.setDisable(false);
-                btn_buscar.setDisable(true);
-                btn_registrar.setDisable(true);
+                btn_modificar.setVisible(true);
+                btn_buscar.setVisible(false);
+                btn_registrar.setVisible(false);
                 modificarVisibilidadComponentesJavaFX(componentes_condicion, true);
                 modificarVisibilidadComponentesJavaFX(componentes_busqueda, true);
                 label_primera_columna.setText("Valores de cambio");

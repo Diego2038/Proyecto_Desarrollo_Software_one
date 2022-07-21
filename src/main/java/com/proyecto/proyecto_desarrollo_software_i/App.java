@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.paint.Color;
+import javafx.stage.StageStyle;
 
 /**
  * JavaFX App
@@ -20,6 +22,9 @@ public class App extends Application {
         //scene = new Scene(loadFXML("Login"));
         scene = new Scene(loadFXML("CrudUsuario_Gerente"));
         //scene = new Scene(loadFXML("primary"));
+        
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
