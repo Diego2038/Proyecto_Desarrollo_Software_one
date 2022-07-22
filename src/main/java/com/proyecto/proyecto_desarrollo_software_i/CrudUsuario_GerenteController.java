@@ -77,6 +77,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     ArrayList<Labeled> componentesLabelSeleccion_Modificacion;
     ArrayList<Labeled> componentesLabelCondicion;
     ArrayList<TextField> componentesTextField;
+    ArrayList<Button> componentesBotonesOpciones;
 
     @FXML
     Button btn_cerrar_sesion;
@@ -215,11 +216,11 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         }
         System.out.println(fxml);
         info.setText(fxml);
-        //try {
-            //App.setRoot(fxml);
-        //} catch (IOException ex) {
-            //System.err.println("Error con búsqueda de interfaz: " + ex.getMessage());
-        //}
+        try {
+            App.setRoot(fxml);
+        } catch (IOException ex) {
+            System.err.println("Error con búsqueda de interfaz: " + ex.getMessage());
+        }
     }
     
     public void accionBoton(ActionEvent ae){
@@ -539,6 +540,25 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         info_nombre.setText(Usuario.getNombre());
         info_cedula.setText(Usuario.getCedula());
         info_cargo.setText(Usuario.getCargo());
+        
+        componentesBotonesOpciones = new ArrayList<>();
+        componentesBotonesOpciones.add(btn_gestion_usuarios);
+        componentesBotonesOpciones.add(btn_gestion_sedes);
+        componentesBotonesOpciones.add(btn_gestion_vehiculos);
+        componentesBotonesOpciones.add(btn_autorizacion_ventas_autos);
+        componentesBotonesOpciones.add(btn_gestion_venta_de_vehiculos);
+        componentesBotonesOpciones.add(btn_autorizacion_traslado_autos);
+        componentesBotonesOpciones.add(btn_solicitud_traslado_de_vehiculo);
+        componentesBotonesOpciones.add(btn_gestion_cliente);
+        componentesBotonesOpciones.add(btn_gestion_cliente_auto);
+        componentesBotonesOpciones.add(btn_gestion_ordenes);
+        componentesBotonesOpciones.add(btn_gestion_repuestos);
+        componentesBotonesOpciones.add(btn_ver_reporte_general);
+        componentesBotonesOpciones.add(btn_ver_mi_reporte);
+
+        filtrarBotonesInterfaces(componentesBotonesOpciones, panelDeOpciones);
+        
+
         // xd = new Usuario();
         //System.out.println(xd.getNombre());
         

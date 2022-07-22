@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.proyecto_desarrollo_software_i.LoginController">
    <children>
       <Label layoutX="34.0" layoutY="90.0" prefHeight="18.0" prefWidth="62.0" text="User" />
       <Label layoutX="34.0" layoutY="169.0" text="Password" />
-      <TextField fx:id="txt_user" layoutX="118.0" layoutY="86.0" text="1005744567" />
-      <PasswordField fx:id="txt_password" layoutX="119.0" layoutY="165.0" text="gerente" />
+      <TextField fx:id="txt_user" layoutX="118.0" layoutY="86.0" prefHeight="26.0" prefWidth="323.0" text="1005744567  66756889  1135200123  " />
+      <PasswordField fx:id="txt_password" layoutX="119.0" layoutY="165.0" prefHeight="26.0" prefWidth="323.0" text="gerente" />
       <Button fx:id="btn_ingresar" layoutX="36.0" layoutY="223.0" mnemonicParsing="false" onAction="#ingresar" text="Ingresar" />
-      <ImageView fitHeight="193.0" fitWidth="199.0" layoutX="358.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="193.0" fitWidth="199.0" layoutX="516.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@imagenes/coche-electrico.png" />
          </image>

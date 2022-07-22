@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,10 +42,17 @@ public class LoginController extends CrudSQL implements Initializable {
     public void ingresar(ActionEvent ae){
         if(ae.getSource()==btn_ingresar){
             String fxml = "";
-            System.out.println(txt_user.getText() + " " + txt_password.getText());
-            int num = ingresarUsuario(txt_user.getText(), txt_password.getText());
+            System.out.println(txt_user.getText().trim() + " " + txt_password.getText());
+            int num = ingresarUsuario(txt_user.getText().trim(), txt_password.getText());
             System.out.println(">>>" + num);
             
+            if(num==1 || num==2 || num==3){
+                fxml = "CrudUsuario_Gerente"; // OJO, debe estar en los clientes, por el momento
+            }else{
+                info.setText("Usuario y/o contraseña incorrectas.\n"
+                            + "Si el problema persiste comuníquese con la empresa.");
+            }
+            /*
             switch(num){
                 case 1:
                     fxml = "InterfazPrincipalVendedor";
@@ -63,13 +68,13 @@ public class LoginController extends CrudSQL implements Initializable {
                             + "Si el problema persiste comuníquese con la empresa.");
                     break;    
             }
+            */
             if(num==1 || num==2 || num==3){
                 try {
                     obtenerInfoUsuario();
                     App.setRoot(fxml);
                 } catch (IOException ex) {
                     System.err.println("Error con búsqueda de Interfaces: " + ex.getMessage());
-                    ex.printStackTrace();
                 }
             }
             
@@ -109,10 +114,10 @@ public class LoginController extends CrudSQL implements Initializable {
     public void obtenerInfoUsuario(){
         
         try {
-            String id = crud_buscar_manual("id_usuario", "usuario", "cedula='"+txt_user.getText()+"'", 1);
-            String nombre = crud_buscar_manual("nombre", "usuario", "cedula='"+txt_user.getText()+"'", 1);
-            String cedula = crud_buscar_manual("cedula", "usuario", "cedula='"+txt_user.getText()+"'", 1);
-            String cargo = crud_buscar_manual("cargo", "usuario", "cedula='"+txt_user.getText()+"'", 1);
+            String id = crud_buscar_manual("id_usuario", "usuario", "cedula='"+txt_user.getText().trim()+"'", 1);
+            String nombre = crud_buscar_manual("nombre", "usuario", "cedula='"+txt_user.getText().trim()+"'", 1);
+            String cedula = crud_buscar_manual("cedula", "usuario", "cedula='"+txt_user.getText().trim()+"'", 1);
+            String cargo = crud_buscar_manual("cargo", "usuario", "cedula='"+txt_user.getText().trim()+"'", 1);
             
             
             System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");

@@ -5,6 +5,7 @@
 package com.proyecto.proyecto_desarrollo_software_i.sql;
 
 import com.proyecto.proyecto_desarrollo_software_i.App;
+import com.proyecto.proyecto_desarrollo_software_i.modelo.Usuario;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 // ES POSIBLE QUE TAMBIÉN PUEDAS SOBRECARGAR LOS MÉTODOS DE BÚSQUEDA Y MODIFICACIÓN
 // RECUERDA QUE MUY SEGURAMENTE DEBAS DE CREAR LA CLASE VARIABLE PARA ALMACENAR LOS DATOS DE LAS 
@@ -622,6 +624,39 @@ public class CrudSQL extends Conectar{
         }
         System.out.println("OJO-(resultado)--> "+resultado);
         return palabra;
+    }
+    
+    public void filtrarBotonesInterfaces(ArrayList<Button> componentes, VBox panelDeOpciones){
+        if (Usuario.getCargo().trim().equals("vendedor")) {
+            for (Button boton : componentes) {
+                String nomBoton = boton.getText().trim();
+                if(nomBoton.equals("Gestión de usuarios") || nomBoton.equals("Gestión de sedes")
+                        || nomBoton.equals("Autorización ventas de autos") 
+                        || nomBoton.equals("Autorización de traslados")
+                        || nomBoton.equals("Gestión autos de clientes") 
+                        || nomBoton.equals("Gestión de órdenes")
+                        || nomBoton.equals("Gestión de repuestos") 
+                        || nomBoton.equals("Ver reportes generales")){
+                    panelDeOpciones.getChildren().remove(boton);
+                }
+            }
+            System.out.println("Es un vendedor");
+        } else if (Usuario.getCargo().trim().equals("jefe de taller")) {
+            for (Button boton : componentes) {
+                String nomBoton = boton.getText().trim();
+                if(nomBoton.equals("Gestión de usuarios") || nomBoton.equals("Gestión de sedes")
+                        || nomBoton.equals("Gestión de vehículos a la venta")
+                        || nomBoton.equals("Autorización ventas de autos") 
+                        || nomBoton.equals("Autorización de traslados") 
+                        || nomBoton.equals("Gestión ventas de vehículos")
+                        || nomBoton.equals("Autorización de traslados") 
+                        || nomBoton.equals("Solicitud de traslados")
+                        || nomBoton.equals("Ver reportes generales")){
+                    panelDeOpciones.getChildren().remove(boton);
+                }
+            }
+            System.out.println("Es un jefe de taller!");
+        }
     }
     
     
