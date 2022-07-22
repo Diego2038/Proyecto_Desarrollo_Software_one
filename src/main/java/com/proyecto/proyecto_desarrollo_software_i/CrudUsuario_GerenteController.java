@@ -7,16 +7,11 @@ import com.proyecto.proyecto_desarrollo_software_i.modelo.Usuario;
 import com.proyecto.proyecto_desarrollo_software_i.sql.CrudSQL;
 
 import java.io.IOException;
-import java.math.RoundingMode;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import static javafx.collections.FXCollections.observableArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,8 +24,13 @@ import javafx.scene.control.Labeled;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 /**
  * FXML Controller class
  *
@@ -294,6 +294,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             //>>>>//
             String resultado = "";
             try {
+                
                 resultado = crud_buscar_manual(SELECCION, "usuario", CONDICION,NUM_SELECCION);
                 info.setText("Búsqueda realizada");
                 txt_area.setText("RESULTADOS GLOBALES\n" + resultado);
@@ -446,6 +447,102 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     }
     
     
+    public void cambioColorDentro(MouseEvent me){
+        Button boton = null;
+        if(me.getSource() == btn_gestion_usuarios){
+           boton = btn_gestion_usuarios;
+        }else if(me.getSource() == btn_gestion_sedes){
+           boton = btn_gestion_sedes;
+        }else if(me.getSource() == btn_gestion_vehiculos){
+           boton = btn_gestion_vehiculos;
+        }else if(me.getSource() == btn_autorizacion_ventas_autos){
+           boton = btn_autorizacion_ventas_autos;
+        }else if(me.getSource() == btn_gestion_venta_de_vehiculos){
+           boton = btn_gestion_venta_de_vehiculos;
+        }else if(me.getSource() == btn_autorizacion_traslado_autos){
+           boton = btn_autorizacion_traslado_autos;
+        }else if(me.getSource() == btn_solicitud_traslado_de_vehiculo){
+           boton = btn_solicitud_traslado_de_vehiculo;
+        }else if(me.getSource() == btn_gestion_cliente){
+           boton = btn_gestion_cliente;
+        }else if(me.getSource() == btn_gestion_cliente_auto){
+           boton = btn_gestion_cliente_auto;
+        }else if(me.getSource() == btn_gestion_ordenes){
+           boton = btn_gestion_ordenes;
+        }else if(me.getSource() == btn_gestion_repuestos){
+           boton = btn_gestion_repuestos;
+        }else if(me.getSource() == btn_ver_reporte_general){
+           boton = btn_ver_reporte_general;
+        }else if(me.getSource() == btn_ver_mi_reporte){
+           boton = btn_ver_mi_reporte;
+        }
+        boton.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
+                new CornerRadii(20),null))); 
+    }
+    
+    
+    public void cambioColorDentro2(MouseEvent me){
+        Button boton = null;
+        if(me.getSource() == btn_cerrar_sesion){
+           boton = btn_cerrar_sesion;
+        }else if(me.getSource() == btn_buscar_usuario){
+           boton = btn_buscar_usuario;
+        }else if(me.getSource() == btn_guardar_usuario){
+           boton = btn_guardar_usuario;
+        }else if(me.getSource() == btn_modificar_usuario){
+           boton = btn_modificar_usuario;
+        }
+        boton.setBackground(new Background(new BackgroundFill(Color.rgb(0, 37, 26),
+                new CornerRadii(10),null))); 
+    }
+    
+    
+    public void cambioColorFuera(MouseEvent me){
+        Button boton = null;
+        if(me.getSource() == btn_gestion_usuarios){
+           boton = btn_gestion_usuarios;
+        }else if(me.getSource() == btn_gestion_sedes){
+           boton = btn_gestion_sedes;
+        }else if(me.getSource() == btn_gestion_vehiculos){
+           boton = btn_gestion_vehiculos;
+        }else if(me.getSource() == btn_autorizacion_ventas_autos){
+           boton = btn_autorizacion_ventas_autos;
+        }else if(me.getSource() == btn_gestion_venta_de_vehiculos){
+           boton = btn_gestion_venta_de_vehiculos;
+        }else if(me.getSource() == btn_autorizacion_traslado_autos){
+           boton = btn_autorizacion_traslado_autos;
+        }else if(me.getSource() == btn_solicitud_traslado_de_vehiculo){
+           boton = btn_solicitud_traslado_de_vehiculo;
+        }else if(me.getSource() == btn_gestion_cliente){
+           boton = btn_gestion_cliente;
+        }else if(me.getSource() == btn_gestion_cliente_auto){
+           boton = btn_gestion_cliente_auto;
+        }else if(me.getSource() == btn_gestion_ordenes){
+           boton = btn_gestion_ordenes;
+        }else if(me.getSource() == btn_gestion_repuestos){
+           boton = btn_gestion_repuestos;
+        }else if(me.getSource() == btn_ver_reporte_general){
+           boton = btn_ver_reporte_general;
+        }else if(me.getSource() == btn_ver_mi_reporte){
+           boton = btn_ver_mi_reporte;
+        }
+        boton.setBackground(new Background(new BackgroundFill(Color.rgb(0, 37, 26),null,null)));
+    }
+    
+    public void cambioColorFuera2(MouseEvent me){
+        Button boton = null;
+        if(me.getSource() == btn_cerrar_sesion){
+           boton = btn_cerrar_sesion;
+        }else if(me.getSource() == btn_buscar_usuario){
+           boton = btn_buscar_usuario;
+        }else if(me.getSource() == btn_guardar_usuario){
+           boton = btn_guardar_usuario;
+        }else if(me.getSource() == btn_modificar_usuario){
+           boton = btn_modificar_usuario;
+        }
+        boton.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
+                new CornerRadii(10),null)));
+    }
     
     /**
      * Initializes the controller class.
@@ -558,6 +655,15 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
 
         filtrarBotonesInterfaces(componentesBotonesOpciones, panelDeOpciones);
         
+        cambiarColorOscuroBotones(componentesBotonesOpciones);
+        btn_cerrar_sesion.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
+                new CornerRadii(10),null))); 
+        btn_buscar_usuario.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
+                new CornerRadii(10),null)));
+        btn_guardar_usuario.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
+                new CornerRadii(10),null)));
+        btn_modificar_usuario.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
+                new CornerRadii(10),null))); 
 
         // xd = new Usuario();
         //System.out.println(xd.getNombre());

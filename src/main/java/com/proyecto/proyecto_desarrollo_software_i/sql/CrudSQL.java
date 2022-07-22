@@ -19,7 +19,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 // ES POSIBLE QUE TAMBIÉN PUEDAS SOBRECARGAR LOS MÉTODOS DE BÚSQUEDA Y MODIFICACIÓN
 // RECUERDA QUE MUY SEGURAMENTE DEBAS DE CREAR LA CLASE VARIABLE PARA ALMACENAR LOS DATOS DE LAS 
@@ -656,6 +660,13 @@ public class CrudSQL extends Conectar{
                 }
             }
             System.out.println("Es un jefe de taller!");
+        }
+    }
+    
+    public void cambiarColorOscuroBotones(ArrayList<Button> comp){
+        for (Button button : comp) {
+            button.setBackground(new Background(new BackgroundFill(Color.rgb(0, 37, 26),
+                new CornerRadii(20),null)));
         }
     }
     

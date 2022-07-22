@@ -64,17 +64,17 @@
             <TextField fx:id="txt_correo" layoutX="103.0" layoutY="223.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
             <TextField fx:id="txt_sueldo_base" layoutX="103.0" layoutY="256.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
             <TextArea fx:id="txt_area" editable="false" layoutX="330.0" layoutY="53.0" opacity="0.7" prefHeight="130.0" prefWidth="335.0" />
-            <Button fx:id="btn_buscar_usuario" layoutX="205.0" layoutY="375.0" mnemonicParsing="false" onAction="#accionBoton" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: #00251a; -fx-text-fill: orange;" text="Buscar" textFill="WHITE">
+            <Button fx:id="btn_buscar_usuario" layoutX="205.0" layoutY="375.0" mnemonicParsing="false" onAction="#accionBoton" onMouseEntered="#cambioColorDentro2" onMouseExited="#cambioColorFuera2" prefHeight="30.0" prefWidth="96.0" style="-fx-text-fill: orange;" text="Buscar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_guardar_usuario" layoutX="205.0" layoutY="375.0" mnemonicParsing="false" onAction="#accionBoton" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: #00251a;" text="Registrar" textFill="WHITE">
+            <Button fx:id="btn_guardar_usuario" layoutX="205.0" layoutY="375.0" mnemonicParsing="false" onAction="#accionBoton" onMouseEntered="#cambioColorDentro2" onMouseExited="#cambioColorFuera2" prefHeight="30.0" prefWidth="96.0" text="Registrar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_modificar_usuario" layoutX="205.0" layoutY="375.0" mnemonicParsing="false" onAction="#accionBoton" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: #00251a;" text="Modificar" textFill="WHITE">
+            <Button fx:id="btn_modificar_usuario" layoutX="205.0" layoutY="375.0" mnemonicParsing="false" onAction="#accionBoton" onMouseEntered="#cambioColorDentro2" onMouseExited="#cambioColorFuera2" prefHeight="30.0" prefWidth="96.0" text="Modificar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -194,73 +194,73 @@
          <children>
             <AnchorPane prefHeight="60.0" prefWidth="234.0" style="-fx-background-color: #004d40;">
                <children>
-                  <Button fx:id="btn_cerrar_sesion" layoutX="73.0" layoutY="8.0" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="11.0" prefWidth="90.0" style="-fx-background-color: #00251a;" text="Cerrar sesión" textFill="#868686">
+                  <Button fx:id="btn_cerrar_sesion" layoutX="73.0" layoutY="8.0" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro2" onMouseExited="#cambioColorFuera2" prefHeight="11.0" prefWidth="90.0" text="Cerrar sesión" textFill="#868686">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
                </children></AnchorPane>
-            <Button fx:id="btn_gestion_usuarios" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de usuarios" textFill="WHITE">
+            <Button fx:id="btn_gestion_usuarios" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Gestión de usuarios" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_gestion_sedes" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de sedes" textFill="WHITE">
+            <Button fx:id="btn_gestion_sedes" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Gestión de sedes" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_gestion_vehiculos" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="30.0" prefWidth="226.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de vehículos a la venta" textFill="WHITE">
+            <Button fx:id="btn_gestion_vehiculos" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Gestión de vehículos a la venta" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_autorizacion_ventas_autos" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="212.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Autorización ventas de autos" textFill="WHITE">
+            <Button fx:id="btn_autorizacion_ventas_autos" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Autorización ventas de autos" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_gestion_venta_de_vehiculos" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="212.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión ventas de vehículos" textFill="WHITE">
+            <Button fx:id="btn_gestion_venta_de_vehiculos" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Gestión ventas de vehículos" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_autorizacion_traslado_autos" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Autorización de traslados" textFill="WHITE">
+            <Button fx:id="btn_autorizacion_traslado_autos" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Autorización de traslados" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_solicitud_traslado_de_vehiculo" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Solicitud de traslados" textFill="WHITE">
+            <Button fx:id="btn_solicitud_traslado_de_vehiculo" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Solicitud de traslados" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_gestion_cliente" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de clientes" textFill="WHITE">
+            <Button fx:id="btn_gestion_cliente" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Gestión de clientes" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_gestion_cliente_auto" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión autos de clientes" textFill="WHITE">
+            <Button fx:id="btn_gestion_cliente_auto" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Gestión autos de clientes" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_gestion_ordenes" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="234.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de órdenes" textFill="WHITE">
+            <Button fx:id="btn_gestion_ordenes" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Gestión de órdenes" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_gestion_repuestos" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="234.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Gestión de repuestos" textFill="WHITE">
+            <Button fx:id="btn_gestion_repuestos" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Gestión de repuestos" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_ver_reporte_general" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Ver reportes generales" textFill="WHITE">
+            <Button fx:id="btn_ver_reporte_general" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Ver reportes generales" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_ver_mi_reporte" mnemonicParsing="false" onAction="#cambiarInterfaz" prefHeight="50.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: #00251a;" text="Ver mi reporte personal" textFill="WHITE">
+            <Button fx:id="btn_ver_mi_reporte" mnemonicParsing="false" onAction="#cambiarInterfaz" onMouseEntered="#cambioColorDentro" onMouseExited="#cambioColorFuera" prefHeight="30.0" prefWidth="234.0" style="-fx-text-fill: white;" text="Ver mi reporte personal" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
