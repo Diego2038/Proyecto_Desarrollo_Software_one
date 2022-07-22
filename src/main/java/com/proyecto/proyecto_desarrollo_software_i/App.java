@@ -20,8 +20,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //scene = new Scene(loadFXML("Login"));
-        //scene = new Scene(loadFXML("CrudUsuario_Gerente"));
-        scene = new Scene(loadFXML("CrudSede_Gerente"));
+        scene = new Scene(loadFXML("CrudUsuario_Gerente"));
+        //scene = new Scene(loadFXML("CrudSede_Gerente"));
         
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);

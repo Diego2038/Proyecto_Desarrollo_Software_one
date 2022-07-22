@@ -29,12 +29,47 @@ import javafx.scene.control.Labeled;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 /**
  * FXML Controller class
  *
  * @author Diego
  */
 public class CrudUsuario_GerenteController extends CrudSQL implements Initializable {
+    
+    
+    @FXML
+    VBox panelDeOpciones;
+    @FXML
+    AnchorPane panelDeDespliegue;
+    @FXML
+    Button btn_gestion_usuarios;
+    @FXML
+    Button btn_gestion_sedes;
+    @FXML
+    Button btn_gestion_vehiculos;
+    @FXML
+    Button btn_autorizacion_ventas_autos;
+    @FXML
+    Button btn_autorizacion_traslado_autos;
+    @FXML
+    Button btn_ver_reporte_general;
+    @FXML
+    Button btn_ver_mi_reporte;
+    @FXML
+    Button btn_gestion_cliente;
+    @FXML
+    Button btn_gestion_ordenes;
+    @FXML
+    Button btn_gestion_repuestos;
+    @FXML
+    Button btn_gestion_cliente_auto;
+    @FXML
+    Button btn_gestion_venta_de_vehiculos;
+    @FXML
+    Button btn_solicitud_traslado_de_vehiculo;
+    
     
     private Usuario usuario;
     ArrayList<Node> componentesCondicion;
@@ -44,7 +79,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     ArrayList<TextField> componentesTextField;
 
     @FXML
-    Button btn_devolverse;
+    Button btn_cerrar_sesion;
     @FXML
     Button btn_guardar_usuario;
     @FXML
@@ -147,11 +182,48 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     TextArea txt_area;
     
     
+    public void cambiarInterfaz(ActionEvent ae){
+        String fxml = "";
+        if(ae.getSource()==btn_gestion_usuarios){
+            fxml = "CrudUsuario_Gerente";
+        }else if(ae.getSource()==btn_gestion_sedes){
+            fxml = "CrudSede_Gerente";
+        }else if(ae.getSource()==btn_gestion_vehiculos){
+            fxml = "CrudVehiculo_Gerente";
+        }else if(ae.getSource()==btn_autorizacion_ventas_autos){
+            fxml = "AutorizacionVentaVehiculo_Gerente";
+        }else if(ae.getSource()==btn_autorizacion_traslado_autos){
+            fxml = "AutorizacionTrasladoVehiculo_Gerente";
+        }else if(ae.getSource()==btn_ver_reporte_general){
+            fxml = "ReportesGenerales_Gerente";
+        }else if(ae.getSource()==btn_ver_mi_reporte){
+            fxml = "VerReportePersonal";
+        }else if(ae.getSource()==btn_gestion_cliente){
+            fxml = "CrudCliente_Vendedor"; 
+        }else if(ae.getSource()==btn_gestion_cliente_auto){
+            fxml = "CrudCliente_JefeDeTaller";
+        }else if(ae.getSource()==btn_gestion_ordenes){
+            fxml = "CrudOrdenDeTrabajo_JefeDeTaller"; 
+        }else if(ae.getSource()==btn_gestion_repuestos){
+            fxml = "CrudRepuesto_JefeDeTaller"; 
+        }else if(ae.getSource()==btn_cerrar_sesion){
+            fxml = "Login";
+        }else if(ae.getSource()==btn_gestion_venta_de_vehiculos){
+            fxml = "CrudVentalVehiculo_Vendedor";
+        }else if(ae.getSource()==btn_solicitud_traslado_de_vehiculo){
+            fxml = "SolicitudTrasladoVehiculo_Vendedor";
+        }
+        System.out.println(fxml);
+        info.setText(fxml);
+        //try {
+            //App.setRoot(fxml);
+        //} catch (IOException ex) {
+            //System.err.println("Error con búsqueda de interfaz: " + ex.getMessage());
+        //}
+    }
     
     public void accionBoton(ActionEvent ae){
-        if (ae.getSource() == btn_devolverse) {
-            retornarInterfaz("InterfazPrincipalGerente");
-        } else if (ae.getSource() == btn_guardar_usuario) {
+        if (ae.getSource() == btn_guardar_usuario) {
             info.setText("Registrando...");
             try {
                 if (verificadorSizeCelda(txt_cedula, 6, 10) && verificadorSizeCelda(txt_nombre, 7, 32)
@@ -469,6 +541,9 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         info_cargo.setText(Usuario.getCargo());
         // xd = new Usuario();
         //System.out.println(xd.getNombre());
+        
+        // Probando quitar botones:
+        //panelDeOpciones.getChildren().remove(btn_gestion_usuarios); // para quitar componentes de un panel
     }    
     
 }
