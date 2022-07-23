@@ -91,6 +91,7 @@ public class CrudSQL extends Conectar{
                     + "sueldo_base,cargo,fecha_de_registro) VALUES('"+password+"','activo',"
                     + "'"+nombre+"','"+cedula+"','"+telefono+"','"+correo+"','"+sueldo_base+"',"
                     + "'"+cargo+"','"+fecha_de_registro+"')";
+            System.out.println(sql);
             sentencia.execute(sql);
             sentencia.close();
             conexion.close();
@@ -110,19 +111,17 @@ public class CrudSQL extends Conectar{
      * la tabala a la que se le ingrese.
      */
     public void crud_registrar(String tabla, String nombreDato1, String nombreDato2,
-            String valorDato1, String valorDato2){
-        try {
+            String valorDato1, String valorDato2) throws SQLException{
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
             String sql = "INSERT INTO "+tabla+"("+nombreDato1+","+nombreDato2+") "
                     + "VALUES('"+valorDato1+"','"+valorDato2+"');";
             System.out.println(sql);
+            System.out.println(sql);
             sentencia.execute(sql);
             sentencia.close();
             conexion.close();
-        } catch (SQLException e) {
-            System.err.println("Sucedió un error: " + e.getMessage());
-        }
+        
     }
     
     
@@ -134,6 +133,7 @@ public class CrudSQL extends Conectar{
             sentencia = conexion.createStatement();
             String sql = "INSERT INTO "+tabla+"("+nombreDato1+","+nombreDato2+","+nombreDato3+") "
                     + "VALUES('"+valorDato1+"','"+valorDato2+"','"+valorDato3+"');";
+            System.out.println(sql);
             sentencia.execute(sql);
             sentencia.close();
             conexion.close();
@@ -144,56 +144,51 @@ public class CrudSQL extends Conectar{
     // Ingresar 4 datos
     public void crud_registrar(String tabla, String nombreDato1, String nombreDato2,
             String nombreDato3, String nombreDato4, String valorDato1, String valorDato2, 
-            String valorDato3, String valorDato4){
-        try {
+            String valorDato3, String valorDato4) throws SQLException{
+        
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
             String sql = "INSERT INTO "+tabla+"("+nombreDato1+","+nombreDato2+","+nombreDato3+","+nombreDato4+") "
                     + "VALUES('"+valorDato1+"','"+valorDato2+"','"+valorDato3+"','"+valorDato4+"');";
+            System.out.println(sql);
             sentencia.execute(sql);
             sentencia.close();
             conexion.close();
-        } catch (SQLException e) {
-            System.err.println("Sucedió un error: " + e.getMessage());
-        }
+        
     }
     
     
     // Ingresar 5 datos
     public void crud_registrar(String tabla, String nombreDato1, String nombreDato2, String nombreDato3, 
             String nombreDato4, String nombreDato5, String valorDato1, String valorDato2, String valorDato3, 
-            String valorDato4, String valorDato5){
-        try {
+            String valorDato4, String valorDato5) throws SQLException{
+        
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
             String sql = "INSERT INTO "+tabla+"("+nombreDato1+","+nombreDato2+","+nombreDato3+","+nombreDato4+","
                     +nombreDato5+") "+ "VALUES('"+valorDato1+"','"+valorDato2+"','"+valorDato3+"','"+valorDato4
                     +"','"+valorDato5+"');";
+            System.out.println(sql);
             sentencia.execute(sql);
             sentencia.close();
-            conexion.close();
-        } catch (SQLException e) {
-            System.err.println("Sucedió un error: " + e.getMessage());
-        }
+            conexion.close(); 
     }
     
     
     // Ingresar 6 datos
     public void crud_registrar(String tabla, String nombreDato1, String nombreDato2, String nombreDato3, 
             String nombreDato4, String nombreDato5, String nombreDato6, String valorDato1, String valorDato2, 
-            String valorDato3, String valorDato4, String valorDato5, String valorDato6){
-        try {
+            String valorDato3, String valorDato4, String valorDato5, String valorDato6) throws SQLException{
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
             String sql = "INSERT INTO "+tabla+"("+nombreDato1+","+nombreDato2+","+nombreDato3+","+nombreDato4+","
                     +nombreDato5+","+nombreDato6+") "+ "VALUES('"+valorDato1+"','"+valorDato2+"','"+valorDato3+"','"
                     +valorDato4+"','"+valorDato5+"','"+valorDato6+"');";
+            System.out.println(sql);
             sentencia.execute(sql);
             sentencia.close();
             conexion.close();
-        } catch (SQLException e) {
-            System.err.println("Sucedió un error: " + e.getMessage());
-        }
+        
     }
     
     
@@ -201,19 +196,17 @@ public class CrudSQL extends Conectar{
     public void crud_registrar(String tabla, String nombreDato1, String nombreDato2, String nombreDato3, 
             String nombreDato4, String nombreDato5, String nombreDato6, String nombreDato7, String valorDato1, 
             String valorDato2, String valorDato3, String valorDato4, String valorDato5, String valorDato6,
-            String valorDato7){
-        try {
+            String valorDato7) throws SQLException{
             Connection conexion = conectar();
             sentencia = conexion.createStatement();
             String sql = "INSERT INTO "+tabla+"("+nombreDato1+","+nombreDato2+","+nombreDato3+","+nombreDato4+","
                     +nombreDato5+","+nombreDato6+","+nombreDato7+") "+ "VALUES('"+valorDato1+"','"+valorDato2+"','"
                     +valorDato3+"','"+valorDato4+"','"+valorDato5+"','"+valorDato6+"','"+valorDato7+"');";
+            System.out.println(sql);
             sentencia.execute(sql);
             sentencia.close();
             conexion.close();
-        } catch (SQLException e) {
-            System.err.println("Sucedió un error: " + e.getMessage());
-        }
+        
     }
     
     
@@ -229,6 +222,7 @@ public class CrudSQL extends Conectar{
                 + nombreDato5 + "," + nombreDato6 + "," + nombreDato7 + "," + nombreDato8 + "," + nombreDato9 + ") "
                 + "VALUES('" + valorDato1 + "','" + valorDato2 + "','" + valorDato3 + "','" + valorDato4 + "','" + valorDato5
                 + "','" + valorDato6 + "','" + valorDato7 + "','" + valorDato8 + "','" + valorDato9 + "');";
+        System.out.println(sql);
         sentencia.execute(sql);
         sentencia.close();
         conexion.close();
@@ -717,7 +711,26 @@ public class CrudSQL extends Conectar{
             case "Dirección sede": 
                 resultado = "direccion";
                 break;
-        }
+            // CASO AUTO 
+            case "ID único":
+                resultado = "id_auto";
+                break;
+            case "ID sede":
+                resultado = "id_sede";
+                break;
+            case "Precio vehículo de venta":
+                resultado = "precio";
+                break;
+            case "Años de garantía":
+                resultado = "garantia";
+                break;
+            case "Estado de vehículo":
+                resultado = "estado";
+                break;
+            case "Fecha de registro":
+                resultado = "fecha_registro_auto";
+                break;
+        } 
         System.out.println("resultado de traducción>>>>"+resultado);
         return resultado;
     }
