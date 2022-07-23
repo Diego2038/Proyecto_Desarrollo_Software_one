@@ -188,31 +188,31 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
         if(ae.getSource()==btn_gestion_usuarios){
             fxml = "CrudUsuario_Gerente";
         }else if(ae.getSource()==btn_gestion_sedes){
-            fxml = "CrudSede_Gerente";
+            fxml = "CrudSede";
         }else if(ae.getSource()==btn_gestion_vehiculos){
-            fxml = "CrudVehiculo_Gerente";
+            fxml = "CrudAutoVenta";
         }else if(ae.getSource()==btn_autorizacion_ventas_autos){
-            fxml = "AutorizacionVentaVehiculo_Gerente";
+            fxml = "AutorizacionVentaVehiculo";
         }else if(ae.getSource()==btn_autorizacion_traslado_autos){
-            fxml = "AutorizacionTrasladoVehiculo_Gerente";
+            fxml = "AutorizacionTrasladoVehiculo";
         }else if(ae.getSource()==btn_ver_reporte_general){
-            fxml = "ReportesGenerales_Gerente";
+            fxml = "ReportesGenerales";
         }else if(ae.getSource()==btn_ver_mi_reporte){
-            fxml = "VerReportePersonal";
+            fxml = "ReportePersonal";
         }else if(ae.getSource()==btn_gestion_cliente){
-            fxml = "CrudCliente_Vendedor"; 
+            fxml = "CrudCliente"; 
         }else if(ae.getSource()==btn_gestion_cliente_auto){
-            fxml = "CrudCliente_JefeDeTaller";
+            fxml = "CrudAutoCliente";
         }else if(ae.getSource()==btn_gestion_ordenes){
-            fxml = "CrudOrdenDeTrabajo_JefeDeTaller"; 
+            fxml = "CrudOrden"; 
         }else if(ae.getSource()==btn_gestion_repuestos){
-            fxml = "CrudRepuesto_JefeDeTaller"; 
+            fxml = "CrudRepuesto"; 
         }else if(ae.getSource()==btn_cerrar_sesion){
             fxml = "Login";
         }else if(ae.getSource()==btn_gestion_venta_de_vehiculos){
-            fxml = "CrudVentalVehiculo_Vendedor";
+            fxml = "CrudVentaVehiculo";
         }else if(ae.getSource()==btn_solicitud_traslado_de_vehiculo){
-            fxml = "SolicitudTrasladoVehiculo_Vendedor";
+            fxml = "SolicitudTrasladoVehiculoVenta";
         }
         System.out.println(fxml);
         info.setText(fxml);
@@ -234,8 +234,8 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
 
                     crud_registrar("usuario", "password", "estado", "nombre", "cedula", "telefono", "correo",
                             "sueldo_base", "cargo", "fecha_de_registro", txt_password.getText(), cb_estado.getValue(),
-                            txt_nombre.getText(), txt_cedula.getText(), txt_telefono.getText(),
-                            txt_correo.getText(), txt_sueldo_base.getText(), cb_cargo.getValue(),
+                            txt_nombre.getText().trim(), txt_cedula.getText().trim(), txt_telefono.getText().trim(),
+                            txt_correo.getText().trim(), txt_sueldo_base.getText().trim(), cb_cargo.getValue(),
                             dp_fecha.getValue().toString());
                     registrarCargoUsuario();
                     borrarDatosTextField(componentesTextField);
@@ -285,8 +285,8 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             }
             // ELABORACIÓN DE CONDICIÓN DE RANGOS
             if(rb_sueldo.isSelected()){
-                CONDICION = extendPalabra(CONDICION," sueldo_base>="+txt_sueldo_MIN.getText()+" AND "
-                        + "sueldo_base<="+txt_sueldo_MAX.getText(), true);
+                CONDICION = extendPalabra(CONDICION," sueldo_base>="+txt_sueldo_MIN.getText().trim()+" AND "
+                        + "sueldo_base<="+txt_sueldo_MAX.getText().trim(), true);
             }if(rb_fecha.isSelected()){
                 CONDICION = extendPalabra(CONDICION," fecha_de_registro>='"+dp_fecha_MIN.getValue().toString()
                         +"'"+" AND "+ "fecha_de_registro<='"+dp_fecha_MAX.getValue().toString()+"'", true);
@@ -336,8 +336,8 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             }
             // ELABORACIÓN DE CONDICIÓN DE RANGOS
             if(rb_sueldo.isSelected()){
-                CONDICION = extendPalabra(CONDICION," sueldo_base>="+txt_sueldo_MIN.getText()+" AND "
-                        + "sueldo_base<="+txt_sueldo_MAX.getText(), true);
+                CONDICION = extendPalabra(CONDICION," sueldo_base>="+txt_sueldo_MIN.getText().trim()+" AND "
+                        + "sueldo_base<="+txt_sueldo_MAX.getText().trim(), true);
             }if(rb_fecha.isSelected()){
                 CONDICION = extendPalabra(CONDICION," fecha_de_registro>='"+dp_fecha_MIN.getValue().toString()
                         +"'"+" AND "+ "fecha_de_registro<='"+dp_fecha_MAX.getValue().toString()+"'", true);
@@ -360,15 +360,15 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     public String seleccionarValor(String nombre){
         String resultado = "";
         if("nombre".equals(nombre)){
-            resultado = txt_nombre.getText();
+            resultado = txt_nombre.getText().trim();
         }else if("cedula".equals(nombre)){
-            resultado = txt_cedula.getText();
+            resultado = txt_cedula.getText().trim();
         }else if("telefono".equals(nombre)){
-            resultado = txt_telefono.getText();
+            resultado = txt_telefono.getText().trim();
         }else if("correo".equals(nombre)){
-            resultado = txt_correo.getText();
+            resultado = txt_correo.getText().trim();
         }else if("sueldo_base".equals(nombre)){
-            resultado = txt_sueldo_base.getText();
+            resultado = txt_sueldo_base.getText().trim();
         }else if("cargo".equals(nombre)){
             resultado = cb_cargo.getValue();
         }else if("password".equals(nombre)){
@@ -383,13 +383,13 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
     public String seleccionarValorSegundaColumna(String nombre){
         String resultado = "";
         if("nombre".equals(nombre)){
-            resultado = txt_nombre_condicion.getText();
+            resultado = txt_nombre_condicion.getText().trim();
         }else if("cedula".equals(nombre)){
-            resultado = txt_cedula_condicion.getText();
+            resultado = txt_cedula_condicion.getText().trim();
         }else if("telefono".equals(nombre)){
-            resultado = txt_telefono_condicion.getText();
+            resultado = txt_telefono_condicion.getText().trim();
         }else if("correo".equals(nombre)){
-            resultado = txt_correo_condicion.getText();
+            resultado = txt_correo_condicion.getText().trim();
         }else if("cargo".equals(nombre)){
             resultado = cb_cargo_condicion.getValue();
         }else if("estado".equals(nombre)){
@@ -415,7 +415,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
             String tabla = "";
             String nombreVariableId = "";
             usuario = new Usuario();
-            String cargo_empleado = crud_buscar_manual("cargo", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
+            String cargo_empleado = crud_buscar_manual("cargo", "usuario", "cedula=" + "'" + txt_cedula.getText().trim() + "'", 1).trim();
             
             if ("jefe de taller".equals(cargo_empleado)) {
                 tabla = "jefe_de_taller";
@@ -425,7 +425,7 @@ public class CrudUsuario_GerenteController extends CrudSQL implements Initializa
                 nombreVariableId = "id_usuario_v";
             }
             // AQUÍ TE HACE EN VERDAD MUCHA FALTA LA CLASE VARIABLES
-            String id_empleado = crud_buscar_manual("id_usuario", "usuario", "cedula=" + "'" + txt_cedula.getText() + "'", 1).trim();
+            String id_empleado = crud_buscar_manual("id_usuario", "usuario", "cedula=" + "'" + txt_cedula.getText().trim() + "'", 1).trim();
             
             System.out.println("tabla: " + tabla);
             System.out.println("cargo del usuario: "+cargo_empleado);
