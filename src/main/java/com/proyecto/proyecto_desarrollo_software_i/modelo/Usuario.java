@@ -12,10 +12,10 @@ package com.proyecto.proyecto_desarrollo_software_i.modelo;
 public class Usuario {
     
     private static Usuario instance;
-    private static String id;
-    private static String nombre;
-    private static String cedula;
-    private static String cargo;
+    private static String id = "1";
+    private static String nombre= "e";
+    private static String cedula= "e";
+    private static String cargo= "e";
     
     public static Usuario getInstance(){
         return new Usuario();

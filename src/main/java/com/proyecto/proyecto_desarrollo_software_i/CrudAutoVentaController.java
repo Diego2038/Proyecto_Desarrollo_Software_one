@@ -318,11 +318,11 @@ public class CrudAutoVentaController extends CrudSQL implements Initializable {
             }
             // ELABORACIÓN DE CONDICIÓN DE RANGOS
             if(rb_precio.isSelected()){
-                CONDICION = extendPalabra(CONDICION," sueldo_base>="+txt_sueldo_MIN.getText().trim()+" AND "
-                        + "sueldo_base<="+txt_sueldo_MAX.getText().trim(), true);
+                CONDICION = extendPalabra(CONDICION," precio>="+txt_sueldo_MIN.getText().trim()+" AND "
+                        + "precio<="+txt_sueldo_MAX.getText().trim(), true);
             }if(rb_fecha.isSelected()){
-                CONDICION = extendPalabra(CONDICION," fecha_de_registro>='"+dp_fecha_registro_MIN.getValue().toString()
-                        +"'"+" AND "+ "fecha_de_registro<='"+dp_fecha_registro_MAX.getValue().toString()+"'", true);
+                CONDICION = extendPalabra(CONDICION," fecha_registro_auto>='"+dp_fecha_registro_MIN.getValue().toString()
+                        +"'"+" AND "+ "fecha_registro_auto<='"+dp_fecha_registro_MAX.getValue().toString()+"'", true);
             }
             //>>>>//
             String resultado = "";
@@ -369,11 +369,11 @@ public class CrudAutoVentaController extends CrudSQL implements Initializable {
             }
             // ELABORACIÓN DE CONDICIÓN DE RANGOS
             if(rb_precio.isSelected()){
-                CONDICION = extendPalabra(CONDICION," sueldo_base>="+txt_sueldo_MIN.getText().trim()+" AND "
-                        + "sueldo_base<="+txt_sueldo_MAX.getText().trim(), true);
+                CONDICION = extendPalabra(CONDICION," precio>="+txt_sueldo_MIN.getText().trim()+" AND "
+                        + "precio<="+txt_sueldo_MAX.getText().trim(), true);
             }if(rb_fecha.isSelected()){
-                CONDICION = extendPalabra(CONDICION," fecha_de_registro>='"+dp_fecha_registro_MIN.getValue().toString()
-                        +"'"+" AND "+ "fecha_de_registro<='"+dp_fecha_registro_MAX.getValue().toString()+"'", true);
+                CONDICION = extendPalabra(CONDICION," fecha_registro_auto>='"+dp_fecha_registro_MIN.getValue().toString()
+                        +"'"+" AND "+ "fecha_registro_auto<='"+dp_fecha_registro_MAX.getValue().toString()+"'", true);
             }
             try {
                 //>>>>//

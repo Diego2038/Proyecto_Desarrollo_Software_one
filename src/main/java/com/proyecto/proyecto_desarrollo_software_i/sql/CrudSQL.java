@@ -711,7 +711,7 @@ public class CrudSQL extends Conectar{
             case "Dirección sede": 
                 resultado = "direccion";
                 break;
-            // CASO AUTO 
+            // CASO AUTO DE VENTA
             case "ID único":
                 resultado = "id_auto";
                 break;
@@ -730,9 +730,38 @@ public class CrudSQL extends Conectar{
             case "Fecha de registro":
                 resultado = "fecha_registro_auto";
                 break;
+            // CASO VENTA DE AUTO A CLIENTE
+            case "ID venta":
+                resultado = "id_venta_de_auto";
+                break;
+            case "ID auto":
+                resultado = "id_auto";
+                break;
+            case "ID cliente":
+                resultado = "id_cliente";
+                break;
+            case "ID vendedor":
+                resultado = "id_usuario_v";
+                break;
+            case "Fecha venta":
+                resultado = "fecha_venta";
+                break;
+            // CASO CLIENTE
+            case "Nombre cliente":
+                resultado = "nombre";
+                break;
+            case "Cédula cliente":
+                resultado = "cedula";
+                break;
+            case "Teléfono cliente":
+                resultado = "telefono";
+                break;
+            case "Email cliente":
+                resultado = "correo_electronico";
+                break;
         } 
         System.out.println("resultado de traducción>>>>"+resultado);
         return resultado;
     }
     
-}
+} 
