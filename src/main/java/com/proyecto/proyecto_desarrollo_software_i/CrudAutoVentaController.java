@@ -603,11 +603,11 @@ public class CrudAutoVentaController extends CrudSQL implements Initializable {
         String LISTA_CONDICION[] = {"-","ID único","ID sede","Precio vehículo de venta","Años de garantía",
         "Estado de vehículo","Fecha de registro"};
         
-        String ESTADO[] = {"Blanco","Negro","Rojo","Azul","Verde","Gris"};
-        String COLOR[] = {"Disponible","Vendido","No disponible"};
+        String COLOR[] = {"Blanco","Negro","Rojo","Azul","Verde","Gris"};
+        String ESTADO[] = {"Disponible","Vendido","No disponible"};
         
-        cb_estado.getItems().addAll(COLOR);
-        cb_color.getItems().addAll(ESTADO);
+        cb_estado.getItems().addAll(ESTADO);
+        cb_color.getItems().addAll(COLOR);
         cb_estado_condicion.getItems().addAll(ESTADO);
         cb_color_condicion.getItems().addAll(COLOR);
         cb_seleccion1.getItems().addAll(LISTA_CONDICION);
