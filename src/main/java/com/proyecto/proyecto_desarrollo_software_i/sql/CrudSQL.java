@@ -209,6 +209,24 @@ public class CrudSQL extends Conectar{
         
     }
     
+    // Ingresar 8 datos
+    public void crud_registrar(String tabla, String nombreDato1, String nombreDato2, String nombreDato3, 
+            String nombreDato4, String nombreDato5, String nombreDato6, String nombreDato7, String nombreDato8,
+            String valorDato1, String valorDato2, String valorDato3, String valorDato4, 
+            String valorDato5, String valorDato6, String valorDato7, String valorDato8) throws SQLException{
+        
+        Connection conexion = conectar();
+        sentencia = conexion.createStatement();
+        String sql = "INSERT INTO " + tabla + "(" + nombreDato1 + "," + nombreDato2 + "," + nombreDato3 + "," + nombreDato4 + ","
+                + nombreDato5 + "," + nombreDato6 + "," + nombreDato7 + "," + nombreDato8 +") "
+                + "VALUES('" + valorDato1 + "','" + valorDato2 + "','" + valorDato3 + "','" + valorDato4 + "','" + valorDato5
+                + "','" + valorDato6 + "','" + valorDato7 + "','" + valorDato8 + "');";
+        System.out.println(sql);
+        sentencia.execute(sql);
+        sentencia.close();
+        conexion.close();
+
+    }
     
     // Ingresar 9 datos
     public void crud_registrar(String tabla, String nombreDato1, String nombreDato2, String nombreDato3, 
@@ -758,6 +776,22 @@ public class CrudSQL extends Conectar{
                 break;
             case "Email cliente":
                 resultado = "correo_electronico";
+                break;
+            // CASO ORDEN 
+                case "ID orden":
+                resultado = "id_orden";
+                break;
+            case "ID jefe de taller":
+                resultado = "id_usuario_jt";
+                break;
+            case "Descripción":
+                resultado = "descripcion";
+                break;
+            case "Precio de la orden":
+                resultado = "precio_reparacion";
+                break;
+            case "Fecha de la orden":
+                resultado = "fecha_reparacion";
                 break;
         } 
         System.out.println("resultado de traducción>>>>"+resultado);
