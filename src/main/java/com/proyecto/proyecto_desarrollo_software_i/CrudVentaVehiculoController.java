@@ -244,13 +244,18 @@ public class CrudVentaVehiculoController extends CrudSQL implements Initializabl
         if (ae.getSource() == btn_guardar_usuario) {
             info.setText("Registrando...");
             try {
-                if (verificadorSizeCelda(txt_cedula, 6, 10) && verificadorSizeCelda(txt_nombre, 7, 32)
-                         && verificadorSizeCelda(txt_telefono, 7, 20)
+                if (verificadorSizeCelda(txt_cedula, 1, 15) && verificadorSizeCelda(txt_nombre, 1, 15)
+                         && verificadorSizeCelda(txt_telefono, 1, 20)
                         && verificadorSizeCelda(txt_correo, 6, 60)) {
-
+                    String idCliente = crud_buscar_manual("id_cliente", "cliente", "cedula='"+txt_correo.getText().trim()+"'", 1);
+                    
+                    
+                    String comisionVendedor = crud_buscar_manual("precio", "auto_de_venta", 
+                            "id_auto='"+txt_nombre.getText().trim()+"'", 1);
+                    int gananciaVendedor = (int) (Integer.parseInt(comisionVendedor)*0.01);
                     crud_registrar("venta_de_auto", "id_venta_de_auto", "id_auto", "id_usuario_v", "id_cliente", 
-                            "fecha_venta", txt_cedula.getText().trim(), txt_nombre.getText().trim(), 
-                            txt_telefono.getText().trim(), txt_correo.getText().trim(), dp_fecha.getValue().toString());
+                            "fecha_venta","comision_a_vendedor", txt_cedula.getText().trim(), txt_nombre.getText().trim(), 
+                            Usuario.getId(), idCliente, dp_fecha.getValue().toString(),Integer.toString(gananciaVendedor));
                     //registrarCargoUsuario();
                     borrarDatosTextField(componentesTextField);
                     dp_fecha.setValue(LocalDate.now());
@@ -304,7 +309,7 @@ public class CrudVentaVehiculoController extends CrudSQL implements Initializabl
             String resultado = "";
             try {
                 
-                resultado = crud_buscar_manual(SELECCION, "usuario", CONDICION,NUM_SELECCION);
+                resultado = crud_buscar_manual(SELECCION, "venta_de_auto", CONDICION,NUM_SELECCION);
                 info.setText("Búsqueda realizada");
                 txt_area.setText("RESULTADOS GLOBALES\n" + resultado);
                 System.out.println("OJO---->" + SELECCION);
@@ -350,8 +355,8 @@ public class CrudVentaVehiculoController extends CrudSQL implements Initializabl
             }
             try {
                 //>>>>//
-                crud_modificar_manual("usuario", ACTUALIZACION, CONDICION);
-                info.setText("Usuario modificado exitosamente");
+                crud_modificar_manual("venta_de_auto", ACTUALIZACION, CONDICION);
+                info.setText("Venta modificada exitosamente");
             } catch (SQLException ex) {
                 info.setText("Error actualización");
                 txt_area.setText("Causa: " + ex.getMessage());
@@ -372,7 +377,7 @@ public class CrudVentaVehiculoController extends CrudSQL implements Initializabl
         }else if("id_cliente".equals(nombre)){
             resultado = txt_correo.getText().trim();
         }else if("fecha_venta".equals(nombre)){
-            resultado = dp_fecha.getValue().toString().trim();
+            resultado = dp_fecha.getValue().toString();
         }
         return resultado;
     }
@@ -544,11 +549,6 @@ public class CrudVentaVehiculoController extends CrudSQL implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    
-        
-        
-        
-        
         componentesCondicion = new ArrayList<>();
         componentesCondicion.add(l_columna_condicion);
         componentesCondicion.add(txt_cedula_condicion);
@@ -593,7 +593,7 @@ public class CrudVentaVehiculoController extends CrudSQL implements Initializabl
         componentesTextField = new ArrayList<>();
         componentesTextField.add(txt_cedula);
         componentesTextField.add(txt_nombre);
-        componentesTextField.add(txt_telefono);
+        //componentesTextField.add(txt_telefono);
         componentesTextField.add(txt_correo);
         componentesTextField.add(txt_cedula_condicion);
         componentesTextField.add(txt_nombre_condicion);

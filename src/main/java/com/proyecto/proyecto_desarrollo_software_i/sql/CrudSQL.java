@@ -745,7 +745,7 @@ public class CrudSQL extends Conectar{
                 break;
             case "Fecha venta":
                 resultado = "fecha_venta";
-                break;
+                break; 
             // CASO CLIENTE
             case "Nombre cliente":
                 resultado = "nombre";
