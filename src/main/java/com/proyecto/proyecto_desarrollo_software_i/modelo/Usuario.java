@@ -16,6 +16,7 @@ public class Usuario {
     private static String nombre= "e";
     private static String cedula= "e";
     private static String cargo= "e";
+    private static String sede = "0";
     
     public static Usuario getInstance(){
         return new Usuario();
@@ -59,6 +60,14 @@ public class Usuario {
 
     public static void setNombre(String nombre) {
         Usuario.nombre = nombre;
+    }
+
+    public static String getSede() {
+        return sede;
+    }
+
+    public static void setSede(String sede) {
+        Usuario.sede = sede;
     }
     
     

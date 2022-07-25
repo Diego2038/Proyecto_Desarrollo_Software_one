@@ -69,27 +69,46 @@ public class LoginController extends CrudSQL implements Initializable {
                     break;    
             }
             */
-            if(num==1 || num==2 || num==3){
+            
+            
+            if (num == 1 || num == 2 || num == 3) {
                 try {
                     obtenerInfoUsuario();
+                    ///
+                    try {
+                        String idGerente = "";
+                        switch (num) {
+                            case 1:
+                                idGerente = crud_buscar_manual("id_usuario_g", "vendedor", "id_usuario_v='" + Usuario.getId() + "'", 1);
+                                break;
+                            case 2:
+                                idGerente = crud_buscar_manual("id_usuario_g", "vendedor", "id_usuario_jt='" + Usuario.getId() + "'", 1);
+                                break;
+                            case 3:
+                                idGerente = Usuario.getId();
+                                break;
+                            default:
+                                break;
+                        }
+                        String sede = crud_buscar_manual("id_sede", "gerente", "id_usuario_g='" + idGerente + "'", 1);
+                        Usuario.setSede(sede);
+
+                    } catch (SQLException ex) {
+                        info.setText("Error: " + ex.getMessage());
+                    }
+                    ///
                     App.setRoot(fxml);
                 } catch (IOException ex) {
                     System.err.println("Error con búsqueda de Interfaces: " + ex.getMessage());
                 }
             }
+
             
             
-            /*try {
-                String fxml = "";  
-            int num = Integer.parseInt(txt_user.getText());
-            if(num == 1){
-                fxml = "InterfazPrincipalVendedor";
-            }else if(num == 2){
-                fxml = "InterfazPrincipalJefeTaller";
-            }else if(num == 3){
-                fxml = "InterfazPrincipalGerente";
-            }
             
+            
+            
+            /*
             if(num == 1 || num == 2 || num == 3){
                 System.out.println("Cumple para entrar");
                 try {
@@ -118,7 +137,6 @@ public class LoginController extends CrudSQL implements Initializable {
             String nombre = crud_buscar_manual("nombre", "usuario", "cedula='"+txt_user.getText().trim()+"'", 1);
             String cedula = crud_buscar_manual("cedula", "usuario", "cedula='"+txt_user.getText().trim()+"'", 1);
             String cargo = crud_buscar_manual("cargo", "usuario", "cedula='"+txt_user.getText().trim()+"'", 1);
-            
             
             System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             //Usuario a = new Usuario();
