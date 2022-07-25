@@ -21,7 +21,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         //scene = new Scene(loadFXML("Login"));
         //scene = new Scene(loadFXML("CrudUsuario_Gerente"));
-        scene = new Scene(loadFXML("CrudAutoCliente"));
+        scene = new Scene(loadFXML("SolicitudTrasladoVehiculoVenta"));
         
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);

@@ -390,31 +390,7 @@ public class AutorizacionVentaVehiculoController extends CrudSQL implements Init
     }
     
     
-    public void registrarCargoUsuario(){
-        try {
-            // Queda pendiente en ver cómo registrar a un gerente (no lo decía en el enunciado)
-            String tabla = "";
-            String nombreVariableId = "";
-            usuario = new Usuario();
-            String cargo_empleado = crud_buscar_manual("cargo", "usuario", "cedula=" + "'" + txt_cedula.getText().trim() + "'", 1).trim();
-            
-            if ("jefe de taller".equals(cargo_empleado)) {
-                tabla = "jefe_de_taller";
-                nombreVariableId = "id_usuario_jt";
-            } else if ("vendedor".equals(cargo_empleado)) {
-                tabla = "vendedor";
-                nombreVariableId = "id_usuario_v";
-            }
-            // AQUÍ TE HACE EN VERDAD MUCHA FALTA LA CLASE VARIABLES
-            String id_empleado = crud_buscar_manual("id_usuario", "usuario", "cedula=" + "'" + txt_cedula.getText().trim() + "'", 1).trim();
-            
-            System.out.println("tabla: " + tabla);
-            System.out.println("cargo del usuario: "+cargo_empleado);
-            crud_registrar(tabla, nombreVariableId, "id_usuario_g", id_empleado, usuario.getId());
-        } catch (SQLException ex) {
-            info.setText("Error búsqueda condició de actualización: \n" + ex.getMessage());
-        }
-    }
+    
     
     
     public void retornarInterfaz(String fxml){

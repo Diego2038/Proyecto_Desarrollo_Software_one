@@ -793,6 +793,19 @@ public class CrudSQL extends Conectar{
             case "Fecha de la orden":
                 resultado = "fecha_reparacion";
                 break;
+            // CASO TRÁMITE DE TRASLADO
+            case "ID traslado":
+                resultado = "id_traslado";
+                break;
+            case "ID sede origen":
+                resultado = "id_sede_origen";
+                break;
+            case "ID sede destino":
+                resultado = "id_sede_destino";
+                break;
+            case "Fecha traslado":
+                resultado = "fecha_traslado";
+                break;
         } 
         System.out.println("resultado de traducción>>>>"+resultado);
         return resultado;
