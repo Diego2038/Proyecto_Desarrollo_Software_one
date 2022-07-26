@@ -162,8 +162,7 @@ public class SolicitudTrasladoVehiculoVentaController extends CrudSQL implements
     TextField txt_id_vendedor_condicion;
     
     
-    @FXML
-    ChoiceBox<String> cb_estado_condicion;
+   
     
     @FXML
     Label l_columna_seleccion_modificacion;
@@ -424,8 +423,6 @@ public class SolicitudTrasladoVehiculoVentaController extends CrudSQL implements
             resultado = txt_id_auto_condicion.getText().trim(); 
         }else if("id_usuario_v".equals(nombre)){
             resultado = txt_id_vendedor_condicion.getText().trim(); 
-        }else if("estado".equals(nombre)){
-            resultado = cb_estado_condicion.getValue().trim();
         }
         return resultado;
     }
@@ -438,6 +435,9 @@ public class SolicitudTrasladoVehiculoVentaController extends CrudSQL implements
             btn_modificar_usuario, btn_buscar_usuario, btn_guardar_usuario, componentesCondicion,
             componentesBusquedaYCondicion, l_columna_seleccion_modificacion, 
             componentesLabelSeleccion_Modificacion);
+        if(rb_habilitar_condicion_de_modificacion.isSelected()){
+            cb_estado.setVisible(false);
+        }
     }
     
     
@@ -559,10 +559,10 @@ public class SolicitudTrasladoVehiculoVentaController extends CrudSQL implements
         componentesCondicion.add(txt_id_auto_condicion);
         componentesCondicion.add(txt_id_condicion);
         componentesCondicion.add(txt_id_vendedor_condicion);
-        componentesCondicion.add(cb_estado_condicion);
         modificarVisibilidadComponentesJavaFX(componentesCondicion, false);
         
         componentesBusquedaYCondicion = new ArrayList<>();
+        componentesBusquedaYCondicion.add(cb_estado);
         componentesBusquedaYCondicion.add(l_condicion1);
         componentesBusquedaYCondicion.add(l_condicion2);
         componentesBusquedaYCondicion.add(l_condicion3);
@@ -604,10 +604,9 @@ public class SolicitudTrasladoVehiculoVentaController extends CrudSQL implements
         
         
         
-        String ESTADO[] = {"Autorizado","No autorizado"};
+        String ESTADO[] = {"Autorizado","No autorizado", "En espera"};
         
         cb_estado.getItems().addAll(ESTADO);
-        cb_estado_condicion.getItems().addAll(ESTADO);
         cb_seleccion1.getItems().addAll(LISTA_SELECCION);
         cb_seleccion2.getItems().addAll(LISTA_SELECCION);
         cb_seleccion3.getItems().addAll(LISTA_SELECCION);

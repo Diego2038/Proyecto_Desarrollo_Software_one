@@ -142,7 +142,6 @@
             </Label>
             <TextField fx:id="txt_id_auto_condicion" layoutX="206.0" layoutY="87.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
             <TextField fx:id="txt_id_vendedor_condicion" layoutX="206.0" layoutY="121.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
-            <ChoiceBox fx:id="cb_estado_condicion" layoutX="206.0" layoutY="189.0" opacity="0.7" prefHeight="26.0" prefWidth="96.0" />
             <Label layoutX="20.0" layoutY="61.0" opacity="0.8" prefHeight="18.0" prefWidth="70.0" text="ID traslado" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -231,7 +230,7 @@
       </VBox>
       <AnchorPane layoutX="230.0" layoutY="118.0" prefHeight="62.0" prefWidth="692.0" style="-fx-background-color: white;">
          <children>
-            <Label alignment="CENTER" layoutX="3.0" layoutY="14.0" prefHeight="39.0" prefWidth="677.0" text="GESTIÓN DE VEHÍCULOS A LA VENTA" textAlignment="CENTER" textFill="#00251a">
+            <Label alignment="CENTER" layoutX="3.0" layoutY="14.0" prefHeight="39.0" prefWidth="677.0" text="SOLICITUD DE TRASLADOS" textAlignment="CENTER" textFill="#00251a">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
