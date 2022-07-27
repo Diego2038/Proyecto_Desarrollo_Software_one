@@ -264,14 +264,18 @@ public class CrudAutoVentaController extends CrudSQL implements Initializable {
                         && verificadorSizeCelda(txt_precio_base, 8, 10) && verificadorSizeCelda(txt_id, 1, 6)
                         && !(cb_estado.getValue() == null) && !(cb_color.getValue() == null)) {
                     
-                    // Registro Auto
-                    crud_registrar("auto","id_auto", "modelo", "marca", "agno", "color", 
-                            txt_id.getText().trim(), txt_modelo.getText().trim(), txt_marca.getText().trim(), 
-                            txt_agno.getText().trim(), cb_color.getValue().trim());
+                    
+                   
                     // Registro Auto de venta
-                    crud_registrar("auto_de_venta", "id_auto", "id_sede", "precio", "garantia", "estado", "fecha_registro_auto", 
+                    crud_registrar("auto_de_venta", "id_auto", "id_sede", "precio", "garantia", "estado", 
+                            "fecha_registro_auto", "modelo", "marca", "agno", "color",  
                             txt_id.getText().trim(), Usuario.getSede(), txt_precio_base.getText().trim(), 
-                            txt_garantia.getText().trim(), cb_estado.getValue().trim(), dp_fecha_registro.getValue().toString().trim());
+                            txt_garantia.getText().trim(), cb_estado.getValue().trim(), 
+                            dp_fecha_registro.getValue().toString().trim(),txt_modelo.getText().trim(), 
+                            txt_marca.getText().trim(), 
+                            txt_agno.getText().trim(), cb_color.getValue().trim());
+                    
+                    
                     
                     borrarDatosTextField(componentesTextField);
                     dp_fecha_registro.setValue(LocalDate.now());
@@ -402,6 +406,14 @@ public class CrudAutoVentaController extends CrudSQL implements Initializable {
             resultado = cb_estado.getValue();
         }else if("fecha_registro_auto".equals(nombre)){
             resultado = dp_fecha_registro.getValue().toString().trim();
+        }else if("modelo".equals(nombre)){
+            resultado = txt_modelo.getText().trim();
+        }else if("marca".equals(nombre)){
+            resultado = txt_marca.getText().trim();
+        }else if("agno".equals(nombre)){
+            resultado = txt_agno.getText().trim();
+        }else if("color".equals(nombre)){
+            resultado = cb_color.getValue().trim();
         }
         return resultado;
     }
@@ -415,6 +427,14 @@ public class CrudAutoVentaController extends CrudSQL implements Initializable {
             resultado = txt_garantia_condicion.getText().trim();
         }else if("estado".equals(nombre)){
             resultado = cb_estado_condicion.getValue();
+        }else if("modelo".equals(nombre)){
+            resultado = txt_modelo_condicion.getText().trim();
+        }else if("marca".equals(nombre)){
+            resultado = txt_marca_condicion.getText().trim();
+        }else if("agno".equals(nombre)){
+            resultado = txt_agno_condicion.getText().trim();
+        }else if("color".equals(nombre)){
+            resultado = cb_color_condicion.getValue().trim();
         }
         return resultado;
     }
@@ -599,9 +619,9 @@ public class CrudAutoVentaController extends CrudSQL implements Initializable {
         
         
         String LISTA_SELECCION[] = {"-","ID único","ID sede","Precio vehículo de venta","Años de garantía",
-        "Estado de vehículo","Fecha de registro"}; 
+        "Estado de vehículo","Fecha de registro","Modelo","Marca","Año","Color auto"}; 
         String LISTA_CONDICION[] = {"-","ID único","ID sede","Precio vehículo de venta","Años de garantía",
-        "Estado de vehículo","Fecha de registro"};
+        "Estado de vehículo","Fecha de registro","Modelo","Marca","Año","Color auto"};
         
         String COLOR[] = {"Blanco","Negro","Rojo","Azul","Verde","Gris"};
         String ESTADO[] = {"Disponible","Vendido","No disponible"};
