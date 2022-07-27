@@ -393,12 +393,10 @@ public class ReportePersonalController extends CrudSQL implements Initializable 
         
         series = new XYChart.Series<>();
         series1 = new XYChart.Series<>();
-        int numVentas;
-        int numGanancias;
         if(Usuario.getCargo().equalsIgnoreCase("vendedor")){
             try {
-                numVentas = crud_buscar_manual_conteo("venta_de_auto", "id_usuario_v", Usuario.getId());
-                numGanancias = crud_buscar_manual_suma("venta_de_auto", "comision_a_vendedor", "id_usuario_v", Usuario.getId());
+                int numVentas = crud_buscar_manual_conteo("venta_de_auto", "id_usuario_v", Usuario.getId());
+                int numGanancias = crud_buscar_manual_suma("venta_de_auto", "comision_a_vendedor", "id_usuario_v", Usuario.getId());
                 series.getData().add(new XYChart.Data<>("Número de autos vendidos", numVentas));
                 series1.getData().add(new XYChart.Data<>("Comisión ganada", numGanancias));
                 barchart.getData().add(series);
@@ -409,6 +407,39 @@ public class ReportePersonalController extends CrudSQL implements Initializable 
             } catch (SQLException ex) {
                 info.setText("Error de búsqueda: " + ex.getMessage());
             }
+        }else if(Usuario.getCargo().equalsIgnoreCase("jefe de taller")){
+            try {
+                int numAutos = crud_buscar_manual_conteo("orden_de_trabajo", "id_usuario_jt", Usuario.getId());
+                int numGanancias = crud_buscar_manual_suma("orden_de_trabajo", "comision_a_jefe", "id_usuario_jt", Usuario.getId());
+                series.getData().add(new XYChart.Data<>("Número de autos arreglados", numAutos));
+                series1.getData().add(new XYChart.Data<>("Comisión ganada", numGanancias));
+                barchart.getData().add(series);
+                barchart1.getData().add(series1);
+            } catch (SQLException ex) {
+                info.setText("Error de búsqueda: " + ex.getMessage());
+            }
+        }else{
+            System.out.println("POR AQUIIII");
+            try {
+                
+                int numVendedores = crud_buscar_manual_conteo("vendedor", "id_usuario_g", Usuario.getId());
+                int numJefes = crud_buscar_manual_conteo("jefe_de_taller", "id_usuario_g", Usuario.getId());
+                int gananciasAutos = crud_buscar_manual_suma("venta_de_auto", "comision_a_vendedor", "id_usuario_g", Usuario.getId());
+                System.out.println("Mira!!-> " +Integer.toString(numVendedores));
+                System.out.println(numJefes);
+                //System.out.println(gananciasAutos);
+                //System.out.println(gananciasOrdenes);
+                
+                series.getData().add(new XYChart.Data<>("Vendedores", numVendedores));
+                series.getData().add(new XYChart.Data<>("Jefes ", numJefes));
+                series1.getData().add(new XYChart.Data<>("Ganancia ventas", gananciasAutos));
+                barchart.getData().add(series);
+                barchart1.getData().add(series1);
+            } catch (SQLException ex) {
+                info.setText("Error de búsqueda: " + ex.getMessage());
+                System.out.println(ex.getMessage());
+            }
+            System.out.println(Usuario.getCargo());
         }
 
         // xd = new Usuario();
