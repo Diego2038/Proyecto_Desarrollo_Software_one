@@ -806,6 +806,22 @@ public class CrudSQL extends Conectar{
             case "Fecha traslado":
                 resultado = "fecha_traslado";
                 break;
+                // Caso repuestos
+                case "ID repuesto":
+                resultado = "id_repuesto";
+                break;
+                case "Nombre repuesto":
+                resultado = "nombre";
+                break;
+                case "Precio repuesto":
+                resultado = "precio";
+                break;
+                case "Fecha registro repuesto":
+                resultado = "fecha";
+                break;
+                case "Cantidad repuestos":
+                resultado = "cantidad";
+                break;
         } 
         System.out.println("resultado de traducción>>>>"+resultado);
         return resultado;

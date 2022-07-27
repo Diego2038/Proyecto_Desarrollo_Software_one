@@ -87,7 +87,7 @@ public class LoginController extends CrudSQL implements Initializable {
                                 idGerente = crud_buscar_manual("id_usuario_g", "vendedor", "id_usuario_v='" + Usuario.getId() + "'", 1);
                                 break;
                             case 2:
-                                idGerente = crud_buscar_manual("id_usuario_g", "vendedor", "id_usuario_jt='" + Usuario.getId() + "'", 1);
+                                idGerente = crud_buscar_manual("id_usuario_g", "jefe_de_taller", "id_usuario_jt='" + Usuario.getId() + "'", 1);
                                 break;
                             case 3:
                                 idGerente = Usuario.getId();
