@@ -554,6 +554,44 @@ public class CrudSQL extends Conectar{
     }
     
     
+    public int crud_buscar_manual_conteo(String tabla, String nombreVariable1,
+            String valorVariable1) throws SQLException{
+        int num = 0;
+       
+            Connection conexion = conectar();
+            sentencia = conexion.createStatement();
+            String sql = "SELECT COUNT(*) FROM " + tabla + " WHERE " + nombreVariable1 + "='" + valorVariable1 + "';";
+            result = sentencia.executeQuery(sql);
+            if (result.next()) {
+                num = result.getInt(1);
+            } else {
+                num = 0;
+            }
+
+       
+        return num;
+    }
+    
+    public int crud_buscar_manual_suma(String tabla, String condicion, String nombreVariable1,
+            String valorVariable1) throws SQLException{
+        int num = 0;
+       
+            Connection conexion = conectar();
+            sentencia = conexion.createStatement();
+            String sql = "SELECT SUM("+condicion+") FROM " 
+                    + tabla + " WHERE " + nombreVariable1 + "='" + valorVariable1 + "';";
+            result = sentencia.executeQuery(sql);
+            if (result.next()) {
+                num = result.getInt(1);
+            } else {
+                num = 0;
+            }
+
+       
+        return num;
+    }
+    
+    
     public void crud_modificar_manual (String tabla, String cambios, String condicion) throws SQLException{
         
            Connection conexion = conectar();

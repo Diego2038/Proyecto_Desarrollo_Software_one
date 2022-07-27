@@ -328,6 +328,8 @@ public class AutorizacionVentaVehiculoController extends CrudSQL implements Init
                     if (cb_autorizar.getValue().trim().equals("Autorizar")) {
                         crud_modificar_manual("venta_de_auto", "id_usuario_g='" + Usuario.getId() 
                                 + "'", "id_venta_de_auto='" + txt_cedula.getText().trim() + "'");
+                        crud_modificar_manual("auto_de_venta", "estado='Vendido'", "id_auto='"
+                                +txt_nombre.getText().trim()+"'");
                     }else if (cb_autorizar.getValue().trim().equals("No Autorizar")){
                         crud_modificar_manual("venta_de_auto", "id_usuario_g=" + "NULL" 
                                 , "id_venta_de_auto='" + txt_cedula.getText().trim() + "'");

@@ -70,11 +70,14 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -130,6 +133,10 @@ public class ReportePersonalController extends CrudSQL implements Initializable 
     Button btn_solicitud_traslado_de_vehiculo;
     @FXML
     BarChart <String,Integer> barchart;
+    @FXML
+    BarChart <String,Integer> barchart1;
+    XYChart.Series<String,Integer> series;
+    XYChart.Series<String,Integer> series1;
     
     
     
@@ -165,8 +172,6 @@ public class ReportePersonalController extends CrudSQL implements Initializable 
     Label info_cargo;
     
     
-    @FXML
-    TextArea txt_area;
     
     
     public void cambiarInterfaz(ActionEvent ae){
@@ -383,6 +388,28 @@ public class ReportePersonalController extends CrudSQL implements Initializable 
                 new CornerRadii(10),null)));
         btn_modificar_usuario.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
                 new CornerRadii(10),null))); 
+        
+        
+        
+        series = new XYChart.Series<>();
+        series1 = new XYChart.Series<>();
+        int numVentas;
+        int numGanancias;
+        if(Usuario.getCargo().equalsIgnoreCase("vendedor")){
+            try {
+                numVentas = crud_buscar_manual_conteo("venta_de_auto", "id_usuario_v", Usuario.getId());
+                numGanancias = crud_buscar_manual_suma("venta_de_auto", "comision_a_vendedor", "id_usuario_v", Usuario.getId());
+                series.getData().add(new XYChart.Data<>("Número de autos vendidos", numVentas));
+                series1.getData().add(new XYChart.Data<>("Comisión ganada", numGanancias));
+                barchart.getData().add(series);
+                barchart1.getData().add(series1);
+                
+                
+                // Algo
+            } catch (SQLException ex) {
+                info.setText("Error de búsqueda: " + ex.getMessage());
+            }
+        }
 
         // xd = new Usuario();
         //System.out.println(xd.getNombre());

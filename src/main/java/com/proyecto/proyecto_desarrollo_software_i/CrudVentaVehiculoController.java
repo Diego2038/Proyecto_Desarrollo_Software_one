@@ -246,8 +246,7 @@ public class CrudVentaVehiculoController extends CrudSQL implements Initializabl
             try {
                 if (verificadorSizeCelda(txt_cedula, 1, 15) && verificadorSizeCelda(txt_nombre, 1, 15)
                          && verificadorSizeCelda(txt_telefono, 1, 20)
-                        && verificadorSizeCelda(txt_correo, 6, 60)) {
-                    String idCliente = crud_buscar_manual("id_cliente", "cliente", "cedula='"+txt_correo.getText().trim()+"'", 1);
+                        && verificadorSizeCelda(txt_correo, 1, 60)) {
                     
                     
                     String comisionVendedor = crud_buscar_manual("precio", "auto_de_venta", 
@@ -255,7 +254,7 @@ public class CrudVentaVehiculoController extends CrudSQL implements Initializabl
                     int gananciaVendedor = (int) (Integer.parseInt(comisionVendedor)*0.01);
                     crud_registrar("venta_de_auto", "id_venta_de_auto", "id_auto", "id_usuario_v", "id_cliente", 
                             "fecha_venta","comision_a_vendedor", txt_cedula.getText().trim(), txt_nombre.getText().trim(), 
-                            Usuario.getId(), idCliente, dp_fecha.getValue().toString(),Integer.toString(gananciaVendedor));
+                            Usuario.getId(), txt_correo.getText().trim(), dp_fecha.getValue().toString(),Integer.toString(gananciaVendedor));
                     //registrarCargoUsuario();
                     borrarDatosTextField(componentesTextField);
                     dp_fecha.setValue(LocalDate.now());

@@ -15,7 +15,7 @@ public class Usuario {
     private static String id = "1";
     private static String nombre= "e";
     private static String cedula= "e";
-    private static String cargo= "e";
+    private static String cargo= "vendedor";
     private static String sede = "0";
     
     public static Usuario getInstance(){
