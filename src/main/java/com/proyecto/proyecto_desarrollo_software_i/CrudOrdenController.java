@@ -679,6 +679,10 @@ public class CrudOrdenController extends CrudSQL implements Initializable {
         
         // Probando quitar botones:
         //panelDeOpciones.getChildren().remove(btn_gestion_usuarios); // para quitar componentes de un panel
+        if(Usuario.getCargo().equalsIgnoreCase("jefe de taller")){
+            txt_cedula_jefetaller.setEditable(false);
+            txt_cedula_jefetaller.setText(Usuario.getId());
+        }
     }    
     
 }

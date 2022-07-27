@@ -655,6 +655,11 @@ public class CrudVentaVehiculoController extends CrudSQL implements Initializabl
         btn_modificar_usuario.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
                 new CornerRadii(10),null))); 
 
+        if(Usuario.getCargo().equalsIgnoreCase("vendedor")){
+            txt_telefono.setEditable(false);
+            txt_telefono.setText(Usuario.getId());
+            
+        }
         // xd = new Usuario();
         //System.out.println(xd.getNombre());
         

@@ -659,6 +659,13 @@ public class SolicitudTrasladoVehiculoVentaController extends CrudSQL implements
         // xd = new Usuario();
         //System.out.println(xd.getNombre());
         System.out.println("Sede usuario!!!: " + Usuario.getSede());
+        
+        if(Usuario.getCargo().equalsIgnoreCase("vendedor")){
+            rb_habilitar_condicion_de_modificacion.setVisible(false);
+            txt_id_vendedor.setEditable(false);
+            txt_id_vendedor.setText(Usuario.getId());
+        }
+        
         // Probando quitar botones:
         //panelDeOpciones.getChildren().remove(btn_gestion_usuarios); // para quitar componentes de un panel
     }    

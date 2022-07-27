@@ -87,7 +87,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <RadioButton fx:id="rb_sueldo" layoutX="362.0" layoutY="228.0" mnemonicParsing="false" opacity="0.8" text="Sueldo" textFill="WHITE">
+            <RadioButton fx:id="rb_sueldo" layoutX="362.0" layoutY="228.0" mnemonicParsing="false" opacity="0.8" text="Precio" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

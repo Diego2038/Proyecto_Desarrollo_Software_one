@@ -681,6 +681,10 @@ public class CrudAutoVentaController extends CrudSQL implements Initializable {
         btn_modificar_usuario.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
                 new CornerRadii(10),null))); 
 
+        if(Usuario.getCargo().equalsIgnoreCase("vendedor")){
+            rb_habilitar_condicion_de_modificacion.setVisible(false);
+            rb_buscar_global_usuario.setVisible(false);
+        }
         // xd = new Usuario();
         //System.out.println(xd.getNombre());
         
