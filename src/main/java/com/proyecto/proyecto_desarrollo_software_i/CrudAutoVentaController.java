@@ -270,7 +270,7 @@ public class CrudAutoVentaController extends CrudSQL implements Initializable {
                             txt_agno.getText().trim(), cb_color.getValue().trim());
                     // Registro Auto de venta
                     crud_registrar("auto_de_venta", "id_auto", "id_sede", "precio", "garantia", "estado", "fecha_registro_auto", 
-                            txt_id.getText().trim(), "1", txt_precio_base.getText().trim(), 
+                            txt_id.getText().trim(), Usuario.getSede(), txt_precio_base.getText().trim(), 
                             txt_garantia.getText().trim(), cb_estado.getValue().trim(), dp_fecha_registro.getValue().toString().trim());
                     
                     borrarDatosTextField(componentesTextField);

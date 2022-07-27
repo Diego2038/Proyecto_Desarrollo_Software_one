@@ -17,6 +17,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -146,12 +151,61 @@ public class LoginController extends CrudSQL implements Initializable {
             info.setText("Error de búsqueda: "+ex.getMessage());
         }
     }
+    
+    public void cambioColorDentro(MouseEvent me){
+        Button boton = null;
+        if(me.getSource() == btn_ingresar){
+           boton = btn_ingresar;
+        }else if(me.getSource() == btn_cerrar){
+           boton = btn_cerrar;
+        }
+        boton.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
+                new CornerRadii(20),null))); 
+    }
+    
+    
+    public void cambioColorDentro2(MouseEvent me){
+        Button boton = null;
+        if(me.getSource() == btn_cerrar){
+           boton = btn_cerrar;
+        }else if(me.getSource() == btn_ingresar){
+           boton = btn_ingresar;
+        }
+        boton.setBackground(new Background(new BackgroundFill(Color.rgb(0, 37, 26),
+                new CornerRadii(10),null))); 
+    }
+    
+    
+    public void cambioColorFuera(MouseEvent me){
+        Button boton = null;
+        if(me.getSource() == btn_ingresar){
+           boton = btn_ingresar;
+        }else if(me.getSource() == btn_cerrar){
+           boton = btn_cerrar;
+        }
+        boton.setBackground(new Background(new BackgroundFill(Color.rgb(0, 37, 26),null,null)));
+    }
+    
+    public void cambioColorFuera2(MouseEvent me){
+        Button boton = null;
+        if(me.getSource() == btn_cerrar){
+           boton = btn_cerrar;
+        }else if(me.getSource() == btn_ingresar){
+           boton = btn_ingresar;
+        }
+        boton.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
+                new CornerRadii(10),null)));
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        btn_cerrar.setBackground(new Background(new BackgroundFill(Color.rgb(0, 37, 26),
+                new CornerRadii(20),null)));
+        btn_ingresar.setBackground(new Background(new BackgroundFill(Color.rgb(56,120,106),
+                new CornerRadii(10),null)));
     }    
     
 }
