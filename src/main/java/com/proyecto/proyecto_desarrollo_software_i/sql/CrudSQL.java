@@ -247,6 +247,27 @@ public class CrudSQL extends Conectar{
 
     }
     
+    
+    
+    // Ingresar 10 datos
+    public void crud_registrar(String tabla, String nombreDato1, String nombreDato2, String nombreDato3, 
+            String nombreDato4, String nombreDato5, String nombreDato6, String nombreDato7, String nombreDato8,
+            String nombreDato9, String nombreDato10, String valorDato1, String valorDato2, String valorDato3, String valorDato4, 
+            String valorDato5, String valorDato6, String valorDato7, String valorDato8, String valorDato9, String valorDato10) throws SQLException{
+        
+        Connection conexion = conectar();
+        sentencia = conexion.createStatement();
+        String sql = "INSERT INTO " + tabla + "(" + nombreDato1 + "," + nombreDato2 + "," + nombreDato3 + "," + nombreDato4 + ","
+                + nombreDato5 + "," + nombreDato6 + "," + nombreDato7 + "," + nombreDato8 + "," + nombreDato9 + "," + nombreDato10 + ") "
+                + "VALUES('" + valorDato1 + "','" + valorDato2 + "','" + valorDato3 + "','" + valorDato4 + "','" + valorDato5
+                + "','" + valorDato6 + "','" + valorDato7 + "','" + valorDato8 + "','" + valorDato9 + "','"+ valorDato10  +"');";
+        System.out.println(sql);
+        sentencia.execute(sql);
+        sentencia.close();
+        conexion.close();
+
+    }
+    
     /**
      * Método encargado de modificar un valor con una condición
      * @param tabla
@@ -821,6 +842,22 @@ public class CrudSQL extends Conectar{
                 break;
                 case "Cantidad repuestos":
                 resultado = "cantidad";
+                break;
+                // CASO auto de cliente
+                case "Placa":
+                resultado = "placa";
+                break;
+                case "Modelo":
+                resultado = "modelo";
+                break;
+                case "Marca":
+                resultado = "marca";
+                break;
+                case "Año":
+                resultado = "agno";
+                break;
+                case "Color auto":
+                resultado = "color";
                 break;
         } 
         System.out.println("resultado de traducción>>>>"+resultado);

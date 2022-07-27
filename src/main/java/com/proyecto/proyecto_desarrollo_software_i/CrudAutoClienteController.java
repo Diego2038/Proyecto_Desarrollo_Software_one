@@ -279,18 +279,23 @@ public class CrudAutoClienteController extends CrudSQL implements Initializable 
             try {
                 if (verificadorSizeCelda(txt_modelo, 3, 25) && verificadorSizeCelda(txt_marca, 3, 25)
                         && verificadorSizeCelda(txt_agno, 4, 5) && verificadorSizeCelda(txt_placa, 1, 7)
-                        && verificadorSizeCelda(txt_cedula_cliente, 8, 10) && verificadorSizeCelda(txt_id, 1, 6)
+                        && verificadorSizeCelda(txt_cedula_cliente, 1, 10) && verificadorSizeCelda(txt_id, 1, 6)
                         && !(cb_color.getValue() == null)) {
                     info.setText("Procesando registro...");
                     // Registro Auto
-                    crud_registrar("auto","id_auto", "modelo", "marca", "agno", "color", 
-                            txt_id.getText().trim(), txt_modelo.getText().trim(), txt_marca.getText().trim(), 
-                            txt_agno.getText().trim(), cb_color.getValue().trim());
+                    //crud_registrar("auto","id_auto", "modelo", "marca", "agno", "color", 
+                      //      txt_id.getText().trim(), txt_modelo.getText().trim(), txt_marca.getText().trim(), 
+                        //    txt_agno.getText().trim(), cb_color.getValue().trim());
+                    
                     // Registro Auto para reparar
-                    crud_registrar("auto_para_reparar", "id_auto", "placa", txt_id.getText().trim(), txt_placa.getText().trim());
+                    crud_registrar("auto_para_reparar", "id_auto", "placa","modelo", "marca", "agno", "color", 
+                            "id_cliente",  txt_id.getText().trim(), txt_placa.getText().trim(),
+                            txt_modelo.getText().trim(), txt_marca.getText().trim(), 
+                            txt_agno.getText().trim(), cb_color.getValue().trim(),
+                            txt_cedula_cliente.getText().trim());
                     // Registro relación de cliente a Auto
-                    String idCliente = crud_buscar_manual("id_cliente", "cliente", "cedula='"+txt_cedula_cliente.getText().trim()+"'", 1);
-                    crud_registrar("cliente_auto_reparar", "id_cliente", "id_auto", idCliente, txt_id.getText().trim());
+                    //String idCliente = crud_buscar_manual("id_cliente", "cliente", "cedula='"+txt_cedula_cliente.getText().trim()+"'", 1);
+                    //crud_registrar("cliente_auto_reparar", "id_cliente", "id_auto", idCliente, txt_id.getText().trim());
                     
                     borrarDatosTextField(componentesTextField);
                     cb_color.setValue("Blanco");
@@ -338,7 +343,7 @@ public class CrudAutoClienteController extends CrudSQL implements Initializable 
             String resultado = "";
             try {
                 
-                resultado = crud_buscar_manual(SELECCION, "cliente_auto_reparar", CONDICION,NUM_SELECCION);
+                resultado = crud_buscar_manual(SELECCION, "auto_para_reparar", CONDICION,NUM_SELECCION);
                 info.setText("Búsqueda realizada");
                 txt_area.setText("RESULTADOS GLOBALES\n" + resultado);
                 System.out.println("OJO---->" + SELECCION);
@@ -380,7 +385,7 @@ public class CrudAutoClienteController extends CrudSQL implements Initializable 
             
             try {
                 //>>>>//
-                crud_modificar_manual("cliente_auto_reparar", ACTUALIZACION, CONDICION);
+                crud_modificar_manual("auto_para_reparar", ACTUALIZACION, CONDICION);
                 info.setText("Auto de venta modificado exitosamente");
             } catch (SQLException ex) {
                 info.setText("Error actualización");
@@ -391,6 +396,7 @@ public class CrudAutoClienteController extends CrudSQL implements Initializable 
         }
     }
     
+    
     public String seleccionarValor(String nombre){
         String resultado = "";
         if("id_auto".equals(nombre)){
@@ -399,6 +405,14 @@ public class CrudAutoClienteController extends CrudSQL implements Initializable 
             resultado = txt_cedula_cliente.getText().trim();
         }else if("placa".equals(nombre)){
             resultado = txt_placa.getText().trim();
+        }else if("modelo".equals(nombre)){
+            resultado = txt_modelo.getText().trim();
+        }else if("marca".equals(nombre)){
+            resultado = txt_marca.getText().trim();
+        }else if("agno".equals(nombre)){
+            resultado = txt_agno.getText().trim();
+        }else if("color".equals(nombre)){
+            resultado = cb_color.getValue().trim();
         }
         return resultado;
     }
@@ -412,6 +426,14 @@ public class CrudAutoClienteController extends CrudSQL implements Initializable 
             resultado = txt_cedula_cliente_condicion.getText().trim();
         }else if("placa".equals(nombre)){
             resultado = txt_placa_condicion.getText().trim();
+        }else if("modelo".equals(nombre)){
+            resultado = txt_modelo_condicion.getText().trim();
+        }else if("marca".equals(nombre)){
+            resultado = txt_marca_condicion.getText().trim();
+        }else if("agno".equals(nombre)){
+            resultado = txt_agno_condicion.getText().trim();
+        }else if("color".equals(nombre)){
+            resultado = cb_color_condicion.getValue().trim();
         }
         return resultado;
     }
@@ -590,10 +612,9 @@ public class CrudAutoClienteController extends CrudSQL implements Initializable 
         componentesTextField.add(txt_agno_condicion);
         
         
-        String LISTA_SELECCION[] = {"-","ID único","ID sede","Precio vehículo de venta","Años de garantía",
-        "Estado de vehículo","Fecha de registro"}; 
-        String LISTA_CONDICION[] = {"-","ID único","ID sede","Precio vehículo de venta","Años de garantía",
-        "Estado de vehículo","Fecha de registro"};
+        
+        String LISTA_SELECCION[] = {"-","ID auto","Placa","Modelo","Marca","Año","Color auto","ID cliente"}; 
+        String LISTA_CONDICION[] = {"-","ID auto","Placa","Modelo","Marca","Año","Color auto","ID cliente"};
         
         String COLOR[] = {"Blanco","Negro","Rojo","Azul","Verde","Gris"};
         
